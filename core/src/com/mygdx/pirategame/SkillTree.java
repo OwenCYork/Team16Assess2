@@ -26,6 +26,7 @@ public class SkillTree implements Screen {
 
     private final PirateGame parent;
     private final Stage stage;
+    private final SkillTree T;
 
     //To store whether buttons are enabled or disabled
     private static final List<Integer> states = new ArrayList<Integer>();
@@ -34,6 +35,8 @@ public class SkillTree implements Screen {
     private TextButton damage1;
     private TextButton GoldMulti1;
     private TextButton movement2;
+    private TextButton[] boxTags = new TextButton[12];
+    private Node tree;
 
     /**
      * Instantiates a new Skill tree.
@@ -44,12 +47,52 @@ public class SkillTree implements Screen {
     public SkillTree(PirateGame pirateGame){
         parent = pirateGame;
         stage = new Stage(new ScreenViewport());
-
+        T = this;
         //0 = enabled, 1 = disabled
         states.add(1);
         states.add(1);
         states.add(1);
         states.add(1);
+
+        Skin skin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
+        String[] boxvalues = {"Skills","Health","Max Health","Regen Speed","Movement Speed","Plunder Multiplier","Cannon","Damage Per Shot","Range","Reload Speed","Ammo","Shot Types"};
+        //-1 = unavalible, 0 = avalible, >1 = got to level
+        for(int i=0;i<12;i++){
+            states.add(-1);
+            boxTags[i] = new TextButton(boxvalues[i], skin);
+            
+        }
+
+        
+
+        //0 = nothing
+        //1 = Health
+        //11= Max Health
+        //12= Regen Speed
+        //2 = Movement Speed
+        //3 = Plunder Multiplier
+        //4 = Cannon
+        //41= Damage Per Shot
+        //42= Range
+        //43= Reload Speed
+        //44= Ammo
+        //45=Shot Types
+        this.tree = new Node(4);
+        this.tree.AddBranch(5);
+        this.tree.AddBranch(8);
+        this.tree.AddBranch(9);
+        this.tree.AddBranch(10);
+        Node hBranch = this.tree.GetBranch(0);
+        //System.out.println(this.tree.branch.GetLen());
+        hBranch.AddBranch(6);
+        hBranch.AddBranch(7);
+        Node cBranch = this.tree.GetBranch(3);
+        cBranch.AddBranch(11);
+        cBranch.AddBranch(12);
+        cBranch.AddBranch(13);
+        cBranch.AddBranch(14);
+        cBranch.AddBranch(15);
+        states.set(4,0);
     }
     /**
      * What should be displayed on the skill tree screen
@@ -97,6 +140,12 @@ public class SkillTree implements Screen {
 
         }
 
+        for(int i=0;i<12;i++){
+            if(states.get(4+i)==-1){
+                boxTags[i].setDisabled(true);
+            }
+        }
+
         //Point unlock labels
         final Label unlock100 = new Label("100 points",skin);
         final Label unlock200 = new Label("200 points",skin);
@@ -114,6 +163,79 @@ public class SkillTree implements Screen {
             }
         });
 
+        boxTags[0].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                T.clicked(4);
+            }
+        });
+        boxTags[1].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                T.clicked(5);
+            }
+        });
+        boxTags[2].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                T.clicked(6);
+            }
+        });
+        boxTags[3].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                T.clicked(7);
+            }
+        });
+        boxTags[4].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                T.clicked(8);
+            }
+        });
+        boxTags[5].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                T.clicked(9);
+            }
+        });
+        boxTags[6].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                T.clicked(10);
+            }
+        });
+        boxTags[7].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                T.clicked(11);
+            }
+        });
+        boxTags[8].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                T.clicked(12);
+            }
+        });
+        boxTags[9].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                T.clicked(13);
+            }
+        });
+        boxTags[10].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                T.clicked(14);
+            }
+        });
+        boxTags[11].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                T.clicked(15);
+            }
+        });
+        this.applyEffects();
         //add buttons and labels to main table
         table.add(movement1);
         table.add(unlock100);
@@ -126,6 +248,10 @@ public class SkillTree implements Screen {
         table.row().pad(10, 0, 10, 0);
         table.add(damage1);
         table.add(unlock400);
+        for(int i=0;i<12;i++){
+            table.row().pad(10, 0, 10, 0);
+            table.add(boxTags[i]);
+        }
         table.top();
 
         //add return button
@@ -165,6 +291,88 @@ public class SkillTree implements Screen {
             //Increase damage
             GameScreen.changeDamage(5);
             states.set(3, 0);
+        }
+        
+        
+
+    }
+
+    public void clicked(int code){
+            System.out.println(code);
+            int[] addedNodes = new int[10];
+            int index=0;
+            if(states.get(4)==0 && code==4){
+                states.set(4,1);
+                //
+                for(int i=0;i<4;i++){
+                    addedNodes[index] = this.tree.GetBranch(i).nodeCode;
+                    index++;
+                }
+            }else if(states.get(4)>0 && states.get(4)<3 && code==4){
+                states.set(4,states.get(4)+1);
+            }
+            
+            
+            if(states.get(5)==0 && code==5){
+                states.set(5,1);
+                //
+                Node root = this.tree.GetBranch(0);
+                for(int i=0;i<2;i++){
+                    addedNodes[index] = root.GetBranch(i).nodeCode;
+                    index++;
+                }
+            }else if(states.get(5)>0 && states.get(5)<3 && code==5){
+                states.set(5,states.get(5)+1);
+            }
+
+            if(states.get(10)==0 && code==10){
+                states.set(10,1);
+                Node root = this.tree.GetBranch(3);
+                for(int i=0;i<5;i++){
+                    addedNodes[index] = root.GetBranch(i).nodeCode;
+                    index++;
+                }
+            }else if(states.get(10)>0 && states.get(10)<3 && code==10){
+                states.set(10,states.get(10)+1);
+            }
+
+            for(int i=6;i<12;i++){
+                if(i!=10){
+                    if(states.get(i)==0 && code==i){
+                        states.set(i,1);
+                    }else if(states.get(i)>0 && states.get(i)<3 && code==i){
+                        states.set(i,states.get(i)+1);
+                    }
+                }
+            }
+
+            for(int i=0;i<index;i++){
+                if(states.get(addedNodes[i])==-1){
+                    states.set(addedNodes[i], 0);
+                }
+            }
+            //this.applyEffects();
+            
+            this.show();
+    }
+
+    public void applyEffects(){
+        for(int i=4;i<16;i++){
+            int amount = states.get(i);
+            if(amount==-1){
+                //Do nothing
+            }else if(amount==0){
+                //Also nothing
+            }else if(amount==1){
+                //apply effect
+                //make bronze
+            }else if(amount==2){
+                //apply effect
+                //make silver
+            }else if(amount==3){
+                //apply effect
+                //make gold
+            }
         }
     }
 

@@ -1,10 +1,12 @@
+package com.mygdx.pirategame;
+
 public class Node{
     public int nodeCode;
-    public LinkedList branch;
+    public LinkList branch;
     public int branchCounter;
     public Node(int nodeCode){
         this.nodeCode = nodeCode;
-        this.branch = new LinkedList();
+        this.branch = new LinkList();
         this.branchCounter = 0;
     }
     public Node GetLeft(){
@@ -34,41 +36,3 @@ public class Node{
 
 }
 
-
-protected class LinkedList{
-    public Node value;
-    public LinkedList next;
-    public LinkedList(){
-        //
-    }
-
-    public LinkedList(Node node){
-        this.value = node;
-    }
-
-    public void Add(Node node){
-        if(this.value==null){
-            this.value=node;
-        }else{
-            next = new LinkedList(node);
-        }
-    }
-
-    public int GetLen(){
-        if(this.next==null){
-            return(1);
-        }else{
-            return(1+this.next.GetLen());
-        }
-    }
-    
-    public Node Get(int index){
-        if(index==0){
-            return(this.value);
-        }else if(index==1 && this.next==null){
-            return(null);
-        }else{
-            return(this.next.Get(index-1));
-        }
-    }
-}
