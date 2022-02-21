@@ -156,7 +156,7 @@ public class SkillTree implements Screen {
 
         //Return Button
         TextButton backButton = new TextButton("Return", skin);
-
+        this.applyEffects();
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -237,7 +237,6 @@ public class SkillTree implements Screen {
                 T.clicked(15);
             }
         });
-        this.applyEffects();
         
 
         //add buttons and labels to main table
@@ -260,17 +259,17 @@ public class SkillTree implements Screen {
         table.add(boxTags[1]);
         }
         if(states.get(8)>-1){
-            table.row().pad(-100, 0, 10, 0);
+            table.row().pad(-100, -300, 10, 0);
             table.add(boxTags[4]);
         }
 
         if(states.get(9)>-1){
-            table.row().pad(-100, 500, 10, 0);
+            table.row().pad(-100, 300, 10, 0);
             table.add(boxTags[5]);
         }
     
         if(states.get(10)>-1){
-            table.row().pad(-100, 1000, 10, 0);
+            table.row().pad(-100, 800, 10, 0);
             table.add(boxTags[6]);
         }
 
@@ -284,15 +283,15 @@ public class SkillTree implements Screen {
 
 
         if(states.get(11)>-1){
-        table.row().pad(10, -1000, 10, 0);
+        table.row().pad(10, -200, 10, 0);
         table.add(boxTags[7]);
-        table.row().pad(10, 1000, 10, 0);
+        table.row().pad(30, 0, 10, 0);
         table.add(boxTags[8]);
-        table.row().pad(10, 1000, 10, 0);
+        table.row().pad(-330, 300, 10, 0);
         table.add(boxTags[9]);
-        table.row().pad(10, 1000, 10, 0);
+        table.row().pad(-330, 800, 10, 0);
         table.add(boxTags[10]);
-        table.row().pad(10, 1000, 10, 0);
+        table.row().pad(100, 1200, 10, 0);
         table.add(boxTags[11]);
         }
 
@@ -389,7 +388,7 @@ public class SkillTree implements Screen {
                 states.set(10,states.get(10)+1);
             }
 
-            for(int i=6;i<15;i++){
+            for(int i=6;i<16;i++){
                 if(i!=10){
                     if(states.get(i)==0 && code==i){
                         states.set(i,1);
