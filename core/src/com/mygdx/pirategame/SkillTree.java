@@ -139,10 +139,12 @@ public class SkillTree implements Screen {
             damage1.setDisabled(true);
 
         }
-
+        String[] boxvalues = {"Skills","Health","Max Health","Regen Speed","Movement Speed","Plunder Multiplier","Cannon","Damage Per Shot","Range","Reload Speed","Ammo","Shot Types"};
         for(int i=0;i<12;i++){
             if(states.get(4+i)==-1){
                 boxTags[i].setDisabled(true);
+            }else{
+                boxTags[i] = new TextButton(boxvalues[i], skin);
             }
         }
 
@@ -236,8 +238,10 @@ public class SkillTree implements Screen {
             }
         });
         this.applyEffects();
+        
+
         //add buttons and labels to main table
-        table.add(movement1);
+        /*table.add(movement1);
         table.add(unlock100);
         table.row().pad(10, 0, 10, 0);
         table.add(GoldMulti1);
@@ -247,11 +251,59 @@ public class SkillTree implements Screen {
         table.add(unlock300);
         table.row().pad(10, 0, 10, 0);
         table.add(damage1);
-        table.add(unlock400);
-        for(int i=0;i<12;i++){
-            table.row().pad(10, 0, 10, 0);
-            table.add(boxTags[i]);
+        table.add(unlock400);*/
+        table.row().pad(10, 0, 10, 0);
+        table.add(boxTags[0]);
+
+        if(states.get(5)>-1){
+        table.row().pad(10, -900, 10, 0);
+        table.add(boxTags[1]);
         }
+        if(states.get(8)>-1){
+            table.row().pad(-100, 0, 10, 0);
+            table.add(boxTags[4]);
+        }
+
+        if(states.get(9)>-1){
+            table.row().pad(-100, 500, 10, 0);
+            table.add(boxTags[5]);
+        }
+    
+        if(states.get(10)>-1){
+            table.row().pad(-100, 1000, 10, 0);
+            table.add(boxTags[6]);
+        }
+
+        if(states.get(6)>-1){
+        table.row().pad(10, -1200, 10, 0);
+        table.add(boxTags[2]);
+        table.row().pad(-100, -700, 10, 0);
+        table.add(boxTags[3]);
+        }
+        
+
+
+        if(states.get(11)>-1){
+        table.row().pad(10, -1000, 10, 0);
+        table.add(boxTags[7]);
+        table.row().pad(10, 1000, 10, 0);
+        table.add(boxTags[8]);
+        table.row().pad(10, 1000, 10, 0);
+        table.add(boxTags[9]);
+        table.row().pad(10, 1000, 10, 0);
+        table.add(boxTags[10]);
+        table.row().pad(10, 1000, 10, 0);
+        table.add(boxTags[11]);
+        }
+
+
+        for(int i=0;i<12;i++){
+            //table.row().pad(10, 0, 10, 0);
+            //table.add(boxTags[i]);
+            System.out.println("tableIndex:"+states.get(4+i));
+        }
+
+
         table.top();
 
         //add return button
@@ -298,9 +350,10 @@ public class SkillTree implements Screen {
     }
 
     public void clicked(int code){
-            System.out.println(code);
+            System.out.println("Code:"+code);
             int[] addedNodes = new int[10];
             int index=0;
+
             if(states.get(4)==0 && code==4){
                 states.set(4,1);
                 //
@@ -311,8 +364,8 @@ public class SkillTree implements Screen {
             }else if(states.get(4)>0 && states.get(4)<3 && code==4){
                 states.set(4,states.get(4)+1);
             }
-            
-            
+            //System.out.println("Value:"+states.get(4));
+            //System.out.println("Index:"+index);
             if(states.get(5)==0 && code==5){
                 states.set(5,1);
                 //
@@ -336,7 +389,7 @@ public class SkillTree implements Screen {
                 states.set(10,states.get(10)+1);
             }
 
-            for(int i=6;i<12;i++){
+            for(int i=6;i<15;i++){
                 if(i!=10){
                     if(states.get(i)==0 && code==i){
                         states.set(i,1);
