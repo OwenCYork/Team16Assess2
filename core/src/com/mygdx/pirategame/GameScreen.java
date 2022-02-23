@@ -159,7 +159,7 @@ public class GameScreen implements Screen {
         //GAME BUTTONS
         final TextButton pauseButton = new TextButton("Pause",skin);
         final TextButton skill = new TextButton("Skill Tree", skin);
-
+        final TextButton save = new TextButton("Save", skin);
         //PAUSE MENU BUTTONS
         final TextButton start = new TextButton("Resume", skin);
         final TextButton options = new TextButton("Options", skin);
@@ -195,6 +195,8 @@ public class GameScreen implements Screen {
         pauseTable.row().pad(20, 0, 10, 0);
         pauseTable.add(skill).fillX().uniformX();
         pauseTable.row().pad(20, 0, 10, 0);
+        pauseTable.add(save).fillX().uniformX();
+        pauseTable.row().pad(20, 0, 10, 0);
         pauseTable.add(options).fillX().uniformX();
         pauseTable.row().pad(20, 0, 10, 0);
         pauseTable.add(exit).fillX().uniformX();
@@ -215,6 +217,13 @@ public class GameScreen implements Screen {
             public void changed(ChangeEvent event, Actor actor){
                 pauseTable.setVisible(false);
                 game.changeScreen(PirateGame.SKILL);
+            }
+        });
+        save.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor){
+                pauseTable.setVisible(false);
+                game.changeScreen(PirateGame.SAVE);
             }
         });
         start.addListener(new ChangeListener() {

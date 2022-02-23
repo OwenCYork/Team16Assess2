@@ -35,7 +35,7 @@ public class PirateGame extends Game {
 	private DeathScreen deathScreen;
 	private Help helpScreen;
 	private VictoryScreen victoryScreen;
-
+	private SaveScreen SaveScreen;
 	private audioControls options;
 	public Music song;
 
@@ -46,6 +46,7 @@ public class PirateGame extends Game {
 	public final static int DEATH = 3;
 	public final static int HELP = 4;
 	public final static int VICTORY = 5;
+	public final static int SAVE = 6;
 
 	/**
 	 * Creates the main body of the game.
@@ -107,6 +108,10 @@ public class PirateGame extends Game {
 			case VICTORY:
 				if (victoryScreen == null) victoryScreen = new VictoryScreen(this);
 				this.setScreen(victoryScreen);
+				break;
+			case SAVE:
+				if (SaveScreen == null) SaveScreen = new SaveScreen(this);
+				this.setScreen(SaveScreen);
 				break;
 		}//
 	}
