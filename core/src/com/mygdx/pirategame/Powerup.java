@@ -93,7 +93,7 @@ public class Powerup extends Entity {
     }
 
     /**
-     * What happens when an entity collides with the coin. The only entity that is able to do so is the player ship
+     * What happens when an entity collides with the powerup. The only entity that is able to do so is the player ship
      */
     @Override
     public void entityContact() {
@@ -102,7 +102,15 @@ public class Powerup extends Entity {
                 
             }
             case 2:{
-               
+                try{
+                    GameScreen.changeDamage(5);
+                    this.wait(10000);
+                    GameScreen.changeDamage(-5);
+                }
+                catch(InterruptedException e){
+                    System.out.println("Interrupted in Damage Powerup");
+                    GameScreen.changeDamage(-5);
+                }
             }
             case 3:{
                 
