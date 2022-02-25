@@ -6,7 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-
+//NOT ADDED TO DOCUMENTATION YET
+//TODO: ADD TO DOCUMENTATION
 public class Powerup extends Entity { 
     /**
      * Defines the effect that the powerup will give.
@@ -104,7 +105,9 @@ public class Powerup extends Entity {
             case 2:{
                 try{
                     GameScreen.changeDamage(5);
+                   
                     this.wait(10000);
+                    
                     GameScreen.changeDamage(-5);
                 }
                 catch(InterruptedException e){
@@ -113,7 +116,20 @@ public class Powerup extends Entity {
                 }
             }
             case 3:{
-                
+                try{
+                    GameScreen.changeAcceleration(20F);
+                    GameScreen.changeMaxSpeed(20F);
+
+                    this.wait(10000);
+                    
+                    GameScreen.changeAcceleration(-20F);
+                    GameScreen.changeMaxSpeed(-20F);
+                }
+                catch(InterruptedException e){
+                    System.out.println("Interrupted in Movement Powerup");
+                    GameScreen.changeAcceleration(-20F);
+                    GameScreen.changeMaxSpeed(-20F);
+                }
             }
             case 4:{
                 
