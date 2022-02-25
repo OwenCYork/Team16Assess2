@@ -42,6 +42,7 @@ public class MainMenu implements Screen {
         // Create a table for the buttons
         Table table = new Table();
         table.setFillParent(true);
+
         stage.addActor(table);
 
         //The skin for the actors
