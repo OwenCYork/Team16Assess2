@@ -1,4 +1,4 @@
-package com.mygdx.pirategame;
+package com.mygdx.pirategame.GameObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;

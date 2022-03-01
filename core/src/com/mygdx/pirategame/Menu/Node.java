@@ -1,4 +1,4 @@
-package com.mygdx.pirategame;
+package com.mygdx.pirategame.Menu;
 
 public class Node{
     public int nodeCode;

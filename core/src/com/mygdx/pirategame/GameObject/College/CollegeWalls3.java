@@ -1,6 +1,9 @@
-package com.mygdx.pirategame;
+package com.mygdx.pirategame.GameObject.College;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.pirategame.GameScreen;
+import com.mygdx.pirategame.PirateGame;
+import com.mygdx.pirategame.World.InteractiveTileObject;
 
 /**
  * College Walls (Constantine)

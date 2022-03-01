@@ -1,10 +1,15 @@
-package com.mygdx.pirategame;
+package com.mygdx.pirategame.World;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.pirategame.GameObject.College.CollegeWalls;
+import com.mygdx.pirategame.GameObject.College.CollegeWalls2;
+import com.mygdx.pirategame.GameObject.College.CollegeWalls3;
+import com.mygdx.pirategame.GameObject.College.CollegeWalls4;
+import com.mygdx.pirategame.GameScreen;
 
 /**
  * This is the class where all boundaries and collisions are created for the map.

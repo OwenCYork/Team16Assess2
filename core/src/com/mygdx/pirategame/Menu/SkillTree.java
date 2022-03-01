@@ -1,16 +1,17 @@
-package com.mygdx.pirategame;
+package com.mygdx.pirategame.Menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.mygdx.pirategame.GameScreen;
+import com.mygdx.pirategame.PirateGame;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class SkillTree implements Screen {
     private TextButton movement2;
     private TextButton[] boxTags = new TextButton[12];
     private Node tree;
+
 
     /**
      * Instantiates a new Skill tree.
@@ -116,7 +118,6 @@ public class SkillTree implements Screen {
 
         //The skin for the actors
         Skin skin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
-
         //create skill tree buttons
         movement1 = new TextButton("Movement Speed + 20%", skin);
 
@@ -328,6 +329,7 @@ public class SkillTree implements Screen {
         }
         else if(states.get(1) == 1 && points >= 200){
             //Change multiplier
+
             Hud.changeCoinsMulti(2);
             states.set(1, 0);
         }

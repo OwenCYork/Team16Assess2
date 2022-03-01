@@ -1,7 +1,14 @@
-package com.mygdx.pirategame;
+package com.mygdx.pirategame.World;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.pirategame.GameObject.CannonFire;
+import com.mygdx.pirategame.GameObject.College.CollegeFire;
+import com.mygdx.pirategame.GameObject.Enemy.Enemy;
+import com.mygdx.pirategame.GameObject.Entity;
+import com.mygdx.pirategame.GameObject.Player;
+import com.mygdx.pirategame.Menu.Hud;
+import com.mygdx.pirategame.PirateGame;
 
 /**
  * Tells the game what to do when certain entities come into contact with each other

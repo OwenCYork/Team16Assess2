@@ -1,9 +1,12 @@
-package com.mygdx.pirategame;
+package com.mygdx.pirategame.GameObject.College;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.pirategame.GameScreen;
+import com.mygdx.pirategame.PirateGame;
+
 /**
  * College Fire
  * Defines college attack method

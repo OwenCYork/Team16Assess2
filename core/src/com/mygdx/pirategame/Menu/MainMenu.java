@@ -1,16 +1,19 @@
-package com.mygdx.pirategame;
+package com.mygdx.pirategame.Menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-
+import com.mygdx.pirategame.PirateGame;
 /**
  * Main menu is the first screen the player sees. Allows them to navigate where they want to go to
  * @author Sam Pearson
@@ -20,7 +23,7 @@ public class MainMenu implements Screen {
 
     private final PirateGame parent;
     private final Stage stage;
-
+    Texture background = new Texture(Gdx.files.internal("background.png"));
     /**
      * Instantiates a new Main menu.
      *
@@ -37,6 +40,7 @@ public class MainMenu implements Screen {
      */
     @Override
     public void show() {
+
         //Set the input processor
         Gdx.input.setInputProcessor(stage);
         // Create a table for the buttons
@@ -47,6 +51,7 @@ public class MainMenu implements Screen {
 
         //The skin for the actors
         Skin skin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
+
 
         //create buttons
         TextButton newGame = new TextButton("New Game", skin);
@@ -107,7 +112,11 @@ public class MainMenu implements Screen {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        stage.getBatch().begin();
+        stage.getBatch().draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        stage.getBatch().end();
         stage.draw();
+
     }
 
     /**

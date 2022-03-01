@@ -1,10 +1,16 @@
-package com.mygdx.pirategame;
+package com.mygdx.pirategame.GameObject.College;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.pirategame.GameObject.AvailableSpawn;
+import com.mygdx.pirategame.GameObject.Enemy.Enemy;
+import com.mygdx.pirategame.GameObject.Enemy.EnemyShip;
+import com.mygdx.pirategame.GameScreen;
+import com.mygdx.pirategame.Menu.Hud;
+import com.mygdx.pirategame.PirateGame;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,7 +25,7 @@ import java.util.Random;
  *@version 1.0
  */
 
-public class College extends Enemy{
+public class College extends Enemy {
     private Texture enemyCollege;
     public Random rand = new Random();
     private String currentCollege;

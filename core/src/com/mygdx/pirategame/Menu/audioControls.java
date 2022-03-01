@@ -1,4 +1,4 @@
-package com.mygdx.pirategame;
+package com.mygdx.pirategame.Menu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 

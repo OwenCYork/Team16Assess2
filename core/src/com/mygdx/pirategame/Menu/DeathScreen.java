@@ -1,9 +1,10 @@
-package com.mygdx.pirategame;
+package com.mygdx.pirategame.Menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -13,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.pirategame.PirateGame;
+import sun.jvm.hotspot.gc.parallel.PSYoungGen;
 
 /**
  * Death Screen
@@ -25,6 +28,7 @@ public class DeathScreen implements Screen {
 
     private final PirateGame parent;
     private final Stage stage;
+    Texture DeathScreen = new Texture(Gdx.files.internal("YouDiedScreen.png"));
 
     /**
      * Creates a new screen
@@ -98,8 +102,10 @@ public class DeathScreen implements Screen {
      */
     @Override
     public void render(float dt) {
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1);
+        Gdx.gl.glClearColor(0.5f, 0f, 0f, 0.7f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.getBatch().begin();
+        stage.getBatch().end();
         stage.draw();
     }
 

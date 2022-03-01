@@ -1,8 +1,9 @@
-package com.mygdx.pirategame;
+package com.mygdx.pirategame.GameObject;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.pirategame.GameScreen;
 
 /**
  * Entity

@@ -1,4 +1,4 @@
-package com.mygdx.pirategame;
+package com.mygdx.pirategame.Collectable;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
@@ -6,9 +6,13 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.mygdx.pirategame.GameObject.Entity;
+import com.mygdx.pirategame.GameScreen;
+import com.mygdx.pirategame.PirateGame;
+
 //NOT ADDED TO DOCUMENTATION YET
 //TODO: ADD TO DOCUMENTATION
-public class Powerup extends Entity { 
+public class Powerup extends Entity {
     /**
      * Defines the effect that the powerup will give.
      * 1: Restores some health

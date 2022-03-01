@@ -17,6 +17,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.*;
+import com.mygdx.pirategame.Collectable.Coin;
+import com.mygdx.pirategame.GameObject.AvailableSpawn;
+import com.mygdx.pirategame.GameObject.College.College;
+import com.mygdx.pirategame.GameObject.Enemy.EnemyShip;
+import com.mygdx.pirategame.GameObject.Player;
+import com.mygdx.pirategame.Menu.Hud;
+import com.mygdx.pirategame.Menu.Options;
+import com.mygdx.pirategame.World.WorldContactListener;
+import com.mygdx.pirategame.World.WorldCreator;
+
 import java.util.Random;
 
 import java.util.ArrayList;
@@ -36,7 +46,7 @@ public class GameScreen implements Screen {
     private static float accel = 0.05f;
     private float stateTime;
 
-    protected static PirateGame game;
+    public static PirateGame game;
     private OrthographicCamera camera;
     private Viewport viewport;
     private final Stage stage;
