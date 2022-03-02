@@ -38,7 +38,7 @@ public class SkillTree implements Screen {
     private TextButton movement2;
     private TextButton[] boxTags = new TextButton[12];
     private Node tree;
-
+    private String last;
 
     /**
      * Instantiates a new Skill tree.
@@ -66,7 +66,7 @@ public class SkillTree implements Screen {
         }
 
         
-
+        last = "0...........";
         //0 = nothing
         //1 = Health
         //11= Max Health
@@ -157,11 +157,18 @@ public class SkillTree implements Screen {
 
         //Return Button
         TextButton backButton = new TextButton("Return", skin);
-        this.applyEffects();
+        this.applyEffects(last);
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-
+                last = "";
+                for(int i=0;i<12;i++){
+                    if(states.get(4+i)==-1){
+                        last= last + ".";
+                    }else{
+                        last = last + Integer.toString(states.get(4+i));
+                    }
+                }
                 parent.changeScreen(PirateGame.GAME); //Return to game
             }
         });
@@ -410,23 +417,51 @@ public class SkillTree implements Screen {
             this.show();
     }
 
-    public void applyEffects(){
+    public void applyEffects(String last){
         for(int i=4;i<16;i++){
             int amount = states.get(i);
+            int l = Integer.parseInt(""+last.charAt(i-4));
+            if(l!=-1){
+                amount = amount-l;
             if(amount==-1){
                 //Do nothing
             }else if(amount==0){
                 //Also nothing
             }else if(amount==1){
+                if(i==5){
+                    GameScreen.changeAcceleration(20F);
+                    GameScreen.changeMaxSpeed(20F); 
+                }else if(i==9){
+                    Hud.changeCoinsMulti(2);
+                }else if(i==11){
+                    GameScreen.changeDamage(5);
+                }
                 //apply effect
-                //make bronze
+                
             }else if(amount==2){
+                if(i==5){
+                    GameScreen.changeAcceleration(40F);
+                    GameScreen.changeMaxSpeed(40F); 
+                }else if(i==9){
+                    Hud.changeCoinsMulti(4);
+                }else if(i==11){
+                    GameScreen.changeDamage(10);
+                }
                 //apply effect
-                //make silver
+                
             }else if(amount==3){
+                if(i==5){
+                    GameScreen.changeAcceleration(60F);
+                    GameScreen.changeMaxSpeed(60F); 
+                }else if(i==9){
+                    Hud.changeCoinsMulti(6);
+                }else if(i==11){
+                    GameScreen.changeDamage(15);
+                }
                 //apply effect
-                //make gold
+                
             }
+        }
         }
     }
 
