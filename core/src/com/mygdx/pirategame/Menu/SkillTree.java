@@ -119,6 +119,8 @@ public class SkillTree implements Screen {
         //The skin for the actors
         Skin skin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
         //create skill tree buttons
+
+        /*
         movement1 = new TextButton("Movement Speed + 20%", skin);
 
         //Sets enabled or disabled
@@ -140,21 +142,28 @@ public class SkillTree implements Screen {
             damage1.setDisabled(true);
 
         }
+        */
+        Skin bronzeSkin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
+        Skin silverSkin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
+        Skin goldSkin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
         String[] boxvalues = {"Skills","Health","Max Health","Regen Speed","Movement Speed","Plunder Multiplier","Cannon","Damage Per Shot","Range","Reload Speed","Ammo","Shot Types"};
         for(int i=0;i<12;i++){
             if(states.get(4+i)==-1){
                 boxTags[i].setDisabled(true);
             }else{
-                boxTags[i] = new TextButton(boxvalues[i], skin);
+                Skin[] vals = {skin,bronzeSkin,silverSkin,goldSkin};
+                boxTags[i] = new TextButton(boxvalues[i], vals[states.get(4+i)]);
+
             }
         }
 
         //Point unlock labels
+        /*
         final Label unlock100 = new Label("100 points",skin);
         final Label unlock200 = new Label("200 points",skin);
         final Label unlock300 = new Label("300 points",skin);
         final Label unlock400 = new Label("400 points",skin);
-
+        */
         //Return Button
         TextButton backButton = new TextButton("Return", skin);
         this.applyEffects(last);
@@ -361,7 +370,7 @@ public class SkillTree implements Screen {
             System.out.println("Code:"+code);
             int[] addedNodes = new int[10];
             int index=0;
-
+            Integer coins = Hud.GetCoins();
             if(states.get(4)==0 && code==4){
                 states.set(4,1);
                 //

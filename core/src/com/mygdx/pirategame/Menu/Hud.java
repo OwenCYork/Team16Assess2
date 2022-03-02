@@ -134,6 +134,20 @@ public class Hud implements Disposable {
         maxHealth+=maxh;
     }
 
+    public static Integer GetCoins(){
+        return(coins);
+    }
+
+    public static Boolean DeductCoins(Integer c){
+        coins-=c;
+        if(coins<0){
+            coins+=c;
+            return(false);
+        }else{
+            return(true);
+        }
+    }
+
     /**
      * Changes health by value increase
      *
