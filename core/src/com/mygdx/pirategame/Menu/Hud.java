@@ -24,6 +24,8 @@ public class Hud implements Disposable {
     private float timeCount;
     private static Integer score;
     private static Integer health;
+    private static Integer healthRegen;
+    private static Integer maxHealth;
     private Texture hp;
     private Texture boxBackground;
     private Texture coinPic;
@@ -49,6 +51,8 @@ public class Hud implements Disposable {
         score = 0;
         coins = 0;
         coinMulti = 1;
+        healthRegen = 1;
+        maxHealth = 100;
         //Set images
         hp = new Texture("hp.png");
         boxBackground = new Texture("hudBG.png");
@@ -103,8 +107,8 @@ public class Hud implements Disposable {
         timeCount += dt;
         if(timeCount >= 1) {
             //Regen health every second
-            if(health != 100) {
-                health += 1;
+            if(health != maxHealth) {
+                health += healthRegen;
                 healthLabel.setText(String.format("%02d", health));
             }
             //Gain point every second
@@ -115,6 +119,19 @@ public class Hud implements Disposable {
             //Check if a points boundary is met
             SkillTree.pointsCheck(score);
         }
+    }
+
+
+    public static void AddHealth(Integer h){
+        health+=h;
+    }
+
+    public static void AddHealthRegen(Integer regen){
+        healthRegen+=regen;
+    }
+
+    public static void IncreaseMaxHealth(Integer maxh){
+        maxHealth+=maxh;
     }
 
     /**

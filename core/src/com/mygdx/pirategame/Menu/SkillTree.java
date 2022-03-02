@@ -428,35 +428,55 @@ public class SkillTree implements Screen {
             }else if(amount==0){
                 //Also nothing
             }else if(amount==1){
-                if(i==5){
+                if(i==8){
                     GameScreen.changeAcceleration(20F);
                     GameScreen.changeMaxSpeed(20F); 
                 }else if(i==9){
                     Hud.changeCoinsMulti(2);
                 }else if(i==11){
                     GameScreen.changeDamage(5);
+                }else if(i==5){
+                    Hud.AddHealth(50);
+                }else if(i==6){
+                    Hud.IncreaseMaxHealth(75);
+                }else if(i==7){
+                    Hud.AddHealthRegen(1);
                 }
                 //apply effect
                 
             }else if(amount==2){
-                if(i==5){
+                if(i==8){
                     GameScreen.changeAcceleration(40F);
                     GameScreen.changeMaxSpeed(40F); 
                 }else if(i==9){
                     Hud.changeCoinsMulti(4);
                 }else if(i==11){
                     GameScreen.changeDamage(10);
+                }else if(i==5){
+                    Hud.AddHealth(150);
+                }else if(i==6){
+                    Hud.IncreaseMaxHealth(50);
+                }else if(i==6){
+                    Hud.IncreaseMaxHealth(175);
+                }else if(i==7){
+                    Hud.AddHealthRegen(3);
                 }
                 //apply effect
                 
             }else if(amount==3){
-                if(i==5){
+                if(i==8){
                     GameScreen.changeAcceleration(60F);
                     GameScreen.changeMaxSpeed(60F); 
                 }else if(i==9){
                     Hud.changeCoinsMulti(6);
                 }else if(i==11){
                     GameScreen.changeDamage(15);
+                }else if(i==5){
+                    Hud.AddHealth(250);
+                }else if(i==6){
+                    Hud.IncreaseMaxHealth(275);
+                }else if(i==7){
+                    Hud.AddHealthRegen(6);
                 }
                 //apply effect
                 
