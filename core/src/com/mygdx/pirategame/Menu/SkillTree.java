@@ -441,6 +441,14 @@ public class SkillTree implements Screen {
                     Hud.IncreaseMaxHealth(75);
                 }else if(i==7){
                     Hud.AddHealthRegen(1);
+                }else if(i==12){
+                    //Range Increase
+                }else if(i==13){
+                    //Reload speed increase
+                }else if(i==14){
+                    //Ammo increase
+                }else if(i==15){
+                    //Enable/switch to next shot type
                 }
                 //apply effect
                 
@@ -460,6 +468,14 @@ public class SkillTree implements Screen {
                     Hud.IncreaseMaxHealth(175);
                 }else if(i==7){
                     Hud.AddHealthRegen(3);
+                }else if(i==12){
+                    //Range Increase
+                }else if(i==13){
+                    //Reload speed increase
+                }else if(i==14){
+                    //Ammo increase
+                }else if(i==15){
+                    //Enable/switch to next next shot type
                 }
                 //apply effect
                 
@@ -477,6 +493,14 @@ public class SkillTree implements Screen {
                     Hud.IncreaseMaxHealth(275);
                 }else if(i==7){
                     Hud.AddHealthRegen(6);
+                }else if(i==12){
+                    //Range Increase
+                }else if(i==13){
+                    //Reload speed increase
+                }else if(i==14){
+                    //Ammo increase
+                }else if(i==15){
+                    //Enable/switch to last shot type
                 }
                 //apply effect
                 
