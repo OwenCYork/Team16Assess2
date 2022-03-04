@@ -67,7 +67,7 @@ public class EnemyShip extends Enemy{
             destroyed = true;
             //Change player coins and points
             Hud.changePoints(20);
-            Hud.changeCoins(2);
+            Hud.changeCoins(5);
         }
         else if(!destroyed) {
             //Update position and angle of ship
