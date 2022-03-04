@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.*;
 import com.mygdx.pirategame.Collectable.Coin;
+import com.mygdx.pirategame.Collectable.Powerup;
 import com.mygdx.pirategame.GameObject.AvailableSpawn;
 import com.mygdx.pirategame.GameObject.College.College;
 import com.mygdx.pirategame.GameObject.Enemy.EnemyShip;
@@ -149,7 +150,13 @@ public class GameScreen implements Screen {
                 validLoc = checkGenPos(a, b);
             }
             //Add a coins at the random coords
-            Coins.add(new Coin(this, a, b));
+            if (rand.nextInt(100) == 100){
+                new Powerup(this, a, b,rand.nextInt(4)+1);
+            }
+            else{
+                Coins.add(new Coin(this, a, b));
+            }
+            
         }
 
         //Setting stage

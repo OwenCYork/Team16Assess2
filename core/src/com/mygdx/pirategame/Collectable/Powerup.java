@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.mygdx.pirategame.GameObject.Entity;
+import com.mygdx.pirategame.Menu.Hud;
 import com.mygdx.pirategame.GameScreen;
 import com.mygdx.pirategame.PirateGame;
 
@@ -104,7 +105,7 @@ public class Powerup extends Entity {
     public void entityContact() {
         switch (this.powerType){
             case 1:{
-                
+                Hud.AddHealth(100);
             }
             case 2:{
                 try{
