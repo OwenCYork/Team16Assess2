@@ -150,7 +150,7 @@ public class GameScreen implements Screen {
                 validLoc = checkGenPos(a, b);
             }
             //Add a coins at the random coords
-            if (rand.nextInt(100) == 100){
+            if (rand.nextInt(25) == 25){
                 new Powerup(this, a, b,rand.nextInt(4)+1);
             }
             else{
