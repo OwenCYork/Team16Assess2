@@ -116,11 +116,19 @@ public class GameScreen implements Screen {
                 "constantine_flag.png", "constantine_ship.png", 8, invalidSpawn));
         colleges.put("Goodricke", new College(this, "Goodricke", 1760 / PirateGame.PPM, 6767 / PirateGame.PPM,
                 "goodricke_flag.png", "goodricke_ship.png", 8, invalidSpawn));
+        
+        colleges.put("Kraken", new College(this, "Kraken", 3560 / PirateGame.PPM, 4767 / PirateGame.PPM,
+                "Kraken.png", "GhostShip.png", 8, invalidSpawn));
+        
+        
+        
         ships = new ArrayList<>();
         ships.addAll(colleges.get("Alcuin").fleet);
         ships.addAll(colleges.get("Anne Lister").fleet);
         ships.addAll(colleges.get("Constantine").fleet);
         ships.addAll(colleges.get("Goodricke").fleet);
+
+        ships.addAll(colleges.get("Kraken").fleet);
 
         //Random ships
         Boolean validLoc;
@@ -342,7 +350,7 @@ public class GameScreen implements Screen {
         colleges.get("Anne Lister").update(dt);
         colleges.get("Constantine").update(dt);
         colleges.get("Goodricke").update(dt);
-
+        colleges.get("Kraken").update(dt);
         //Update ships
         for (int i = 0; i < ships.size(); i++) {
             ships.get(i).update(dt);
@@ -362,9 +370,15 @@ public class GameScreen implements Screen {
             }
             if (!colleges.get("Goodricke").destroyed) {
                 colleges.get("Goodricke").fire();
-        }
+            
+            }
+
+            if (!colleges.get("Kraken").destroyed) {
+                colleges.get("Kraken").fire();
+            
+            }
         stateTime = 0;
-    }
+        }
 
         hud.update(dt);
 
@@ -409,7 +423,7 @@ public class GameScreen implements Screen {
         colleges.get("Anne Lister").draw(game.batch);
         colleges.get("Constantine").draw(game.batch);
         colleges.get("Goodricke").draw(game.batch);
-
+        colleges.get("Kraken").draw(game.batch);
         //Updates all ships
         for (int i = 0; i < ships.size(); i++){
             if (ships.get(i).college != "Unaligned") {
@@ -529,7 +543,7 @@ public class GameScreen implements Screen {
         colleges.get("Anne Lister").changeDamageReceived(value);
         colleges.get("Constantine").changeDamageReceived(value);
         colleges.get("Goodricke").changeDamageReceived(value);
-
+        colleges.get("Kraken").changeDamageReceived(value);
     }
 
     /**

@@ -378,12 +378,12 @@ public class SkillTree implements Screen {
                     addedNodes[index] = this.tree.GetBranch(i).nodeCode;
                     index++;
                 }
-            }else if(states.get(4)>0 && states.get(4)<3 && code==4){
+            }else if(states.get(4)>0 && states.get(4)<3 && code==4 && Hud.DeductCoins(1)){
                 states.set(4,states.get(4)+1);
             }
             //System.out.println("Value:"+states.get(4));
             //System.out.println("Index:"+index);
-            if(states.get(5)==0 && code==5){
+            if(states.get(5)==0 && code==5 && Hud.DeductCoins(5)){
                 states.set(5,1);
                 //
                 Node root = this.tree.GetBranch(0);
@@ -391,31 +391,42 @@ public class SkillTree implements Screen {
                     addedNodes[index] = root.GetBranch(i).nodeCode;
                     index++;
                 }
-            }else if(states.get(5)>0 && states.get(5)<3 && code==5){
+            }else if(states.get(5)==1 && code==5 && Hud.DeductCoins(10)){
+                states.set(5,states.get(5)+1);
+            }else if(states.get(5)==2 && code==5 && Hud.DeductCoins(15)){
                 states.set(5,states.get(5)+1);
             }
 
-            if(states.get(10)==0 && code==10){
+            if(states.get(10)==0 && code==10 && Hud.DeductCoins(20)){
                 states.set(10,1);
                 Node root = this.tree.GetBranch(3);
                 for(int i=0;i<5;i++){
                     addedNodes[index] = root.GetBranch(i).nodeCode;
                     index++;
                 }
-            }else if(states.get(10)>0 && states.get(10)<3 && code==10){
+            }else if(states.get(10)>0 && states.get(10)<3 && code==10 && Hud.DeductCoins(1)){
                 states.set(10,states.get(10)+1);
             }
 
+            int[][] prices = {{10,20,30}, {15,30,45},
+                            {5,10,15}, {20,80,200},
+                            {}, {30,100,250}, 
+                            {10,20,30}, {15,45,60},
+                            {15,40,50}, {120,120,120}};
             for(int i=6;i<16;i++){
                 if(i!=10){
-                    if(states.get(i)==0 && code==i){
+                    if(states.get(i)==0 && code==i && Hud.DeductCoins(prices[i-6][0])){
                         states.set(i,1);
-                    }else if(states.get(i)>0 && states.get(i)<3 && code==i){
+                    }else if(states.get(i)==1 && code==i && Hud.DeductCoins(prices[i-6][1])){
+                        states.set(i,states.get(i)+1);
+                    }else if(states.get(i)==2 && code==i && Hud.DeductCoins(prices[i-6][2])){
                         states.set(i,states.get(i)+1);
                     }
                 }
             }
 
+
+            //Open up unlocked skills
             for(int i=0;i<index;i++){
                 if(states.get(addedNodes[i])==-1){
                     states.set(addedNodes[i], 0);
