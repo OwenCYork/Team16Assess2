@@ -63,6 +63,7 @@ public class GameScreen implements Screen {
     private static HashMap<String, College> colleges = new HashMap<>();
     private static ArrayList<EnemyShip> ships = new ArrayList<>();
     private static ArrayList<Coin> Coins = new ArrayList<>();
+    private static ArrayList<Powerup> Powerups = new ArrayList<>();
     private AvailableSpawn invalidSpawn = new AvailableSpawn();
     private Hud hud;
 
@@ -149,6 +150,7 @@ public class GameScreen implements Screen {
 
         //Random coins
         Coins = new ArrayList<>();
+        Powerups = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             validLoc = false;
             while (!validLoc) {
@@ -159,7 +161,7 @@ public class GameScreen implements Screen {
             }
             //Add a coins at the random coords
             if (rand.nextInt(25) == 25){
-                new Powerup(this, a, b,rand.nextInt(4)+1);
+                Powerups.add(new Powerup(this, a, b,rand.nextInt(4)+1));
             }
             else{
                 Coins.add(new Coin(this, a, b));
@@ -360,6 +362,10 @@ public class GameScreen implements Screen {
         for (int i = 0; i < Coins.size(); i++) {
             Coins.get(i).update();
         }
+        //Updates powerups
+        for (int i = 0; i < Powerups.size(); i++) {
+            Powerups.get(i).update();
+        }
         //After a delay check if a college is destroyed. If not, if can fire
         if (stateTime > 1) {
             if (!colleges.get("Anne Lister").destroyed) {
@@ -415,6 +421,10 @@ public class GameScreen implements Screen {
         //Renders coins
         for(int i=0;i<Coins.size();i++) {
             Coins.get(i).draw(game.batch);
+        }
+        //Renders powerups
+        for(int i=0;i<Powerups.size();i++) {
+            Powerups.get(i).draw(game.batch);
         }
 
         //Renders colleges
