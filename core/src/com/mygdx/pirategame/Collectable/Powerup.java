@@ -103,14 +103,16 @@ public class Powerup extends Entity {
      */
     @Override
     public void entityContact() {
+        Hud.changeActivePowerup(this.powerType);
         switch (this.powerType){
             case 1:{
                 Hud.AddHealth(100);
+                
             }
             case 2:{
                 try{
                     GameScreen.changeDamage(5);
-                   
+                    
                     this.wait(10000);
                     
                     GameScreen.changeDamage(-5);
@@ -143,6 +145,7 @@ public class Powerup extends Entity {
                 
             }
         }
+        Hud.changeActivePowerup(0);
         //Set to destroy
         setToDestroyed = true;
         Gdx.app.log("powerup", "collision");

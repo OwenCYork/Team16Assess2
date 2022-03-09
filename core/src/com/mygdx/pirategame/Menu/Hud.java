@@ -3,9 +3,11 @@ package com.mygdx.pirategame.Menu;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -26,9 +28,16 @@ public class Hud implements Disposable {
     private static Integer health;
     private static Integer healthRegen;
     private static Integer maxHealth;
+    private static Integer activePowerup;
     private Texture hp;
     private Texture boxBackground;
     private Texture coinPic;
+    private Texture repairPowerupPic;
+    private Texture damagePowerupPic;
+    private Texture movePowerupPic;
+    private Texture attackspeedPowerupPic;
+    private Texture immunityPowerupPic;
+    private Texture emptyPowerup;
 
     private static Label scoreLabel;
     private static Label healthLabel;
@@ -39,6 +48,7 @@ public class Hud implements Disposable {
     private Image hpImg;
     private Image box;
     private Image coin;
+    private Image powerupImg;
 
     /**
      * Retrieves information and displays it in the hud
@@ -53,14 +63,24 @@ public class Hud implements Disposable {
         coinMulti = 1;
         healthRegen = 1;
         maxHealth = 100;
+        activePowerup = 0;
         //Set images
         hp = new Texture("hp.png");
         boxBackground = new Texture("hudBG.png");
         coinPic = new Texture("coin.png");
 
+        repairPowerupPic = new Texture("repairPower.png");
+        damagePowerupPic = new Texture("damagePower.png");
+        movePowerupPic = new Texture("movePower.png");
+        attackspeedPowerupPic = new Texture("attackspeedPower.png");
+        immunityPowerupPic = new Texture("immunityPower.png");
+        emptyPowerup = new Texture("emptyPowerup.png");
+
         hpImg = new Image(hp);
         box = new Image(boxBackground);
         coin = new Image(coinPic);
+        powerupImg = new Image(emptyPowerup);
+
 
         viewport = new ScreenViewport();
         stage = new Stage(viewport, sb);
@@ -88,6 +108,9 @@ public class Hud implements Disposable {
         table2.add(coin).width(32).height(32).padTop(8).padRight(90);
         table2.row();
         table2.add(pointsText).width(32).height(32).padTop(6).padRight(90);
+        table2.row();
+        table2.add(powerupImg).width(32).height(32).padTop(2).padRight(90);
+
         table1.add(healthLabel).padTop(20).top().right().padRight(40);
         table1.row();
         table1.add(coinLabel).padTop(20).top().right().padRight(40);
@@ -118,6 +141,28 @@ public class Hud implements Disposable {
 
             //Check if a points boundary is met
             SkillTree.pointsCheck(score);
+
+            //Changes the image of the powerup if the player has one active
+            switch (activePowerup){
+                case 0:{
+                    powerupImg.setDrawable(new SpriteDrawable(new Sprite(emptyPowerup)));
+                }
+                case 1:{
+                    powerupImg.setDrawable(new SpriteDrawable(new Sprite(repairPowerupPic)));
+                }
+                case 2:{
+                    powerupImg.setDrawable(new SpriteDrawable(new Sprite(damagePowerupPic)));
+                }
+                case 3:{
+                    powerupImg.setDrawable(new SpriteDrawable(new Sprite(movePowerupPic)));
+                }
+                case 4:{
+                    powerupImg.setDrawable(new SpriteDrawable(new Sprite(attackspeedPowerupPic)));
+                }
+                case 5:{
+                    powerupImg.setDrawable(new SpriteDrawable(new Sprite(immunityPowerupPic)));
+                }
+            }
         }
     }
 
@@ -189,6 +234,10 @@ public class Hud implements Disposable {
      */
     public static void changeCoinsMulti(int value) {
         coinMulti = coinMulti * value;
+    }
+
+    public static void changeActivePowerup(int value){
+        activePowerup = value;
     }
 
     /**
