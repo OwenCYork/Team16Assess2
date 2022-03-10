@@ -110,33 +110,26 @@ public class Powerup extends Entity {
                 
             }
             case 2:{
-                try{
-                    GameScreen.changeDamage(5);
+              
+                GameScreen.changeDamage(5);
                     
-                    this.wait(10000);
+                //this.wait(10000);
                     
-                    GameScreen.changeDamage(-5);
-                }
-                catch(InterruptedException e){
-                    System.out.println("Interrupted in Damage Powerup");
-                    GameScreen.changeDamage(-5);
-                }
+                GameScreen.changeDamage(-5);
+                
+
             }
             case 3:{
-                try{
-                    GameScreen.changeAcceleration(20F);
-                    GameScreen.changeMaxSpeed(20F);
+                
+                GameScreen.changeAcceleration(20F);
+                GameScreen.changeMaxSpeed(20F);
 
-                    this.wait(10000);
-                    
-                    GameScreen.changeAcceleration(-20F);
-                    GameScreen.changeMaxSpeed(-20F);
-                }
-                catch(InterruptedException e){
-                    System.out.println("Interrupted in Movement Powerup");
-                    GameScreen.changeAcceleration(-20F);
-                    GameScreen.changeMaxSpeed(-20F);
-                }
+                //this.wait(10000);
+
+                GameScreen.changeAcceleration(-20F);
+                GameScreen.changeMaxSpeed(-20F);
+                
+
             }
             case 4:{
                 
