@@ -119,6 +119,10 @@ public class Hud implements Disposable {
         stage.addActor(table3);
         stage.addActor(table2);
         stage.addActor(table1);
+        if (LevelChoice.Level == 1) {
+            IncreaseMaxHealth(100);
+            AddHealth(99);
+        }
     }
 
     /**

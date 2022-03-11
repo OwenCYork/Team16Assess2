@@ -23,7 +23,7 @@ import com.mygdx.pirategame.PirateGame;
  *@version 1.0
  */
 public class LevelChoice implements Screen {
-
+    public static int Level;
     private final PirateGame parent;
     private final Stage stage;
 
@@ -75,6 +75,7 @@ public class LevelChoice implements Screen {
              */
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                Level = 1;
                 parent.changeScreen(PirateGame.MENU);
                 parent.killEndScreen();
             }
@@ -93,7 +94,7 @@ public class LevelChoice implements Screen {
              */
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-
+                Level = 2;
                 parent.changeScreen(PirateGame.MENU);
                 parent.killEndScreen();
             }
@@ -108,7 +109,7 @@ public class LevelChoice implements Screen {
              */
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-
+                Level = 3;
                 parent.changeScreen(PirateGame.MENU);
                 parent.killEndScreen();
             }
