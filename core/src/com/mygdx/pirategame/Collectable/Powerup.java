@@ -34,18 +34,23 @@ public class Powerup extends Entity {
         switch (this.powerType){
             case 1:{
                 powerup = new Texture("repairPower.png");
+                break;
             }
             case 2:{
                 powerup = new Texture("damagePower.png");
+                break;
             }
             case 3:{
                 powerup = new Texture("movePower.png");
+                break;
             }
             case 4:{
                 powerup = new Texture("attackspeedPower.png");
+                break;
             }
             case 5:{
                 powerup = new Texture("immunityPower.png");
+                break;
             }
 
         }
@@ -107,7 +112,7 @@ public class Powerup extends Entity {
         switch (this.powerType){
             case 1:{
                 Hud.AddHealth(100);
-                
+                break;
             }
             case 2:{
               
@@ -116,7 +121,7 @@ public class Powerup extends Entity {
                 //this.wait(10000);
                     
                 GameScreen.changeDamage(-5);
-                
+                break;
 
             }
             case 3:{
@@ -128,14 +133,14 @@ public class Powerup extends Entity {
 
                 GameScreen.changeAcceleration(-20F);
                 GameScreen.changeMaxSpeed(-20F);
-                
+                break;
 
             }
             case 4:{
-                
+                break;
             }
             case 5:{
-                
+                break;
             }
         }
         Hud.changeActivePowerup(0);

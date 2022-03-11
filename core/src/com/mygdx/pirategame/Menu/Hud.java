@@ -146,21 +146,27 @@ public class Hud implements Disposable {
             switch (activePowerup){
                 case 0:{
                     powerupImg.setDrawable(new SpriteDrawable(new Sprite(emptyPowerup)));
+                    break;
                 }
                 case 1:{
                     powerupImg.setDrawable(new SpriteDrawable(new Sprite(repairPowerupPic)));
+                    break;
                 }
                 case 2:{
                     powerupImg.setDrawable(new SpriteDrawable(new Sprite(damagePowerupPic)));
+                    break;
                 }
                 case 3:{
                     powerupImg.setDrawable(new SpriteDrawable(new Sprite(movePowerupPic)));
+                    break;
                 }
                 case 4:{
                     powerupImg.setDrawable(new SpriteDrawable(new Sprite(attackspeedPowerupPic)));
+                    break;
                 }
                 case 5:{
                     powerupImg.setDrawable(new SpriteDrawable(new Sprite(immunityPowerupPic)));
+                    break;
                 }
             }
         }
