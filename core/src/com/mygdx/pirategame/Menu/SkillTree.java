@@ -440,90 +440,92 @@ public class SkillTree implements Screen {
     public void applyEffects(String last){
         for(int i=4;i<16;i++){
             int amount = states.get(i);
-            int l = Integer.parseInt(""+last.charAt(i-4));
-            if(l!=-1){
-                amount = amount-l;
-            if(amount==-1){
-                //Do nothing
-            }else if(amount==0){
-                //Also nothing
-            }else if(amount==1){
-                if(i==8){
-                    GameScreen.changeAcceleration(20F);
-                    GameScreen.changeMaxSpeed(20F); 
-                }else if(i==9){
-                    Hud.changeCoinsMulti(2);
-                }else if(i==11){
-                    GameScreen.changeDamage(5);
-                }else if(i==5){
-                    Hud.AddHealth(50);
-                }else if(i==6){
-                    Hud.IncreaseMaxHealth(75);
-                }else if(i==7){
-                    Hud.AddHealthRegen(1);
-                }else if(i==12){
-                    //Range Increase
-                }else if(i==13){
-                    //Reload speed increase
-                }else if(i==14){
-                    //Ammo increase
-                }else if(i==15){
-                    //Enable/switch to next shot type
+            if(last.charAt(i-4)!= '.'){
+                int l = Integer.parseInt(""+last.charAt(i-4));
+                if(l!=-1){
+                    amount = amount-l;
+                if(amount==-1){
+                    //Do nothing
+                }else if(amount==0){
+                    //Also nothing
+                }else if(amount==1){
+                    if(i==8){
+                        GameScreen.changeAcceleration(20F);
+                        GameScreen.changeMaxSpeed(20F); 
+                    }else if(i==9){
+                        Hud.changeCoinsMulti(2);
+                    }else if(i==11){
+                        GameScreen.changeDamage(5);
+                    }else if(i==5){
+                        Hud.AddHealth(50);
+                    }else if(i==6){
+                        Hud.IncreaseMaxHealth(75);
+                    }else if(i==7){
+                        Hud.AddHealthRegen(1);
+                    }else if(i==12){
+                        //Range Increase
+                    }else if(i==13){
+                        //Reload speed increase
+                    }else if(i==14){
+                        //Ammo increase
+                    }else if(i==15){
+                        //Enable/switch to next shot type
+                    }
+                    //apply effect
+                    
+                }else if(amount==2){
+                    if(i==8){
+                        GameScreen.changeAcceleration(40F);
+                        GameScreen.changeMaxSpeed(40F); 
+                    }else if(i==9){
+                        Hud.changeCoinsMulti(4);
+                    }else if(i==11){
+                        GameScreen.changeDamage(10);
+                    }else if(i==5){
+                        Hud.AddHealth(150);
+                    }else if(i==6){
+                        Hud.IncreaseMaxHealth(50);
+                    }else if(i==6){
+                        Hud.IncreaseMaxHealth(175);
+                    }else if(i==7){
+                        Hud.AddHealthRegen(3);
+                    }else if(i==12){
+                        //Range Increase
+                    }else if(i==13){
+                        //Reload speed increase
+                    }else if(i==14){
+                        //Ammo increase
+                    }else if(i==15){
+                        //Enable/switch to next next shot type
+                    }
+                    //apply effect
+                    
+                }else if(amount==3){
+                    if(i==8){
+                        GameScreen.changeAcceleration(60F);
+                        GameScreen.changeMaxSpeed(60F); 
+                    }else if(i==9){
+                        Hud.changeCoinsMulti(6);
+                    }else if(i==11){
+                        GameScreen.changeDamage(15);
+                    }else if(i==5){
+                        Hud.AddHealth(250);
+                    }else if(i==6){
+                        Hud.IncreaseMaxHealth(275);
+                    }else if(i==7){
+                        Hud.AddHealthRegen(6);
+                    }else if(i==12){
+                        //Range Increase
+                    }else if(i==13){
+                        //Reload speed increase
+                    }else if(i==14){
+                        //Ammo increase
+                    }else if(i==15){
+                        //Enable/switch to last shot type
+                    }
+                    //apply effect
+                    
                 }
-                //apply effect
-                
-            }else if(amount==2){
-                if(i==8){
-                    GameScreen.changeAcceleration(40F);
-                    GameScreen.changeMaxSpeed(40F); 
-                }else if(i==9){
-                    Hud.changeCoinsMulti(4);
-                }else if(i==11){
-                    GameScreen.changeDamage(10);
-                }else if(i==5){
-                    Hud.AddHealth(150);
-                }else if(i==6){
-                    Hud.IncreaseMaxHealth(50);
-                }else if(i==6){
-                    Hud.IncreaseMaxHealth(175);
-                }else if(i==7){
-                    Hud.AddHealthRegen(3);
-                }else if(i==12){
-                    //Range Increase
-                }else if(i==13){
-                    //Reload speed increase
-                }else if(i==14){
-                    //Ammo increase
-                }else if(i==15){
-                    //Enable/switch to next next shot type
-                }
-                //apply effect
-                
-            }else if(amount==3){
-                if(i==8){
-                    GameScreen.changeAcceleration(60F);
-                    GameScreen.changeMaxSpeed(60F); 
-                }else if(i==9){
-                    Hud.changeCoinsMulti(6);
-                }else if(i==11){
-                    GameScreen.changeDamage(15);
-                }else if(i==5){
-                    Hud.AddHealth(250);
-                }else if(i==6){
-                    Hud.IncreaseMaxHealth(275);
-                }else if(i==7){
-                    Hud.AddHealthRegen(6);
-                }else if(i==12){
-                    //Range Increase
-                }else if(i==13){
-                    //Reload speed increase
-                }else if(i==14){
-                    //Ammo increase
-                }else if(i==15){
-                    //Enable/switch to last shot type
-                }
-                //apply effect
-                
             }
         }
         }
