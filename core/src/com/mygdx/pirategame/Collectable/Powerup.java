@@ -1,4 +1,5 @@
 package com.mygdx.pirategame.Collectable;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
@@ -143,7 +144,7 @@ public class Powerup extends Entity {
                 break;
             }
         }
-        Hud.changeActivePowerup(0);
+        //Hud.changeActivePowerup(0);
         //Set to destroy
         setToDestroyed = true;
         Gdx.app.log("powerup", "collision");
@@ -152,6 +153,18 @@ public class Powerup extends Entity {
             powerupPickup.play(screen.game.getPreferences().getEffectsVolume());
         }
 
+        
+    }
+
+    /**
+     * Draws the powerup using batch
+     *
+     * @param batch The batch of the program
+     */
+    public void draw(Batch batch) {
+        if(!destroyed) {
+            super.draw(batch);
+        }
     }
 }
 
