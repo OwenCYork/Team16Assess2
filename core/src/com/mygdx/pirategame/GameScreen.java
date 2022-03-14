@@ -22,6 +22,7 @@ import com.mygdx.pirategame.Collectable.Powerup;
 import com.mygdx.pirategame.GameObject.AvailableSpawn;
 import com.mygdx.pirategame.GameObject.College.College;
 import com.mygdx.pirategame.GameObject.Enemy.EnemyShip;
+import com.mygdx.pirategame.GameObject.Enemy.Whirlpool;
 import com.mygdx.pirategame.GameObject.Player;
 import com.mygdx.pirategame.Menu.Hud;
 import com.mygdx.pirategame.Menu.Options;
@@ -62,6 +63,7 @@ public class GameScreen implements Screen {
     private Player player;
     private static HashMap<String, College> colleges = new HashMap<>();
     private static ArrayList<EnemyShip> ships = new ArrayList<>();
+    private static ArrayList<Whirlpool> whirlpools = new ArrayList<>();
     private static ArrayList<Coin> Coins = new ArrayList<>();
     private static ArrayList<Powerup> Powerups = new ArrayList<>();
     private AvailableSpawn invalidSpawn = new AvailableSpawn();
@@ -130,7 +132,7 @@ public class GameScreen implements Screen {
         ships.addAll(colleges.get("Goodricke").fleet);
 
         ships.addAll(colleges.get("Kraken").fleet);
-
+        whirlpools = new ArrayList<>();
         //Random ships
         Boolean validLoc;
         int a = 0;
@@ -145,8 +147,15 @@ public class GameScreen implements Screen {
                 validLoc = checkGenPos(a, b);
             }
             //Add a ship at the random coords
-            ships.add(new EnemyShip(this, a, b, "unaligned_ship.png", "Unaligned"));
+            if(i%5==0){
+                whirlpools.add(new Whirlpool(this, a, b, "Whirlpool.png"));
+            }else{
+                ships.add(new EnemyShip(this, a, b, "unaligned_ship.png", "Unaligned"));
+            }
         }
+
+
+
 
         //Random coins
         Coins = new ArrayList<>();
@@ -277,6 +286,31 @@ public class GameScreen implements Screen {
         });
     }
 
+    public Player GetPlayer(){
+        return(player);
+    }
+
+    public static void Shoot(float acc, Player player){
+        Random directionRand= new Random();
+        int direction = directionRand.nextInt(3);
+        if (direction==0) {
+            player.b2body.applyLinearImpulse(new Vector2(-acc, 0), player.b2body.getWorldCenter(), true);
+        }
+        // Right physics impulse on 'D'
+        if (direction==1) {
+            player.b2body.applyLinearImpulse(new Vector2(acc, 0), player.b2body.getWorldCenter(), true);
+        }
+        // Up physics impulse on 'W'
+        if (direction==2) {
+            player.b2body.applyLinearImpulse(new Vector2(0, acc), player.b2body.getWorldCenter(), true);
+        }
+        // Down physics impulse on 'S'
+        if (direction==3) {
+            player.b2body.applyLinearImpulse(new Vector2(0, -acc), player.b2body.getWorldCenter(), true);
+        }
+        //player.b2body.applyLinearImpulse(new Vector2(acc, 0), player.b2body.getWorldCenter(), true);
+    }
+
     /**
      * Checks for input and performs an action
      * Applies to keys "W" "A" "S" "D" "E" "Esc"
@@ -358,6 +392,9 @@ public class GameScreen implements Screen {
             ships.get(i).update(dt);
         }
 
+        for (int i = 0; i< whirlpools.size();i++){
+            whirlpools.get(i).update(dt);
+        }
         //Updates coin
         for (int i = 0; i < Coins.size(); i++) {
             Coins.get(i).update();
@@ -445,6 +482,11 @@ public class GameScreen implements Screen {
             }
             ships.get(i).draw(game.batch);
         }
+
+        for (int i = 0; i < whirlpools.size(); i++){
+            whirlpools.get(i).draw(game.batch);
+        }
+
         game.batch.end();
         Hud.stage.draw();
         stage.act();
