@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -26,6 +27,7 @@ public class LevelChoice implements Screen {
     public static int Level;
     private final PirateGame parent;
     private final Stage stage;
+    Texture background = new Texture(Gdx.files.internal("background.png"));
 
     /**
      * Creates a new screen
@@ -47,7 +49,8 @@ public class LevelChoice implements Screen {
 
         // Create tables for the text and button
         Table table = new Table();
-        table.top();
+        table.center();
+        table.pad(0,0,200,0);
         table.setFillParent(true);
 
         Table table2 = new Table();
@@ -56,7 +59,7 @@ public class LevelChoice implements Screen {
 
         Label difficultyMsg = new Label("Choose the level of difficulty", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         difficultyMsg.setFontScale(3f);
-        table.add(difficultyMsg).top();
+        table.add(difficultyMsg);
         stage.addActor(table);
 
         //Creat button
@@ -140,6 +143,9 @@ public class LevelChoice implements Screen {
     public void render(float dt) {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.getBatch().begin();
+        stage.getBatch().draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        stage.getBatch().end();
         stage.draw();
     }
 

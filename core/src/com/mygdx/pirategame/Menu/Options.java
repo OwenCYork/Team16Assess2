@@ -23,7 +23,7 @@ public class Options implements Screen {
     private final com.mygdx.pirategame.PirateGame PirateGame;
     private final Screen parent;
     private final Stage stage;
-    Texture background = new Texture(Gdx.files.internal("WoodBackground.png"));
+    Texture background = new Texture(Gdx.files.internal("background.png"));
 
     /**
      * Instantiates a new Options screen

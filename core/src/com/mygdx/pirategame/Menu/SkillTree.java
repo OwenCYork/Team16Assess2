@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -39,6 +40,9 @@ public class SkillTree implements Screen {
     private TextButton[] boxTags = new TextButton[12];
     private Node tree;
     private String last;
+
+    Texture background = new Texture(Gdx.files.internal("WoodBackground.png"));
+
 
     /**
      * Instantiates a new Skill tree.
@@ -543,6 +547,9 @@ public class SkillTree implements Screen {
 
         // tell our stage to do actions and draw itself
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        stage.getBatch().begin();
+        stage.getBatch().draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        stage.getBatch().end();
         stage.draw();
     }
 

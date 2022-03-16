@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -25,6 +26,8 @@ import java.util.List;
 public class Help implements Screen {
     private final PirateGame parent;
     private final Stage stage;
+
+    Texture background = new Texture(Gdx.files.internal("background.png"));
 
     /**
      * In the constructor, the parent and stage are set. Also the states list is set
@@ -76,9 +79,8 @@ public class Help implements Screen {
             }
         });
 
+        table.row().pad(0, 0, 400, 820);
         table.add(backButton);
-        table.row().pad(10, 0, 10, 0);
-        table.left().top();
 
         //add return button
         Other.add(Controls1);
@@ -111,6 +113,9 @@ public class Help implements Screen {
 
         // tell our stage to do actions and draw itself
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        stage.getBatch().begin();
+        stage.getBatch().draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        stage.getBatch().end();
         stage.draw();
         // TODO Auto-generated method stub
     }
