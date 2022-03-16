@@ -97,8 +97,8 @@ public class EnemyShip extends Enemy{
         // below code is to move the ship to a coordinate (target)
         t-=dt;
         moveTowardPlayer();
-        if(t<0){
-            System.out.print("Shoot");
+        if(t<0  && this.college != "Alcuin"){
+            //System.out.print("Shoot");
             attack();
             t=1.0f;
         }
@@ -163,15 +163,16 @@ public class EnemyShip extends Enemy{
         if(this.college == "Alcuin"){
             fdef.filter.categoryBits = PirateGame.FRIEND_BIT;
             // determining what this BIT can collide with
-            fdef.filter.maskBits = PirateGame.DEFAULT_BIT | PirateGame.PLAYER_BIT | PirateGame.COLLEGEFIRE_BIT | PirateGame.ENEMY_BIT;
-            System.out.println(fdef.filter.categoryBits);
+            fdef.filter.maskBits = PirateGame.DEFAULT_BIT | PirateGame.PLAYER_BIT | PirateGame.CANNON_BIT | PirateGame.ENEMY_BIT | PirateGame.FRIEND_BIT;
+
         }
         else{
             fdef.filter.categoryBits = PirateGame.ENEMY_BIT;
             // determining what this BIT can collide with
             fdef.filter.maskBits = PirateGame.DEFAULT_BIT | PirateGame.PLAYER_BIT | PirateGame.ENEMY_BIT | PirateGame.CANNON_BIT;
         }
-
+        System.out.println(fdef.filter.categoryBits);
+        System.out.println(fdef.filter.maskBits);
 
         fdef.shape = shape;
         fdef.restitution = 0.7f;
@@ -184,6 +185,7 @@ public class EnemyShip extends Enemy{
      */
     @Override
     public void onContact() {
+        System.out.println(this.college);
         Gdx.app.log("enemy", "collision");
         //Play collision sound
         if (screen.game.getPreferences().isEffectsEnabled()) {
@@ -202,7 +204,7 @@ public class EnemyShip extends Enemy{
      * @param path Path of new texture
      */
     public void updateTexture(String alignment, String path){
-        college = alignment;
+        this.college = alignment;
         if(alignment == "Alcuin"){
             defineEnemy();            
         }
