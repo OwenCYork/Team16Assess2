@@ -3,13 +3,19 @@ package com.mygdx.pirategame.GameObject.Enemy;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Cursor.SystemCursor;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import java.util.ArrayList;
+import com.badlogic.gdx.utils.Array;
 import com.mygdx.pirategame.GameScreen;
 import com.mygdx.pirategame.Menu.Hud;
 import com.mygdx.pirategame.PirateGame;
+import com.mygdx.pirategame.GameObject.Player;
+import com.mygdx.pirategame.GameObject.Enemy.EnemyFire;
 
 /**
  * Enemy Ship
@@ -24,7 +30,8 @@ public class EnemyShip extends Enemy{
     public String college;
     private Sound destroy;
     private Sound hit;
-
+    private Array<EnemyFire> cannonBalls;
+    public float t;
     /**
      * Instantiates enemy ship
      *
@@ -46,8 +53,9 @@ public class EnemyShip extends Enemy{
         setBounds(0,0,64 / PirateGame.PPM, 110 / PirateGame.PPM);
         setRegion(enemyShip);
         setOrigin(32 / PirateGame.PPM,55 / PirateGame.PPM);
-
+        cannonBalls = new Array<>();
         damage = 20;
+        t = 0.0f;
     }
 
     /**
@@ -81,13 +89,42 @@ public class EnemyShip extends Enemy{
         if(health <= 0) {
             setToDestroy = true;
         }
-
+        for(EnemyFire ball : cannonBalls) {
+            ball.update(dt);
+            if(ball.isDestroyed())
+                cannonBalls.removeValue(ball, true);
+        }
         // below code is to move the ship to a coordinate (target)
-        //Vector2 target = new Vector2(960 / PirateGame.PPM, 2432 / PirateGame.PPM);
-        //target.sub(b2body.getPosition());
-        //target.nor();
-        //float speed = 1.5f;
-        //b2body.setLinearVelocity(target.scl(speed));
+        t-=dt;
+        moveTowardPlayer();
+        if(t<0){
+            System.out.print("Shoot");
+            attack();
+            t=1.0f;
+        }
+    }
+    public void moveTowardPlayer(){
+        Player player = screen.GetPlayer();
+        float range = this.getHeight();
+        if(Math.abs(player.getX()-this.getX())<3*range || Math.abs(player.getY()-this.getY())<3*range){
+            Vector2 target = new Vector2(player.getX() / PirateGame.PPM, player.getY() / PirateGame.PPM);
+            target.sub(b2body.getPosition());
+            target.nor();
+            float speed = 0.5f;
+            b2body.setLinearVelocity(target.scl(speed));
+        }
+    }
+
+    public void attack(){
+        Player player = screen.GetPlayer();
+        float range = this.getHeight();
+        if(Math.abs(player.getX()-this.getX())<range || Math.abs(player.getY()-this.getY())<range){
+            fire();
+        }
+    }
+
+    public void fire() {
+        cannonBalls.add(new EnemyFire(screen, b2body.getPosition().x, b2body.getPosition().y));
     }
 
     /**
@@ -100,6 +137,9 @@ public class EnemyShip extends Enemy{
             super.draw(batch);
             //Render health bar
             bar.render(batch);
+
+            for(EnemyFire ball : cannonBalls)
+                ball.draw(batch);
         }
     }
 

@@ -32,7 +32,7 @@ public class College extends Enemy {
     private Array<CollegeFire> cannonBalls;
     private AvailableSpawn noSpawn;
     public ArrayList<EnemyShip> fleet = new ArrayList<>();
-
+    private String college;
     /**
      *
      * @param screen Visual data
@@ -48,6 +48,7 @@ public class College extends Enemy {
         super(screen, x, y);
         this.screen = screen;
         noSpawn = invalidSpawn;
+        this.college = college;
         currentCollege = flag;
         enemyCollege = new Texture(flag);
         //Set the position and size of the college
@@ -140,7 +141,11 @@ public class College extends Enemy {
      */
     public void draw(Batch batch) {
         if(!destroyed) {
-            super.draw(batch);
+            if(this.college=="Kraken"){
+                batch.draw(this,this.getX(),this.getY(),this.getWidth()*3,this.getHeight()*3);
+            }else{
+                super.draw(batch);
+            }
             //Render health bar
             bar.render(batch);
             //Render balls

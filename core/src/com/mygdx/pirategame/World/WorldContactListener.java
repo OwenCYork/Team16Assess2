@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.pirategame.GameObject.CannonFire;
 import com.mygdx.pirategame.GameObject.College.CollegeFire;
 import com.mygdx.pirategame.GameObject.Enemy.Enemy;
+import com.mygdx.pirategame.GameObject.Enemy.EnemyFire;
 import com.mygdx.pirategame.GameObject.Entity;
 import com.mygdx.pirategame.GameObject.Player;
 import com.mygdx.pirategame.Menu.Hud;
@@ -93,6 +94,16 @@ public class WorldContactListener implements ContactListener {
                 else {
                     Hud.changeHealth(-15);
                     ((CollegeFire) fixB.getUserData()).setToDestroy();
+                }
+                break;
+            case PirateGame.ENEMYFIRE_BIT | PirateGame.PLAYER_BIT:
+                if(fixA.getFilterData().categoryBits == PirateGame.ENEMYFIRE_BIT) {
+                    Hud.changeHealth(-15);
+                    ((EnemyFire) fixA.getUserData()).setToDestroy();
+                }
+                else {
+                    Hud.changeHealth(-15);
+                    ((EnemyFire) fixB.getUserData()).setToDestroy();
                 }
                 break;
         }
