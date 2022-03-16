@@ -168,8 +168,8 @@ public class GameScreen implements Screen {
                 b = rand.nextInt(AvailableSpawn.yCap - AvailableSpawn.yBase) + AvailableSpawn.yBase;
                 validLoc = checkGenPos(a, b);
             }
-            //Add a coins at the random coords
-            if (rand.nextInt(25) == 25){
+            //Add a coins or powerups at the random coords
+            if (rand.nextInt(25) == 0){
                 Powerups.add(new Powerup(this, a, b,rand.nextInt(4)+1));
             }
             else{

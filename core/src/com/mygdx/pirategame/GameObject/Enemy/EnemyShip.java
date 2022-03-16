@@ -160,9 +160,19 @@ public class EnemyShip extends Enemy{
         CircleShape shape = new CircleShape();
         shape.setRadius(55 / PirateGame.PPM);
         // setting BIT identifier
-        fdef.filter.categoryBits = PirateGame.ENEMY_BIT;
-        // determining what this BIT can collide with
-        fdef.filter.maskBits = PirateGame.DEFAULT_BIT | PirateGame.PLAYER_BIT | PirateGame.ENEMY_BIT | PirateGame.CANNON_BIT;
+        if(this.college == "Alcuin"){
+            fdef.filter.categoryBits = PirateGame.FRIEND_BIT;
+            // determining what this BIT can collide with
+            fdef.filter.maskBits = PirateGame.DEFAULT_BIT | PirateGame.PLAYER_BIT | PirateGame.COLLEGEFIRE_BIT | PirateGame.ENEMY_BIT;
+            System.out.println(fdef.filter.categoryBits);
+        }
+        else{
+            fdef.filter.categoryBits = PirateGame.ENEMY_BIT;
+            // determining what this BIT can collide with
+            fdef.filter.maskBits = PirateGame.DEFAULT_BIT | PirateGame.PLAYER_BIT | PirateGame.ENEMY_BIT | PirateGame.CANNON_BIT;
+        }
+
+
         fdef.shape = shape;
         fdef.restitution = 0.7f;
         b2body.createFixture(fdef).setUserData(this);
@@ -193,6 +203,9 @@ public class EnemyShip extends Enemy{
      */
     public void updateTexture(String alignment, String path){
         college = alignment;
+        if(alignment == "Alcuin"){
+            defineEnemy();            
+        }
         enemyShip = new Texture(path);
         setRegion(enemyShip);
     }
