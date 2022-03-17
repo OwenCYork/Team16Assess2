@@ -160,19 +160,12 @@ public class EnemyShip extends Enemy{
         CircleShape shape = new CircleShape();
         shape.setRadius(55 / PirateGame.PPM);
         // setting BIT identifier
-        if(this.college == "Alcuin"){
-            fdef.filter.categoryBits = PirateGame.FRIEND_BIT;
-            // determining what this BIT can collide with
-            fdef.filter.maskBits = PirateGame.DEFAULT_BIT | PirateGame.PLAYER_BIT | PirateGame.CANNON_BIT | PirateGame.ENEMY_BIT | PirateGame.FRIEND_BIT;
-
-        }
-        else{
-            fdef.filter.categoryBits = PirateGame.ENEMY_BIT;
-            // determining what this BIT can collide with
-            fdef.filter.maskBits = PirateGame.DEFAULT_BIT | PirateGame.PLAYER_BIT | PirateGame.ENEMY_BIT | PirateGame.CANNON_BIT;
-        }
-        System.out.println(fdef.filter.categoryBits);
-        System.out.println(fdef.filter.maskBits);
+        fdef.filter.categoryBits = PirateGame.ENEMY_BIT;
+        // determining what this BIT can collide with
+        fdef.filter.maskBits = PirateGame.DEFAULT_BIT | PirateGame.PLAYER_BIT | PirateGame.ENEMY_BIT | PirateGame.CANNON_BIT;
+        
+        //System.out.println(fdef.filter.categoryBits);
+        //System.out.println(fdef.filter.maskBits);
 
         fdef.shape = shape;
         fdef.restitution = 0.7f;
@@ -192,9 +185,11 @@ public class EnemyShip extends Enemy{
             hit.play(screen.game.getPreferences().getEffectsVolume());
         }
         //Deal with the damage
-        health -= damage;
-        bar.changeHealth(damage);
-        Hud.changePoints(5);
+        if(this.college != "Alcuin"){
+            health -= damage;
+            bar.changeHealth(damage);
+            Hud.changePoints(5);
+        }
     }
 
     /**
@@ -205,9 +200,7 @@ public class EnemyShip extends Enemy{
      */
     public void updateTexture(String alignment, String path){
         this.college = alignment;
-        if(alignment == "Alcuin"){
-            defineEnemy();            
-        }
+
         enemyShip = new Texture(path);
         setRegion(enemyShip);
     }
