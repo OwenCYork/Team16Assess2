@@ -109,41 +109,8 @@ public class Powerup extends Entity {
      */
     @Override
     public void entityContact() {
-        Hud.changeActivePowerup(this.powerType);
-        switch (this.powerType){
-            case 1:{
-                Hud.AddHealth(100);
-                break;
-            }
-            case 2:{
-              
-                GameScreen.changeDamage(5);
-                    
-                //this.wait(10000);
-                    
-                GameScreen.changeDamage(-5);
-                break;
-
-            }
-            case 3:{
-                
-                GameScreen.changeAcceleration(20F);
-                GameScreen.changeMaxSpeed(20F);
-
-                //this.wait(10000);
-
-                GameScreen.changeAcceleration(-20F);
-                GameScreen.changeMaxSpeed(-20F);
-                break;
-
-            }
-            case 4:{
-                break;
-            }
-            case 5:{
-                break;
-            }
-        }
+        GameScreen.changeActivePowerup(this.powerType);
+        
         //Hud.changeActivePowerup(0);
         //Set to destroy
         setToDestroyed = true;

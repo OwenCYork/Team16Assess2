@@ -31,6 +31,9 @@ public class Islands extends InteractiveTileObject {
     public void onContact() {
         Gdx.app.log("island", "collision");
         //Deal damage to the boat
-        Hud.changeHealth(-10);
+        if(GameScreen.getActivePowerup() != 5){
+            Hud.changeHealth(-10);
+        }
+        
     }
 }

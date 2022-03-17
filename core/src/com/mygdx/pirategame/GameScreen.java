@@ -49,6 +49,8 @@ public class GameScreen implements Screen {
     private static float timeToReload = 0f;
     private static float reloadDelay = 1f;
     private float stateTime;
+    private static float powerupTime = 0;
+    private static Integer activePowerup = 0;
 
 
     public static PirateGame game;
@@ -163,7 +165,7 @@ public class GameScreen implements Screen {
         //Random coins
         Coins = new ArrayList<>();
         Powerups = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 150; i++) {
             validLoc = false;
             while (!validLoc) {
                 //Get random x and y coords
@@ -172,8 +174,8 @@ public class GameScreen implements Screen {
                 validLoc = checkGenPos(a, b);
             }
             //Add a coins or powerups at the random coords
-            if (rand.nextInt(25) == 0){
-                Powerups.add(new Powerup(this, a, b,rand.nextInt(4)+1));
+            if (rand.nextInt(15) == 0){
+                Powerups.add(new Powerup(this, a, b,rand.nextInt(5)+1));
             }
             else{
                 Coins.add(new Coin(this, a, b));
@@ -434,7 +436,36 @@ public class GameScreen implements Screen {
             }
         stateTime = 0;
         }
-
+        if(activePowerup != 0 && powerupTime <= 0){
+            powerupTime = 0f;
+            switch (activePowerup){
+                case 1:{
+                    break;
+                }
+                case 2:{
+                    changeDamage(-10);
+                    break;
+                }
+                case 3:{
+                    changeAcceleration(-30F);
+                    changeMaxSpeed(-30F);
+                    break;
+    
+                }
+                case 4:{
+                    changeReloadDelay(-0.5f);
+                    break;
+                }
+                case 5:{
+                    break;
+                }  
+            }
+            changeActivePowerup(0);
+        }
+        if(powerupTime > 0){
+            powerupTime -= dt;
+        }
+        
         hud.update(dt);
 
         // Centre camera on player boat
@@ -576,12 +607,29 @@ public class GameScreen implements Screen {
         return new Vector2(player.b2body. getPosition().x,player.b2body.getPosition().y);
     }
 
-    
+    /**
+     * Fetches the current time until the next reload
+     * @return float: time until next reload (Max should be 1.0 or 1 second)
+     */
     public static float getTimeToReload(){
         return timeToReload;
     }
+    /**
+     * Fetches the time it will take to perform a full reload
+     * @return float: time needed to reload (Max should be 1.0 or 1 second)
+     */
     public static float getReloadDelay(){
         return reloadDelay;
+    }
+    /**
+     * Decreases the time needed to perform a full reload by the value given with a minimum reload delay of 0.01 seconds
+     * @param value The amount to decrease the reload delay by (use negative numbers to increase it)
+     */
+    public static void changeReloadDelay(float value){
+        reloadDelay -= value;
+        if(reloadDelay< 0.01f){
+            reloadDelay = 0.01f;
+        }
     }
     /**
      * Updates acceleration by a given percentage. Accessed by skill tree
@@ -615,6 +663,41 @@ public class GameScreen implements Screen {
         colleges.get("Constantine").changeDamageReceived(value);
         colleges.get("Goodricke").changeDamageReceived(value);
         colleges.get("Kraken").changeDamageReceived(value);
+    }
+
+    public static Integer getActivePowerup(){
+        return activePowerup;
+    }
+
+    public static void changeActivePowerup(int value){
+        activePowerup = value;
+        switch (activePowerup){
+            case 1:{
+                Hud.AddHealth(100);
+                break;
+            }
+            case 2:{
+                powerupTime = 10;
+                changeDamage(10);
+                break;
+            }
+            case 3:{
+                powerupTime = 20;
+                changeAcceleration(30F);
+                changeMaxSpeed(30F);
+                break;
+
+            }
+            case 4:{
+                powerupTime = 10;
+                changeReloadDelay(0.5f);
+                break;
+            }
+            case 5:{
+                powerupTime = 8;
+                break;
+            }
+        } 
     }
 
     /**

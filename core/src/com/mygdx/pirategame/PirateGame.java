@@ -124,7 +124,7 @@ public class PirateGame extends Game {
 				if (LevelChoice == null) LevelChoice = new LevelChoice(this);
 				this.setScreen(LevelChoice);
 				break;
-		}//
+		}
 	}
 
 	/**

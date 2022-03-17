@@ -9,6 +9,7 @@ import com.mygdx.pirategame.GameObject.Enemy.EnemyFire;
 import com.mygdx.pirategame.GameObject.Entity;
 import com.mygdx.pirategame.GameObject.Player;
 import com.mygdx.pirategame.Menu.Hud;
+import com.mygdx.pirategame.GameScreen;
 import com.mygdx.pirategame.PirateGame;
 
 /**
@@ -116,21 +117,29 @@ public class WorldContactListener implements ContactListener {
                 break;
             case PirateGame.COLLEGEFIRE_BIT | PirateGame.PLAYER_BIT:
                 if(fixA.getFilterData().categoryBits == PirateGame.COLLEGEFIRE_BIT) {
-                    Hud.changeHealth(-15);
+                    if(GameScreen.getActivePowerup() != 5){
+                        Hud.changeHealth(-15);
+                    }
                     ((CollegeFire) fixA.getUserData()).setToDestroy();
                 }
                 else {
-                    Hud.changeHealth(-15);
+                    if(GameScreen.getActivePowerup() != 5){
+                        Hud.changeHealth(-15);
+                    }
                     ((CollegeFire) fixB.getUserData()).setToDestroy();
                 }
                 break;
             case PirateGame.ENEMYFIRE_BIT | PirateGame.PLAYER_BIT:
                 if(fixA.getFilterData().categoryBits == PirateGame.ENEMYFIRE_BIT) {
-                    Hud.changeHealth(-15);
+                    if(GameScreen.getActivePowerup() != 5){
+                        Hud.changeHealth(-15);
+                    }
                     ((EnemyFire) fixA.getUserData()).setToDestroy();
                 }
                 else {
-                    Hud.changeHealth(-15);
+                    if(GameScreen.getActivePowerup() != 5){
+                        Hud.changeHealth(-15);
+                    }
                     ((EnemyFire) fixB.getUserData()).setToDestroy();
                 }
                 break;

@@ -167,9 +167,36 @@ public class Hud implements Disposable {
             cannonText.setText("Reloading...");
         }
         else{
+            reloadSlider.setValue(0);
             cannonText.setText("Cannon Ready");
         }
-        
+        //Changes the image of the powerup if the player has one active
+        switch (GameScreen.getActivePowerup()){
+            case 0:{
+                powerupImg.setDrawable(new SpriteDrawable(new Sprite(emptyPowerup)));
+                break;
+            }
+            case 1:{
+                powerupImg.setDrawable(new SpriteDrawable(new Sprite(repairPowerupPic)));
+                break;
+            }
+            case 2:{
+                powerupImg.setDrawable(new SpriteDrawable(new Sprite(damagePowerupPic)));
+                break;
+            }
+            case 3:{
+                powerupImg.setDrawable(new SpriteDrawable(new Sprite(movePowerupPic)));
+                break;
+            }
+            case 4:{
+                powerupImg.setDrawable(new SpriteDrawable(new Sprite(attackspeedPowerupPic)));
+                break;
+            }
+            case 5:{
+                powerupImg.setDrawable(new SpriteDrawable(new Sprite(immunityPowerupPic)));
+                break;
+            }
+        }        
         if(timeCount >= 1) {
             //Regen health every second
             if(health < maxHealth) {
@@ -184,33 +211,7 @@ public class Hud implements Disposable {
             //Check if a points boundary is met
             SkillTree.pointsCheck(score);
             
-            //Changes the image of the powerup if the player has one active
-            switch (activePowerup){
-                case 0:{
-                    powerupImg.setDrawable(new SpriteDrawable(new Sprite(emptyPowerup)));
-                    break;
-                }
-                case 1:{
-                    powerupImg.setDrawable(new SpriteDrawable(new Sprite(repairPowerupPic)));
-                    break;
-                }
-                case 2:{
-                    powerupImg.setDrawable(new SpriteDrawable(new Sprite(damagePowerupPic)));
-                    break;
-                }
-                case 3:{
-                    powerupImg.setDrawable(new SpriteDrawable(new Sprite(movePowerupPic)));
-                    break;
-                }
-                case 4:{
-                    powerupImg.setDrawable(new SpriteDrawable(new Sprite(attackspeedPowerupPic)));
-                    break;
-                }
-                case 5:{
-                    powerupImg.setDrawable(new SpriteDrawable(new Sprite(immunityPowerupPic)));
-                    break;
-                }
-            }
+
         }
     }
 
@@ -284,9 +285,7 @@ public class Hud implements Disposable {
         coinMulti = coinMulti * value;
     }
 
-    public static void changeActivePowerup(int value){
-        activePowerup = value;
-    }
+
 
     /**
      * Changes the camera size, Scales the hud to match the camera
