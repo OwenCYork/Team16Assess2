@@ -54,6 +54,18 @@ public class WorldContactListener implements ContactListener {
                     }
                 }
                 break;
+            case PirateGame.DEFAULT_BIT | PirateGame.ENEMY_BIT:
+                if(fixA.getFilterData().categoryBits == PirateGame.DEFAULT_BIT) {
+                    if (fixA.getUserData() != null && InteractiveTileObject.class.isAssignableFrom(fixA.getUserData().getClass())) {
+                        ((Enemy) fixB.getUserData()).onContact();
+                    }
+                }
+                else {
+                    if (fixB.getUserData() != null && InteractiveTileObject.class.isAssignableFrom(fixB.getUserData().getClass())) {
+                        ((Enemy) fixA.getUserData()).onContact();
+                    }
+                }
+                break;
             case PirateGame.FRIEND_BIT | PirateGame.PLAYER_BIT:
                 if(fixA.getFilterData().categoryBits == PirateGame.FRIEND_BIT) {
                     ((Enemy) fixA.getUserData()).onContact();

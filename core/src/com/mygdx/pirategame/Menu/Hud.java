@@ -1,5 +1,6 @@
 package com.mygdx.pirategame.Menu;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.pirategame.GameScreen;
 
 /**
  * Hud
@@ -43,12 +45,17 @@ public class Hud implements Disposable {
     private static Label healthLabel;
     private static Label coinLabel;
     private static Label pointsText;
+    private static Label powerText;
+    private static Label cannonText;
     private static Integer coins;
     private static Integer coinMulti;
     private Image hpImg;
     private Image box;
     private Image coin;
     private Image powerupImg;
+    final Slider reloadSlider;
+
+    Skin skin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
 
     /**
      * Retrieves information and displays it in the hud
@@ -85,10 +92,13 @@ public class Hud implements Disposable {
         viewport = new ScreenViewport();
         stage = new Stage(viewport, sb);
 
+
+
         //Creates tables
         Table table1 = new Table(); //Counters
         Table table2 = new Table(); //Pictures or points label
         Table table3 = new Table(); //Background
+        Table reloadtable = new Table(); //Used to display the reload bar
 
         table1.top().right();
         table1.setFillParent(true);
@@ -96,29 +106,49 @@ public class Hud implements Disposable {
         table2.setFillParent(true);
         table3.top().right();
         table3.setFillParent(true);
+        reloadtable.bottom();
+        reloadtable.setFillParent(true);
 
         scoreLabel = new Label(String.format("%03d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         healthLabel = new Label(String.format("%03d", health), new Label.LabelStyle(new BitmapFont(), Color.RED));
         coinLabel = new Label(String.format("%03d", coins), new Label.LabelStyle(new BitmapFont(), Color.YELLOW));
         pointsText = new Label("Points:", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        powerText = new Label("Power:", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        cannonText = new Label("Cannon Ready", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        cannonText.setFontScale(2);
 
-        table3.add(box).width(140).height(140).padBottom(15).padLeft(30);
+
+        table3.add(box).width(140).height(180).padBottom(15).padLeft(30);
         table2.add(hpImg).width(32).height(32).padTop(16).padRight(90);
         table2.row();
         table2.add(coin).width(32).height(32).padTop(8).padRight(90);
         table2.row();
         table2.add(pointsText).width(32).height(32).padTop(6).padRight(90);
         table2.row();
-        table2.add(powerupImg).width(32).height(32).padTop(2).padRight(90);
+        table2.add(powerText).width(32).height(32).padTop(6).padRight(90);
+
 
         table1.add(healthLabel).padTop(20).top().right().padRight(40);
         table1.row();
         table1.add(coinLabel).padTop(20).top().right().padRight(40);
         table1.row();
         table1.add(scoreLabel).padTop(22).top().right().padRight(40);
+        table1.row();
+        table1.add(powerupImg).padTop(14).width(32).height(32).padRight(30);
+
+
+        
+        //Reload Slider
+        reloadSlider = new Slider( 0f, 1f, 0.01f,false, skin );
+        //reloadtable.row();
+        reloadtable.add(reloadSlider).width(480).height(64).padTop(32).padRight(10);
+        reloadtable.row();
+        reloadtable.add(cannonText).top().padBottom(20).padRight(10);
+
         stage.addActor(table3);
         stage.addActor(table2);
         stage.addActor(table1);
+        stage.addActor(reloadtable);
         if (LevelChoice.Level == 1) {
             IncreaseMaxHealth(100);
             AddHealth(99);
@@ -132,6 +162,14 @@ public class Hud implements Disposable {
      */
     public void update(float dt) {
         timeCount += dt;
+        if(GameScreen.getTimeToReload() > 0){
+            reloadSlider.setValue(GameScreen.getTimeToReload()/GameScreen.getReloadDelay()); //Set value to current option
+            cannonText.setText("Reloading...");
+        }
+        else{
+            cannonText.setText("Cannon Ready");
+        }
+        
         if(timeCount >= 1) {
             //Regen health every second
             if(health < maxHealth) {
@@ -145,7 +183,7 @@ public class Hud implements Disposable {
 
             //Check if a points boundary is met
             SkillTree.pointsCheck(score);
-
+            
             //Changes the image of the powerup if the player has one active
             switch (activePowerup){
                 case 0:{

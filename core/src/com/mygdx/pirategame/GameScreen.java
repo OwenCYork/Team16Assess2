@@ -46,7 +46,10 @@ import java.util.HashMap;
 public class GameScreen implements Screen {
     private static float maxSpeed = 2.5f;
     private static float accel = 0.05f;
+    private static float timeToReload = 0f;
+    private static float reloadDelay = 1f;
     private float stateTime;
+
 
     public static PirateGame game;
     private OrthographicCamera camera;
@@ -339,7 +342,12 @@ public class GameScreen implements Screen {
             }
             // Cannon fire on 'E'
             if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
-                player.fire();
+                System.out.println(timeToReload);
+                if(timeToReload <= 0){
+                    player.fire();
+                    timeToReload = reloadDelay;
+                }
+                
             }
             // Checking if player at max velocity, and keeping them below max
             if (player.b2body.getLinearVelocity().x >= maxSpeed) {
@@ -377,6 +385,10 @@ public class GameScreen implements Screen {
     public void update(float dt) {
         stateTime += dt;
         handleInput(dt);
+        //Reduces the time to the next reload
+        if(timeToReload > 0){
+            timeToReload -= dt;
+        }
         // Stepping the physics engine by time of 1 frame
         world.step(1 / 60f, 6, 2);
 
@@ -564,6 +576,13 @@ public class GameScreen implements Screen {
         return new Vector2(player.b2body. getPosition().x,player.b2body.getPosition().y);
     }
 
+    
+    public static float getTimeToReload(){
+        return timeToReload;
+    }
+    public static float getReloadDelay(){
+        return reloadDelay;
+    }
     /**
      * Updates acceleration by a given percentage. Accessed by skill tree
      *
