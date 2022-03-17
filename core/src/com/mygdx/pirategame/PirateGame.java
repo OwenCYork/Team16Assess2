@@ -27,7 +27,6 @@ public class PirateGame extends Game {
 	public static final short COLLEGE_BIT = 64;
 	public static final short COLLEGESENSOR_BIT = 128;
 	public static final short ENEMYFIRE_BIT = 256;
-	public static final short FRIEND_BIT = 512;
 
 
 	public SpriteBatch batch;
