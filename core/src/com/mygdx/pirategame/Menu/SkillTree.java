@@ -29,6 +29,7 @@ public class SkillTree implements Screen {
     private final PirateGame parent;
     private final Stage stage;
     private final SkillTree T;
+    //private final String last;
 
     //To store whether buttons are enabled or disabled
     private static final List<Integer> states = new ArrayList<Integer>();
@@ -40,6 +41,7 @@ public class SkillTree implements Screen {
     private TextButton[] boxTags = new TextButton[12];
     private Node tree;
     private String last;
+    public TextButton backButton;
 
     Texture background = new Texture(Gdx.files.internal("WoodBackground.png"));
 
@@ -69,7 +71,7 @@ public class SkillTree implements Screen {
             
         }
 
-        
+        backButton = new TextButton("Return", skin);
         last = "0...........";
         //0 = nothing
         //1 = Health
@@ -109,15 +111,15 @@ public class SkillTree implements Screen {
         //Set the input processor
         Gdx.input.setInputProcessor(stage);
         // Create a table that fills the screen
-        Table table = new Table();
+        /*Table table = new Table();
         table.setFillParent(true);
-        stage.addActor(table);
+        stage.addActor(table);*/
 
 
         // Table for the return button
-        final Table Other = new Table();
+        /*final Table Other = new Table();
         Other.setFillParent(true);
-        stage.addActor(Other);
+        stage.addActor(Other);*/
 
 
         //The skin for the actors
@@ -151,13 +153,20 @@ public class SkillTree implements Screen {
         Skin silverSkin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
         Skin goldSkin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
         String[] boxvalues = {"Skills","Health","Max Health","Regen Speed","Movement Speed","Plunder Multiplier","Cannon","Damage Per Shot","Range","Reload Speed","Ammo","Shot Types"};
+        int[][] prices = {{0,0,0},{5,10,15},
+                            {10,20,30}, {15,30,45},
+                            {5,10,15}, {20,80,200},
+                            {20,1,1}, {30,100,250}, 
+                            {10,20,30}, {15,45,60},
+                            {15,40,50}, {120,120,120}};
         for(int i=0;i<12;i++){
             if(states.get(4+i)==-1){
                 boxTags[i].setDisabled(true);
             }else{
                 Skin[] vals = {skin,bronzeSkin,silverSkin,goldSkin};
-                boxTags[i] = new TextButton(boxvalues[i], vals[states.get(4+i)]);
-
+                if(states.get(4+i)>=0){
+                    boxTags[i] = new TextButton(boxvalues[i]+"\n"+(Integer.toString(prices[i][states.get(4+i)]))+" Coins", vals[states.get(4+i)]);
+                }
             }
         }
 
@@ -169,17 +178,19 @@ public class SkillTree implements Screen {
         final Label unlock400 = new Label("400 points",skin);
         */
         //Return Button
-        TextButton backButton = new TextButton("Return", skin);
+        //TextButton backButton
+        backButton = new TextButton("Return", skin);
+        //backButton.setDisabled(false);
         this.applyEffects(last);
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                last = "";
+                T.last = "";
                 for(int i=0;i<12;i++){
-                    if(states.get(4+i)==-1){
-                        last= last + ".";
+                    if(T.states.get(4+i)==-1){
+                        T.last= T.last + ".";
                     }else{
-                        last = last + Integer.toString(states.get(4+i));
+                        T.last = T.last + Integer.toString(T.states.get(4+i));
                     }
                 }
                 parent.changeScreen(PirateGame.GAME); //Return to game
@@ -272,33 +283,73 @@ public class SkillTree implements Screen {
         table.row().pad(10, 0, 10, 0);
         table.add(damage1);
         table.add(unlock400);*/
+        //Label[] coinLabels = new Label[12];
+        /*int[][] prices = {{0,0,0},{5,10,15},
+                            {10,20,30}, {15,30,45},
+                            {5,10,15}, {20,80,200},
+                            {20,1,1}, {30,100,250}, 
+                            {10,20,30}, {15,45,60},
+                            {15,40,50}, {120,120,120}};
+        */
+        /*for(int i=0;i<12;i++){
+            if(states.get(4+i)>=0){
+                coinLabels[i] = new Label(Integer.toString(prices[i][states.get(4+i)])+" Coins",skin);
+            }
+        }*/
+
+        Table table = new Table();
+        table.setFillParent(true);
+        stage.addActor(table);
+
+        /*Table table2 = new Table();
+        table2.setFillParent(true);
+        stage.addActor(table2);*/
+
+
+        table.row().pad(10,0,10,0);
+        table.add(backButton);
         table.row().pad(10, 0, 10, 0);
         table.add(boxTags[0]);
+        //table2.row().pad(20, 0, 200, 0);
+        //table2.add(coinLabels[0]);
+        
 
         if(states.get(5)>-1){
         table.row().pad(10, -900, 10, 0);
         table.add(boxTags[1]);
+        //table2.row().pad(10, -900, 10, 0);
+        //table2.add(coinLabels[1]);
         }
         if(states.get(8)>-1){
             table.row().pad(-100, -300, 10, 0);
             table.add(boxTags[4]);
+            //table2.row().pad(-100, -300, 10, 0);
+            //table2.add(coinLabels[4]);
         }
 
         if(states.get(9)>-1){
             table.row().pad(-100, 300, 10, 0);
             table.add(boxTags[5]);
+            //table2.row().pad(-100, 300, 10, 0);
+            //table2.add(coinLabels[5]);
         }
     
         if(states.get(10)>-1){
             table.row().pad(-100, 800, 10, 0);
             table.add(boxTags[6]);
+            //table2.row().pad(-100, 800, 10, 0);
+            //table2.add(coinLabels[6]);
         }
 
         if(states.get(6)>-1){
         table.row().pad(10, -1200, 10, 0);
         table.add(boxTags[2]);
+        //table2.row().pad(10, -1200, 10, 0);
+        //table2.add(coinLabels[2]);
         table.row().pad(-100, -700, 10, 0);
         table.add(boxTags[3]);
+        //table2.row().pad(-100, -700, 10, 0);
+        //table2.add(coinLabels[3]);
         }
         
 
@@ -306,16 +357,28 @@ public class SkillTree implements Screen {
         if(states.get(11)>-1){
         table.row().pad(10, -200, 10, 0);
         table.add(boxTags[7]);
+        //table2.row().pad(10, -200, 10, 0);
+        //table2.add(coinLabels[7]);
         table.row().pad(30, 0, 10, 0);
         table.add(boxTags[8]);
+        //table2.row().pad(30, 0, 10, 0);
+        //table2.add(coinLabels[8]);
         table.row().pad(-330, 300, 10, 0);
         table.add(boxTags[9]);
+        //table2.row().pad(-330, 300, 10, 0);
+        //table2.add(coinLabels[9]);
         table.row().pad(-330, 800, 10, 0);
         table.add(boxTags[10]);
+        //table2.row().pad(-330, 800, 10, 0);
+        //table2.add(coinLabels[10]);
         table.row().pad(100, 1200, 10, 0);
         table.add(boxTags[11]);
+        //table2.row().pad(100, 1200, 10, 0);
+        //table2.add(coinLabels[11]);
         }
 
+        //table.row().pad(10,0,10,0);
+        //table.add(backButton);
 
         for(int i=0;i<12;i++){
             //table.row().pad(10, 0, 10, 0);
@@ -323,12 +386,12 @@ public class SkillTree implements Screen {
             System.out.println("tableIndex:"+states.get(4+i));
         }
 
-
         table.top();
+        //table2.top();
 
         //add return button
-        Other.add(backButton);
-        Other.bottom().left();
+        //Other.add(backButton);
+        //Other.bottom().left();
     }
 
     /**
