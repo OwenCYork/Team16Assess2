@@ -9,6 +9,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.pirategame.GameScreen;
 import com.mygdx.pirategame.PirateGame;
+import jdk.nashorn.internal.objects.Global;
+
+import java.util.Random;
 
 /**
  * Cannon Fire
@@ -31,6 +34,7 @@ public class CannonFire extends Sprite {
     private Vector2 bodyVel;
     private Sound fireNoise;
 
+
     /**
      * Instantiates cannon fire
      * Determines general cannonball data
@@ -47,7 +51,8 @@ public class CannonFire extends Sprite {
         this.world = screen.getWorld();
         //sets the angle and velocity
         bodyVel = body.getLinearVelocity();
-        angle = body.getAngle();
+        Random r = new Random();
+        angle = body.getAngle()+ r.nextFloat()-r.nextFloat();
 
         //set cannonBall dimensions for the texture
         cannonBall = new Texture("cannonBall.png");
@@ -98,6 +103,7 @@ public class CannonFire extends Sprite {
      * @param dt Delta time (elapsed time since last game tick)
      */
     public void update(float dt){
+
         stateTime += dt;
         //Update position of ball
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);

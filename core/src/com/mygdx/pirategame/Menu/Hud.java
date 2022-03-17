@@ -152,6 +152,13 @@ public class Hud implements Disposable {
         if (LevelChoice.Level == 1) {
             IncreaseMaxHealth(100);
             AddHealth(99);
+            changeCoins(100);
+            AddHealthRegen(3);
+
+        }
+        if (LevelChoice.Level == 3) {
+            IncreaseMaxHealth(-50);
+            AddHealth(-50);
         }
     }
 

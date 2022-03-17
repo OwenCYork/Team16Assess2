@@ -24,7 +24,7 @@ import com.mygdx.pirategame.PirateGame;
  *@version 1.0
  */
 public class LevelChoice implements Screen {
-    public static int Level;
+    public static int Level=0;
     private final PirateGame parent;
     private final Stage stage;
     Texture background = new Texture(Gdx.files.internal("background.png"));
