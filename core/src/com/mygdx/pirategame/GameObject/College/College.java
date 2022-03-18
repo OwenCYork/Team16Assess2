@@ -3,6 +3,7 @@ package com.mygdx.pirategame.GameObject.College;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.pirategame.GameObject.AvailableSpawn;
@@ -11,6 +12,7 @@ import com.mygdx.pirategame.GameObject.Enemy.EnemyShip;
 import com.mygdx.pirategame.GameScreen;
 import com.mygdx.pirategame.Menu.Hud;
 import com.mygdx.pirategame.PirateGame;
+import com.mygdx.pirategame.World.InteractiveTileObject;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -33,6 +35,7 @@ public class College extends Enemy {
     private AvailableSpawn noSpawn;
     public ArrayList<EnemyShip> fleet = new ArrayList<>();
     private String college;
+    private InteractiveTileObject interactiveTileObject;
     /**
      *
      * @param screen Visual data
@@ -52,9 +55,15 @@ public class College extends Enemy {
         currentCollege = flag;
         enemyCollege = new Texture(flag);
         //Set the position and size of the college
-        setBounds(0,0,64 / PirateGame.PPM, 110 / PirateGame.PPM);
-        setRegion(enemyCollege);
-        setOrigin(32 / PirateGame.PPM,55 / PirateGame.PPM);
+        if (college != "Kraken"){
+            setBounds(0,0,64 / PirateGame.PPM, 110 / PirateGame.PPM);
+            setRegion(enemyCollege);
+            setOrigin(32 / PirateGame.PPM,55 / PirateGame.PPM);
+        }else{
+            setBounds(0,0,300 / PirateGame.PPM, 300 / PirateGame.PPM);
+            setRegion(enemyCollege);
+            setOrigin(150 / PirateGame.PPM,150 / PirateGame.PPM);
+        }
         damage = 10;
         cannonBalls = new Array<>();
         int ranX = 0;
@@ -142,7 +151,7 @@ public class College extends Enemy {
     public void draw(Batch batch) {
         if(!destroyed) {
             if(this.college=="Kraken"){
-                batch.draw(this,this.getX(),this.getY(),this.getWidth()*3,this.getHeight()*3);
+                batch.draw(this,this.getX(),this.getY(),this.getWidth(),this.getHeight());
             }else{
                 super.draw(batch);
             }
