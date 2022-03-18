@@ -25,12 +25,13 @@ import com.mygdx.pirategame.GameObject.Enemy.EnemyShip;
 import com.mygdx.pirategame.GameObject.Enemy.Whirlpool;
 import com.mygdx.pirategame.GameObject.Player;
 import com.mygdx.pirategame.Menu.Hud;
+import com.mygdx.pirategame.Menu.LevelChoice;
 import com.mygdx.pirategame.Menu.Options;
 import com.mygdx.pirategame.World.WorldContactListener;
 import com.mygdx.pirategame.World.WorldCreator;
 
 import java.util.Random;
-
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -51,6 +52,7 @@ public class GameScreen implements Screen {
     private float stateTime;
     private static float powerupTime = 0;
     private static Integer activePowerup = 0;
+    private static Boolean cannonJammed = false;
 
 
     public static PirateGame game;
@@ -345,9 +347,20 @@ public class GameScreen implements Screen {
             // Cannon fire on 'E'
             if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
                 System.out.println(timeToReload);
+                if(cannonJammed){
+                    timeToReload -= 0.2f;
+                    if(timeToReload <= 0){
+                        cannonJammed = false;
+                    }
+                }
                 if(timeToReload <= 0){
+                    cannonJammed = false;
                     player.fire();
                     timeToReload = reloadDelay;
+                    if(rand.nextInt(10)==0 && LevelChoice.Level == 3){
+                        cannonJammed = true;
+                    }
+
                 }
                 
             }
@@ -388,7 +401,7 @@ public class GameScreen implements Screen {
         stateTime += dt;
         handleInput(dt);
         //Reduces the time to the next reload
-        if(timeToReload > 0){
+        if(timeToReload > 0 && !cannonJammed){
             timeToReload -= dt;
         }
         // Stepping the physics engine by time of 1 frame
@@ -621,13 +634,16 @@ public class GameScreen implements Screen {
     public static float getReloadDelay(){
         return reloadDelay;
     }
+    public static boolean getCannonJammed(){
+        return cannonJammed;
+    }
     /**
      * Decreases the time needed to perform a full reload by the value given with a minimum reload delay of 0.01 seconds
      * @param value The amount to decrease the reload delay by (use negative numbers to increase it)
      */
     public static void changeReloadDelay(float value){
         reloadDelay -= value;
-        if(reloadDelay< 0.01f){
+        if(reloadDelay < 0.01f){
             reloadDelay = 0.01f;
         }
     }

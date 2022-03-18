@@ -132,7 +132,7 @@ public class Whirlpool extends Enemy{
         //Sets collision boundaries
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(55 / PirateGame.PPM);
+        shape.setRadius(30 / PirateGame.PPM);
         // setting BIT identifier
         fdef.filter.categoryBits = PirateGame.ENEMY_BIT;
         // determining what this BIT can collide with
@@ -149,12 +149,13 @@ public class Whirlpool extends Enemy{
     @Override
     public void onContact() {
         Gdx.app.log("Whirlpool", "collision");
+        Hud.changePoints(50);
         //Play collision sound
         if (screen.game.getPreferences().isEffectsEnabled()) {
             hit.play(screen.game.getPreferences().getEffectsVolume());
         }
         
-        GameScreen.Shoot(400F,screen.GetPlayer());
+        GameScreen.Shoot(200F,screen.GetPlayer());
     }
 
     /**

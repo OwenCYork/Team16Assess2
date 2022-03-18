@@ -169,7 +169,11 @@ public class Hud implements Disposable {
      */
     public void update(float dt) {
         timeCount += dt;
-        if(GameScreen.getTimeToReload() > 0){
+        if(GameScreen.getCannonJammed()){
+            reloadSlider.setValue(GameScreen.getTimeToReload()/GameScreen.getReloadDelay()); //Set value to current option
+            cannonText.setText("Cannon is jammed! Press E to reload!");
+        }
+        else if(GameScreen.getTimeToReload() > 0){
             reloadSlider.setValue(GameScreen.getTimeToReload()/GameScreen.getReloadDelay()); //Set value to current option
             cannonText.setText("Reloading...");
         }
@@ -243,8 +247,10 @@ public class Hud implements Disposable {
         coins-=c;
         if(coins<0){
             coins+=c;
+            coinLabel.setText(String.format("%03d", coins));
             return(false);
         }else{
+            coinLabel.setText(String.format("%03d", coins));
             return(true);
         }
     }
