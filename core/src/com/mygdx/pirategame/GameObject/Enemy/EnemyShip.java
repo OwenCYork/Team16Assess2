@@ -107,7 +107,8 @@ public class EnemyShip extends Enemy{
         Player player = screen.GetPlayer();
         float range = this.getHeight();
         if(Math.abs(player.getX()-this.getX())<3*range || Math.abs(player.getY()-this.getY())<3*range){
-            Vector2 target = new Vector2(player.getX() / PirateGame.PPM, player.getY() / PirateGame.PPM);
+
+            Vector2 target = new Vector2(player.getX(), player.getY());
             target.sub(b2body.getPosition());
             target.nor();
             float speed = 0.5f;
