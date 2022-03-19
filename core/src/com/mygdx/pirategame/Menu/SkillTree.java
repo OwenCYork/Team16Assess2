@@ -40,7 +40,7 @@ public class SkillTree implements Screen {
     private TextButton movement2;
     private TextButton[] boxTags = new TextButton[12];
     private Node tree;
-    private String last;
+    private static String last;
     public TextButton backButton;
 
     Texture background = new Texture(Gdx.files.internal("WoodBackground.png"));
@@ -101,7 +101,9 @@ public class SkillTree implements Screen {
         cBranch.AddBranch(14);
         cBranch.AddBranch(15);
         states.set(4,0);
+
     }
+
     /**
      * What should be displayed on the skill tree screen
      *
@@ -393,7 +395,9 @@ public class SkillTree implements Screen {
         //Other.add(backButton);
         //Other.bottom().left();
     }
-
+    public static String Getlast(){
+        return(last);
+    }
     /**
      * Allows the game to check whether a points threshold has been reached
      *

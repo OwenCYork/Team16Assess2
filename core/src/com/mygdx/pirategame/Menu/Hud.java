@@ -242,6 +242,18 @@ public class Hud implements Disposable {
     public static Integer GetCoins(){
         return(coins);
     }
+    public static Integer GetScore(){
+        return(score);
+    }
+    public static Integer GetHealthRe(){
+        return(healthRegen);
+    }
+    public static Integer GetMaxHealth(){
+        return(maxHealth);
+    }
+    public static Integer GetPowerup(){
+        return(activePowerup);
+    }
 
     public static Boolean DeductCoins(Integer c){
         coins-=c;
