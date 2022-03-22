@@ -716,6 +716,15 @@ public class GameScreen implements Screen {
         } 
     }
 
+
+    public static void changeShotType(GameScreen g){
+        Player player = g.GetPlayer();
+        player.changeShot();
+    }
+
+
+
+
     /**
      * Tests validity of randomly generated position
      *
