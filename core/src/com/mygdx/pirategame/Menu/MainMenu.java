@@ -55,6 +55,7 @@ public class MainMenu implements Screen {
 
         //create buttons
         TextButton newGame = new TextButton("New Game", skin);
+        TextButton loadGame = new TextButton("Load Game", skin);
         TextButton help = new TextButton("Help", skin);
         TextButton options = new TextButton("Options", skin);
         TextButton difficulty = new TextButton("Difficulty",skin);
@@ -64,6 +65,8 @@ public class MainMenu implements Screen {
         //add buttons to table
         table.add(newGame).fillX().uniformX();
         table.row().pad(10, 0, 10, 0);
+        table.add(loadGame).fillX().uniformX();
+        table.row();
         table.add(help).fillX().uniformX();
         table.row();
         table.add(options).fillX().uniformX();
@@ -79,6 +82,12 @@ public class MainMenu implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor){
                 parent.changeScreen(PirateGame.GAME);
+            }
+        });
+        loadGame.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor){
+                parent.changeScreen(PirateGame.LOAD);
             }
         });
         //Help Screen

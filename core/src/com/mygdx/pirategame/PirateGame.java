@@ -43,6 +43,7 @@ public class PirateGame extends Game {
 	private audioControls options;
 	public Music song;
 	public LevelChoice LevelChoice;
+	private LoadScreen LoadScreen;
 
 	//Constant for swapping between screens
 	public final static int MENU = 0;
@@ -53,6 +54,7 @@ public class PirateGame extends Game {
 	public final static int VICTORY = 5;
 	public final static int SAVE = 6;
 	public final static int DIFFICULTY = 7;
+	public final static int LOAD = 8;
 
 	/**
 	 * Creates the main body of the game.
@@ -122,6 +124,10 @@ public class PirateGame extends Game {
 			case DIFFICULTY:
 				if (LevelChoice == null) LevelChoice = new LevelChoice(this);
 				this.setScreen(LevelChoice);
+				break;
+			case LOAD:
+				if (LoadScreen == null) LoadScreen = new LoadScreen(this);
+				this.setScreen(LoadScreen);
 				break;
 		}
 	}
