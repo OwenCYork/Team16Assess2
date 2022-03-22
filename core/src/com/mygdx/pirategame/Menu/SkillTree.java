@@ -537,10 +537,12 @@ public class SkillTree implements Screen {
                         //Range Increase
                     }else if(i==13){
                         //Reload speed increase
+                        GameScreen.changeReloadDelay(-0.1f);
                     }else if(i==14){
                         //Ammo increase
                     }else if(i==15){
                         //Enable/switch to next shot type
+                        GameScreen.changeShotType(parent.gameScreen);
                     }
                     //apply effect
                     
@@ -564,10 +566,14 @@ public class SkillTree implements Screen {
                         //Range Increase
                     }else if(i==13){
                         //Reload speed increase
+                        GameScreen.changeReloadDelay(-0.3f);
                     }else if(i==14){
                         //Ammo increase
                     }else if(i==15){
                         //Enable/switch to next next shot type
+                        
+                        GameScreen.changeShotType(parent.gameScreen);
+                        GameScreen.changeShotType(parent.gameScreen);
                     }
                     //apply effect
                     
@@ -589,10 +595,14 @@ public class SkillTree implements Screen {
                         //Range Increase
                     }else if(i==13){
                         //Reload speed increase
+                        GameScreen.changeReloadDelay(-0.5f);
                     }else if(i==14){
                         //Ammo increase
                     }else if(i==15){
                         //Enable/switch to last shot type
+                        GameScreen.changeShotType(parent.gameScreen);
+                        GameScreen.changeShotType(parent.gameScreen);
+                        GameScreen.changeShotType(parent.gameScreen);
                     }
                     //apply effect
                     

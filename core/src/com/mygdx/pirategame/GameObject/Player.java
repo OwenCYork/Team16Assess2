@@ -22,6 +22,7 @@ public class Player extends Sprite {
     public Body b2body;
     private Sound breakSound;
     private Array<CannonFire> cannonBalls;
+    private int shotType;
 
     /**
      * Instantiates a new Player. Constructor only called once per game
@@ -33,7 +34,7 @@ public class Player extends Sprite {
         this.screen = screen;
         ship = new Texture("player_ship.png");
         this.world = screen.getWorld();
-
+        this.shotType = 0;
         // Defines a player, and the players position on screen and world
         definePlayer();
         setBounds(0,0,64 / PirateGame.PPM, 110 / PirateGame.PPM);
@@ -106,9 +107,28 @@ public class Player extends Sprite {
      */
     public void fire() {
         // Fires cannons
+        if(shotType==0){
         cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, 5));
         cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, -5));
-
+        }else if(shotType==1){
+            cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, 5));
+            cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, 5));
+            cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, 5));
+            cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, 5));
+        }else if(shotType==2){
+            cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, 15));
+            cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, 10));
+            cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, 5));   
+        }else if(shotType==3){
+            for(int i=0;i<3;i++){
+                cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, 15));
+                cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, 10));
+                cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, 5));
+                cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, -15));
+                cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, -10));
+                cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, b2body, -5));   
+            }
+        }
         // Cone fire below
         /*cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, (float) (b2body.getAngle() - Math.PI / 6), -5, b2body.getLinearVelocity()));
         cannonBalls.add(new CannonFire(screen, b2body.getPosition().x, b2body.getPosition().y, (float) (b2body.getAngle() - Math.PI / 6), 5, b2body.getLinearVelocity()));
@@ -117,6 +137,14 @@ public class Player extends Sprite {
         }
          */
     }
+
+    public void changeShot(){
+        shotType++;
+        if(shotType>3){
+            shotType=0;
+        }
+    }
+
 
     /**
      * Draws the player using batch
