@@ -102,13 +102,13 @@ public class WorldContactListener implements ContactListener {
             case PirateGame.COLLEGEFIRE_BIT | PirateGame.PLAYER_BIT:
                 if(fixA.getFilterData().categoryBits == PirateGame.COLLEGEFIRE_BIT) {
                     if(GameScreen.getActivePowerup() != 5){
-                        Hud.changeHealth(-15);
+                        Hud.AddHealth(-15);
                     }
                     ((CollegeFire) fixA.getUserData()).setToDestroy();
                 }
                 else {
                     if(GameScreen.getActivePowerup() != 5){
-                        Hud.changeHealth(-15);
+                        Hud.AddHealth(-15);
                     }
                     ((CollegeFire) fixB.getUserData()).setToDestroy();
                 }
@@ -116,13 +116,13 @@ public class WorldContactListener implements ContactListener {
             case PirateGame.ENEMYFIRE_BIT | PirateGame.PLAYER_BIT:
                 if(fixA.getFilterData().categoryBits == PirateGame.ENEMYFIRE_BIT) {
                     if(GameScreen.getActivePowerup() != 5){
-                        Hud.changeHealth(-15);
+                        Hud.AddHealth(-15);
                     }
                     ((EnemyFire) fixA.getUserData()).setToDestroy();
                 }
                 else {
                     if(GameScreen.getActivePowerup() != 5){
-                        Hud.changeHealth(-15);
+                        Hud.AddHealth(-15);
                     }
                     ((EnemyFire) fixB.getUserData()).setToDestroy();
                 }

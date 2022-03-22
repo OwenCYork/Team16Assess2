@@ -32,7 +32,7 @@ public class Islands extends InteractiveTileObject {
         Gdx.app.log("island", "collision");
         //Deal damage to the boat
         if(GameScreen.getActivePowerup() != 5){
-            Hud.changeHealth(-10);
+            Hud.AddHealth(-10);
         }
         
     }

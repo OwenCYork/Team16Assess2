@@ -226,9 +226,14 @@ public class Hud implements Disposable {
         }
     }
 
-
+    /**
+     * Changes health by value increase
+     *
+     * @param value Increase to health
+     */
     public static void AddHealth(Integer h){
         health+=h;
+        healthLabel.setText(String.format("%02d", health));
     }
 
     public static void AddHealthRegen(Integer regen){
@@ -267,16 +272,12 @@ public class Hud implements Disposable {
         }
     }
 
-    /**
-     * Changes health by value increase
-     *
-     * @param value Increase to health
-     */
+/*
     public static void changeHealth(int value) {
         health += value;
         healthLabel.setText(String.format("%02d", health));
     }
-
+*/
     /**
      * Changes coins by value increase
      *
