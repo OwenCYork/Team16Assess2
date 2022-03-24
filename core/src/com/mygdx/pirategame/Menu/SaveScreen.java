@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.pirategame.GameScreen;
 import com.mygdx.pirategame.PirateGame;
 import jdk.internal.access.JavaIOFileDescriptorAccess;
 
@@ -135,6 +136,14 @@ public class SaveScreen implements Screen {
         data.write(String.valueOf(Hud.GetPowerup()));
         data.write("\r\n");
         data.write(SkillTree.Getlast());
+        data.write("\r\n");
+        data.write(String.valueOf(GameScreen.colleges.get("Anne Lister").destroyed));
+        data.write("\r\n");
+        data.write(String.valueOf(GameScreen.colleges.get("Constantine").destroyed));
+        data.write("\r\n");
+        data.write(String.valueOf(GameScreen.colleges.get("Goodricke").destroyed));
+        data.write("\r\n");
+        data.write(String.valueOf(GameScreen.colleges.get("Kraken").destroyed));
         data.flush();
         data.close();
     }

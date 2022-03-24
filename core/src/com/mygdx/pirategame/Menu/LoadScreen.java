@@ -37,6 +37,10 @@ public class LoadScreen implements Screen {
     public static String Powerup;
     public static String Last;
     private static Boolean isload=false;
+    public static String isAl;
+    public static String isCO;
+    public static String isGO;
+    public static String isKR;
     /**
      * Creates a new screen
      *
@@ -136,6 +140,10 @@ public class LoadScreen implements Screen {
         MaxHealth = bf.readLine();
         Powerup = bf.readLine();
         Last = bf.readLine();
+        isAl = bf.readLine();
+        isCO = bf.readLine();
+        isGO = bf.readLine();
+        isKR = bf.readLine();
         bf.close();
         isload = true;
     }

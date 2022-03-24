@@ -26,6 +26,7 @@ import com.mygdx.pirategame.GameObject.Enemy.Whirlpool;
 import com.mygdx.pirategame.GameObject.Player;
 import com.mygdx.pirategame.Menu.Hud;
 import com.mygdx.pirategame.Menu.LevelChoice;
+import com.mygdx.pirategame.Menu.LoadScreen;
 import com.mygdx.pirategame.Menu.Options;
 import com.mygdx.pirategame.World.WorldContactListener;
 import com.mygdx.pirategame.World.WorldCreator;
@@ -68,7 +69,7 @@ public class GameScreen implements Screen {
     private Box2DDebugRenderer b2dr;
 
     private Player player;
-    private static HashMap<String, College> colleges = new HashMap<>();
+    public static HashMap<String, College> colleges = new HashMap<>();
     private static ArrayList<EnemyShip> ships = new ArrayList<>();
     private static ArrayList<Whirlpool> whirlpools = new ArrayList<>();
     private static ArrayList<Coin> Coins = new ArrayList<>();
@@ -129,7 +130,12 @@ public class GameScreen implements Screen {
         
         colleges.put("Kraken", new College(this, "Kraken", 3560 / PirateGame.PPM, 4767 / PirateGame.PPM,
                 "Kraken.png", "GhostShip.png", 8, invalidSpawn));
-        
+        if (LoadScreen.getisload()) {
+            colleges.get("Anne Lister").destroyed = Boolean.getBoolean(LoadScreen.isAl);
+            colleges.get("Constantine").destroyed = Boolean.getBoolean(LoadScreen.isCO);
+            colleges.get("Goodricke").destroyed = Boolean.getBoolean(LoadScreen.isGO);
+            colleges.get("Kraken").destroyed = Boolean.getBoolean(LoadScreen.isKR);
+        }
         
         
         ships = new ArrayList<>();
