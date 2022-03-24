@@ -73,6 +73,7 @@ public class SkillTree implements Screen {
 
         backButton = new TextButton("Return", skin);
         last = "0...........";
+
         //0 = nothing
         //1 = Health
         //11= Max Health
@@ -101,7 +102,10 @@ public class SkillTree implements Screen {
         cBranch.AddBranch(14);
         cBranch.AddBranch(15);
         states.set(4,0);
-
+        if (LoadScreen.getisload()) {
+            last = LoadScreen.Last;
+            System.out.println(last);
+        }
     }
 
     /**
@@ -394,6 +398,7 @@ public class SkillTree implements Screen {
         //add return button
         //Other.add(backButton);
         //Other.bottom().left();
+
     }
     public static String Getlast(){
         return(last);
@@ -404,6 +409,7 @@ public class SkillTree implements Screen {
      * @param points the current amount of points
      */
     public static void pointsCheck(int points){
+
 
         //States.get() checks whether it has already been unlocked. 1 = not unlocked, 0 = unlocked
         if(states.get(0) == 1 && points >= 100){

@@ -160,6 +160,13 @@ public class Hud implements Disposable {
             IncreaseMaxHealth(-50);
             AddHealth(-50);
         }
+        if (LoadScreen.getisload()) {
+            health = Integer.valueOf(LoadScreen.Health);
+            score = Integer.valueOf(LoadScreen.Score);
+            changeCoins(Integer.valueOf(LoadScreen.Coins));
+            healthRegen = Integer.valueOf(LoadScreen.HealthRe);
+            activePowerup = Integer.valueOf(LoadScreen.Powerup);
+        }
     }
 
     /**

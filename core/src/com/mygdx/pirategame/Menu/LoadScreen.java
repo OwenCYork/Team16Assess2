@@ -15,8 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.pirategame.PirateGame;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 
 /**
  * Save Screen
@@ -27,9 +26,17 @@ import java.io.FileWriter;
  */
 public class LoadScreen implements Screen {
 
+
     private final PirateGame parent;
     private final Stage stage;
-
+    public static String Health;
+    public static String Score;
+    public static String Coins;
+    public static String HealthRe;
+    public static String MaxHealth;
+    public static String Powerup;
+    public static String Last;
+    private static Boolean isload=false;
     /**
      * Creates a new screen
      *
@@ -118,31 +125,28 @@ public class LoadScreen implements Screen {
         stage.addActor(table3);
     }
     public void loadfile() throws Exception{
-        new File("saved.txt").createNewFile();
-        FileWriter data =new FileWriter("saved.txt");
-        //0--health,1--Score,2--Coins,3--HealthRegen,4--MaxHealth,5--Powerup?,6--skilltree
-
-        data.write(String.valueOf(Hud.getHealth()));
-        data.write("\r\n");
-        data.write(String.valueOf(Hud.GetScore()));
-        data.write("\r\n");
-        data.write(String.valueOf(Hud.GetCoins()));
-        data.write("\r\n");
-        data.write(String.valueOf(Hud.GetHealthRe()));
-        data.write("\r\n");
-        data.write(String.valueOf(Hud.GetMaxHealth()));
-        data.write("\r\n");
-        data.write(String.valueOf(Hud.GetPowerup()));
-        data.write("\r\n");
-        data.write(SkillTree.Getlast());
-        data.flush();
-        data.close();
+//        new File("saved.txt").createNewFile();
+        File file = new File("saved.txt");
+        InputStreamReader inputReader = new InputStreamReader(new FileInputStream(file),"UTF-8");
+        BufferedReader bf = new BufferedReader(inputReader);
+        Health = bf.readLine();
+        Score = bf.readLine();
+        Coins = bf.readLine();
+        HealthRe = bf.readLine();
+        MaxHealth = bf.readLine();
+        Powerup = bf.readLine();
+        Last = bf.readLine();
+        bf.close();
+        isload = true;
     }
 
     /**
      * (Not Used)
      * Updates the state of each object
      */
+    public static Boolean getisload(){
+        return isload;
+    }
     public void update(){
     }
 
