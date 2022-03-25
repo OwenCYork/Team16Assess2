@@ -3,8 +3,10 @@ package com.mygdx.pirategame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -56,6 +58,8 @@ public class GameScreen implements Screen {
     private static Boolean cannonJammed = false;
 
 
+
+
     public static PirateGame game;
     private OrthographicCamera camera;
     private Viewport viewport;
@@ -92,6 +96,7 @@ public class GameScreen implements Screen {
      * @param game passes game data to current class,
      */
     public GameScreen(PirateGame game){
+
         gameStatus = GAME_RUNNING;
         this.game = game;
         // Initialising camera and extendable viewport for viewing game
@@ -533,6 +538,7 @@ public class GameScreen implements Screen {
         colleges.get("Constantine").draw(game.batch);
         colleges.get("Goodricke").draw(game.batch);
         colleges.get("Kraken").draw(game.batch);
+
         //Updates all ships
         for (int i = 0; i < ships.size(); i++){
             if (ships.get(i).college != "Unaligned") {

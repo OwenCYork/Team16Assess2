@@ -120,7 +120,7 @@ public class EnemyShip extends Enemy{
         Player player = screen.GetPlayer();
         float range = this.getHeight();
         if(Math.abs(player.getX()-this.getX())<range || Math.abs(player.getY()-this.getY())<range){
-            fire();
+           fire();
         }
     }
 
@@ -179,7 +179,7 @@ public class EnemyShip extends Enemy{
      */
     @Override
     public void onContact() {
-        System.out.println(this.college);
+
         Gdx.app.log("enemy", "collision");
         //Play collision sound
         if (screen.game.getPreferences().isEffectsEnabled()) {

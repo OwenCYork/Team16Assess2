@@ -60,7 +60,7 @@ public class College extends Enemy {
             setRegion(enemyCollege);
             setOrigin(32 / PirateGame.PPM,55 / PirateGame.PPM);
         }else{
-            setBounds(0,0,300 / PirateGame.PPM, 300 / PirateGame.PPM);
+           setBounds(0,0,300 / PirateGame.PPM, 300 / PirateGame.PPM);
             setRegion(enemyCollege);
             setOrigin(150 / PirateGame.PPM,150 / PirateGame.PPM);
         }
@@ -150,11 +150,8 @@ public class College extends Enemy {
      */
     public void draw(Batch batch) {
         if(!destroyed) {
-            if(this.college=="Kraken"){
-                batch.draw(this,this.getX(),this.getY(),this.getWidth(),this.getHeight());
-            }else{
-                super.draw(batch);
-            }
+
+            super.draw(batch);
             //Render health bar
             bar.render(batch);
             //Render balls
@@ -193,6 +190,7 @@ public class College extends Enemy {
     @Override
     public void onContact() {
         //Damage the college and lower health bar
+        System.out.println(this.college +" - "+ health);
         Gdx.app.log("enemy", "collision");
         health -= damage;
         bar.changeHealth(damage);

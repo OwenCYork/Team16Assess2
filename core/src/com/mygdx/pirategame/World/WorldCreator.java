@@ -1,15 +1,14 @@
 package com.mygdx.pirategame.World;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
-import com.mygdx.pirategame.GameObject.College.CollegeWalls;
-import com.mygdx.pirategame.GameObject.College.CollegeWalls2;
-import com.mygdx.pirategame.GameObject.College.CollegeWalls3;
-import com.mygdx.pirategame.GameObject.College.CollegeWalls4;
+import com.mygdx.pirategame.GameObject.College.*;
 import com.mygdx.pirategame.GameScreen;
+import com.mygdx.pirategame.PirateGame;
 
 /**
  * This is the class where all boundaries and collisions are created for the map.
@@ -32,7 +31,7 @@ public class WorldCreator {
             new Islands(screen, rect);
         }
         for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new CollegeWalls(screen, rect);
         }
@@ -43,7 +42,6 @@ public class WorldCreator {
         }
         for(MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
             new CollegeWalls3(screen, rect);
         }
         for(MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
@@ -51,5 +49,7 @@ public class WorldCreator {
 
             new CollegeWalls4(screen, rect);
         }
+        Rectangle rect = new Rectangle(3400, 4650,300, 250);
+        new KrakenBody(screen, rect);
     }
 }
