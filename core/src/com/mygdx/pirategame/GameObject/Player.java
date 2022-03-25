@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.pirategame.GameScreen;
+import com.mygdx.pirategame.Menu.LoadScreen;
 import com.mygdx.pirategame.PirateGame;
 
 /**
@@ -23,6 +24,7 @@ public class Player extends Sprite {
     private Sound breakSound;
     private Array<CannonFire> cannonBalls;
     private int shotType;
+    private boolean loaded=false;
 
     /**
      * Instantiates a new Player. Constructor only called once per game
@@ -46,6 +48,7 @@ public class Player extends Sprite {
 
         // Sets cannonball array
         cannonBalls = new Array<CannonFire>();
+
     }
 
     /**
@@ -56,6 +59,10 @@ public class Player extends Sprite {
     public void update(float dt) {
         // Updates position and orientation of player
         setPosition(b2body.getPosition().x - getWidth() / 2f, b2body.getPosition().y - getHeight() / 2f);
+        if(LoadScreen.getisload()&loaded==false){
+            setPosition(Float.parseFloat(LoadScreen.posX),Float.parseFloat(LoadScreen.posY));
+            loaded=true;
+        }
         float angle = (float) Math.atan2(b2body.getLinearVelocity().y, b2body.getLinearVelocity().x);
         b2body.setTransform(b2body.getWorldCenter(), angle - ((float)Math.PI) / 2.0f);
         setRotation((float) (b2body.getAngle() * 180 / Math.PI));
@@ -85,6 +92,9 @@ public class Player extends Sprite {
         // Defines a players position
         BodyDef bdef = new BodyDef();
         bdef.position.set(1200  / PirateGame.PPM, 2500 / PirateGame.PPM); // Default Pos: 1800,2500
+        if(LoadScreen.getisload()){
+            bdef.position.set(Float.parseFloat(LoadScreen.posX),Float.parseFloat(LoadScreen.posY));
+        }
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 

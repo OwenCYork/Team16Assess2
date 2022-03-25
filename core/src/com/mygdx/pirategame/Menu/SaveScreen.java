@@ -121,7 +121,7 @@ public class SaveScreen implements Screen {
     public void Savefile() throws Exception{
         new File("saved.txt").createNewFile();
         FileWriter data =new FileWriter("saved.txt");
-        //0--health,1--Score,2--Coins,3--HealthRegen,4--MaxHealth,5--Powerup?,6--skilltree,7 8 9 10:colleges AL CO GO KR
+        //0--health,1--Score,2--Coins,3--HealthRegen,4--MaxHealth,5--Powerup?,6--skilltree,7 8--Position of the ship 9 10 11 12:colleges AL CO GO KR
         //0
         data.write(String.valueOf(Hud.getHealth()));
         data.write("\r\n");
@@ -143,7 +143,10 @@ public class SaveScreen implements Screen {
         //6
         data.write(SkillTree.Getlast());
         data.write("\r\n");
-
+        data.write(String.valueOf(GameScreen.getPOSX()));
+        data.write("\r\n");
+        data.write(String.valueOf(GameScreen.getPOSY()));
+        data.write("\r\n");
         data.write(String.valueOf(GameScreen.colleges.get("Anne Lister").destroyed));
         data.write("\r\n");
         data.write(String.valueOf(GameScreen.colleges.get("Constantine").destroyed));

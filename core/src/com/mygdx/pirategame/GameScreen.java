@@ -34,7 +34,6 @@ import com.mygdx.pirategame.World.WorldContactListener;
 import com.mygdx.pirategame.World.WorldCreator;
 
 import java.util.Random;
-import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -56,7 +55,7 @@ public class GameScreen implements Screen {
     private static float powerupTime = 0;
     private static Integer activePowerup = 0;
     private static Boolean cannonJammed = false;
-
+    private Boolean loaded=false;
 
 
 
@@ -84,7 +83,8 @@ public class GameScreen implements Screen {
     public static final int GAME_RUNNING = 0;
     public static final int GAME_PAUSED = 1;
     private static int gameStatus;
-
+    private static float POSX;
+    private static float POSY;
     private Table pauseTable;
     private Table table;
 
@@ -495,8 +495,15 @@ public class GameScreen implements Screen {
         // Centre camera on player boat
         camera.position.x = player.b2body.getPosition().x;
         camera.position.y = player.b2body.getPosition().y;
+        if(LoadScreen.getisload()&loaded==false){
+            camera.position.x = Float.parseFloat(LoadScreen.posX);
+            camera.position.y = Float.parseFloat(LoadScreen.posY);
+            loaded = true;
+        }
         camera.update();
         renderer.setView(camera);
+        POSX = player.b2body.getPosition().x;
+        POSY = player.b2body.getPosition().y;
     }
 
     /**
@@ -632,6 +639,8 @@ public class GameScreen implements Screen {
         return new Vector2(player.b2body. getPosition().x,player.b2body.getPosition().y);
     }
 
+    public static Float getPOSX(){ return POSX; }
+    public static Float getPOSY(){ return POSY; }
     /**
      * Fetches the current time until the next reload
      * @return float: time until next reload (Max should be 1.0 or 1 second)
