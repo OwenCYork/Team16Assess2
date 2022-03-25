@@ -121,22 +121,29 @@ public class SaveScreen implements Screen {
     public void Savefile() throws Exception{
         new File("saved.txt").createNewFile();
         FileWriter data =new FileWriter("saved.txt");
-        //0--health,1--Score,2--Coins,3--HealthRegen,4--MaxHealth,5--Powerup?,6--skilltree
-
+        //0--health,1--Score,2--Coins,3--HealthRegen,4--MaxHealth,5--Powerup?,6--skilltree,7 8 9 10:colleges AL CO GO KR
+        //0
         data.write(String.valueOf(Hud.getHealth()));
         data.write("\r\n");
+        //1
         data.write(String.valueOf(Hud.GetScore()));
         data.write("\r\n");
+        //2
         data.write(String.valueOf(Hud.GetCoins()));
         data.write("\r\n");
+        //3
         data.write(String.valueOf(Hud.GetHealthRe()));
         data.write("\r\n");
+        //4
         data.write(String.valueOf(Hud.GetMaxHealth()));
         data.write("\r\n");
+        //5
         data.write(String.valueOf(Hud.GetPowerup()));
         data.write("\r\n");
+        //6
         data.write(SkillTree.Getlast());
         data.write("\r\n");
+
         data.write(String.valueOf(GameScreen.colleges.get("Anne Lister").destroyed));
         data.write("\r\n");
         data.write(String.valueOf(GameScreen.colleges.get("Constantine").destroyed));
@@ -144,6 +151,7 @@ public class SaveScreen implements Screen {
         data.write(String.valueOf(GameScreen.colleges.get("Goodricke").destroyed));
         data.write("\r\n");
         data.write(String.valueOf(GameScreen.colleges.get("Kraken").destroyed));
+
         data.flush();
         data.close();
     }
