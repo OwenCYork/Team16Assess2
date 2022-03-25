@@ -64,15 +64,42 @@ public class SkillTree implements Screen {
 
         Skin skin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
         String[] boxvalues = {"Skills","Health","Max Health","Regen Speed","Movement Speed","Plunder Multiplier","Cannon","Damage Per Shot","Range","Reload Speed","Ammo","Shot Types"};
+        last = "0...........";
+        if (LoadScreen.getisload()) {
+            last = LoadScreen.Last;
+            System.out.println(last);
+        }
+        
         //-1 = unavalible, 0 = avalible, >1 = got to level
+        int[] l = {0,-1,-1,-1,
+                    -1,-1,-1,
+                    -1,-1,-1,
+                    -1,-1};
+        if(last!="0..........."){
+            for(int i=0;i<12;i++){
+                System.out.println(last.charAt(i));
+                if(last.charAt(i)=='.'){
+                    l[i]=-1;
+                }else{
+                    l[i] = Integer.parseInt(""+last.charAt(i));
+                }
+            }
+        }
+        //"0..........."
+        //"000000000000"
+        
+        
         for(int i=0;i<12;i++){
-            states.add(-1);
+            System.out.println(l[i]);
+            states.add(l[i]);
             boxTags[i] = new TextButton(boxvalues[i], skin);
             
         }
+        this.applyEffects("000000000000");
+        //states.set(4,0);
 
         backButton = new TextButton("Return", skin);
-        last = "0...........";
+        
 
         //0 = nothing
         //1 = Health
@@ -101,11 +128,7 @@ public class SkillTree implements Screen {
         cBranch.AddBranch(13);
         cBranch.AddBranch(14);
         cBranch.AddBranch(15);
-        states.set(4,0);
-        if (LoadScreen.getisload()) {
-            last = LoadScreen.Last;
-            System.out.println(last);
-        }
+        
     }
 
     /**
