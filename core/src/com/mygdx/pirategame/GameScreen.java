@@ -56,7 +56,7 @@ public class GameScreen implements Screen {
     private static Integer activePowerup = 0;
     private static Boolean cannonJammed = false;
     private Boolean loaded=false;
-
+    private static int extraDamageDelt=0;
 
 
     public static PirateGame game;
@@ -692,7 +692,7 @@ public class GameScreen implements Screen {
      * @param value damage dealt
      */
     public static void changeDamage(int value){
-
+        extraDamageDelt+=value;
         for (int i = 0; i < ships.size(); i++){
             ships.get(i).changeDamageReceived(value);
         }
@@ -798,5 +798,17 @@ public class GameScreen implements Screen {
         b2dr.dispose();
         hud.dispose();
         stage.dispose();
+    }
+
+    public Hud getHud(){
+        return(hud);
+    }
+
+    public Float getMaxSpeed(){
+        return(maxSpeed);
+    }
+
+    public int getChangeDamage(){
+        return(extraDamageDelt);
     }
 }

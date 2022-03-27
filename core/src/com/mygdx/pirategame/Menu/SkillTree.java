@@ -699,6 +699,10 @@ public class SkillTree implements Screen {
     public void dispose() {
         stage.dispose();
     }
+
+    public List<Integer> getStates(){
+        return(states);
+    }
 }
 
 

@@ -257,7 +257,7 @@ public class Hud implements Disposable {
     public static Integer GetScore(){
         return(score);
     }
-    public static Integer GetHealthRe(){
+    public static Integer GetHealthRegen(){
         return(healthRegen);
     }
     public static Integer GetMaxHealth(){
@@ -355,6 +355,18 @@ public class Hud implements Disposable {
     @Override
     public void dispose() {
         stage.dispose();
+    }
+
+    public void addCoins(int value){
+        coins+=value;
+    }
+
+    public int getRegen(){
+        return(healthRegen);
+    }
+
+    public int getCoinsMultiplyer(){
+        return(coinMulti);
     }
 }
 

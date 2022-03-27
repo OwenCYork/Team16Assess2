@@ -172,4 +172,8 @@ public class PirateGame extends Game {
 	public void dispose () {
 		batch.dispose();
 	}
+
+	public SkillTree getskillTreeScreen(){
+		return(skillTreeScreen);
+	}
 }

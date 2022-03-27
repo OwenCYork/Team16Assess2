@@ -132,7 +132,7 @@ public class SaveScreen implements Screen {
         data.write(String.valueOf(Hud.GetCoins()));
         data.write("\r\n");
         //3
-        data.write(String.valueOf(Hud.GetHealthRe()));
+        data.write(String.valueOf(Hud.GetHealthRegen()));
         data.write("\r\n");
         //4
         data.write(String.valueOf(Hud.GetMaxHealth()));

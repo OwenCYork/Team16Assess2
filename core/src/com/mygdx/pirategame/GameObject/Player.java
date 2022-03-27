@@ -155,6 +155,9 @@ public class Player extends Sprite {
         }
     }
 
+    public int getShotType(){
+        return(shotType);
+    }
 
     /**
      * Draws the player using batch
