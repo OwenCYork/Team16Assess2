@@ -151,7 +151,7 @@ public class Hud implements Disposable {
         stage.addActor(reloadtable);
         if (LevelChoice.Level == 1) {
             IncreaseMaxHealth(100);
-            AddHealth(99);
+            AddHealth(97);
             changeCoins(100);
             AddHealthRegen(3);
 

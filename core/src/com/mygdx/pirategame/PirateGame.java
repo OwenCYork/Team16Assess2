@@ -176,4 +176,7 @@ public class PirateGame extends Game {
 	public SkillTree getskillTreeScreen(){
 		return(skillTreeScreen);
 	}
+	public LevelChoice getLevelChoice(){
+		return(LevelChoice) ;
+	}
 }
