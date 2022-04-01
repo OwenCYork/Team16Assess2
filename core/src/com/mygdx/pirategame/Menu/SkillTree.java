@@ -178,16 +178,16 @@ public class SkillTree implements Screen {
 
         }
         */
-        Skin bronzeSkin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
-        Skin silverSkin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
-        Skin goldSkin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
+        Skin bronzeSkin = new Skin(Gdx.files.internal("Bronze\\uiskin.json"));
+        Skin silverSkin = new Skin(Gdx.files.internal("Silver\\uiskin.json"));
+        Skin goldSkin = new Skin(Gdx.files.internal("Gold\\uiskin.json"));
         String[] boxvalues = {"Skills","Health","Max Health","Regen Speed","Movement Speed","Plunder Multiplier","Cannon","Damage Per Shot","Range","Reload Speed","Ammo","Shot Types"};
-        int[][] prices = {{0,0,0},{5,10,15},
-                            {10,20,30}, {15,30,45},
-                            {5,10,15}, {20,80,200},
-                            {20,1,1}, {30,100,250}, 
-                            {10,20,30}, {15,45,60},
-                            {15,40,50}, {120,120,120}};
+        int[][] prices = {{0,0,0,0},{5,10,15,0},
+                            {10,20,30,0}, {15,30,45,0},
+                            {5,10,15,0}, {20,80,200,0},
+                            {20,1,1,0}, {30,100,250,0}, 
+                            {10,20,30,0}, {15,45,60,0},
+                            {15,40,50,0}, {120,120,120,0}};
         for(int i=0;i<12;i++){
             if(states.get(4+i)==-1){
                 boxTags[i].setDisabled(true);
