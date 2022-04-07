@@ -28,7 +28,7 @@ public class CollegeGeneration{
     @Test
     public void EachCollegeExists(){
         PirateGame p = new PirateGame();
-        String[] collegeNames = {"Alcuin","Anne Lister","Constantine","Goodricke","Kraken"}
+        String[] collegeNames = {"Alcuin","Anne Lister","Constantine","Goodricke","Kraken"};
         Boolean notNull = true;
         for (String name : collegeNames) {
             notNull = notNull && (p.gameScreen.getCollege(name)!=null);
@@ -39,7 +39,7 @@ public class CollegeGeneration{
     @Test
     public void CheckLocation(){
         PirateGame p = new PirateGame();
-        String[] collegeNames = {"Alcuin","Anne Lister","Constantine","Goodricke","Kraken"}
+        String[] collegeNames = {"Alcuin","Anne Lister","Constantine","Goodricke","Kraken"};
         float[][] locations = {
             {1900 / PirateGame.PPM, 2100 / PirateGame.PPM},
             {6304 / PirateGame.PPM, 1199 / PirateGame.PPM},
