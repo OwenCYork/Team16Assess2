@@ -36,6 +36,10 @@ public class College extends Enemy {
     public ArrayList<EnemyShip> fleet = new ArrayList<>();
     private String college;
     private InteractiveTileObject interactiveTileObject;
+    //private Integer animationIndex;
+    //private Texture KrakenTexture;
+    //private String basePath;
+
     /**
      *
      * @param screen Visual data
@@ -132,6 +136,9 @@ public class College extends Enemy {
         }
         if(health <= 0) {
             setToDestroy = true;
+            if (college == "Kraken"){
+                setBounds(0,0,0,0);
+            }
         }
         bar.update();
         if(health <= 0) {
@@ -149,8 +156,8 @@ public class College extends Enemy {
      * Draws the batch of cannonballs
      */
     public void draw(Batch batch) {
-        if(!destroyed) {
 
+        if(!destroyed) {
             super.draw(batch);
             //Render health bar
             bar.render(batch);
@@ -200,7 +207,7 @@ public class College extends Enemy {
      * Fires cannonballs
      */
     public void fire() {
-        cannonBalls.add(new CollegeFire(screen, b2body.getPosition().x, b2body.getPosition().y));
+        cannonBalls.add(new CollegeFire(screen, b2body.getPosition().x, b2body.getPosition().y,this.college));
     }
 }
 

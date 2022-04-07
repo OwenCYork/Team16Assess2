@@ -33,10 +33,14 @@ public class CollegeFire extends Sprite {
      * @param x x position of player
      * @param y y position of player
      */
-    public CollegeFire(GameScreen screen, float x, float y) {
+    public CollegeFire(GameScreen screen, float x, float y,String college) {
         this.world = screen.getWorld();
         playerPos = screen.getPlayerPos();
-        cannonBall = new Texture("cannonBall.png");
+        if (college == "Kraken"){
+            cannonBall = new Texture("InkBullet.png");
+        }else {
+            cannonBall = new Texture("cannonBall.png");
+        }
         //Set the position and size of the ball
         setRegion(cannonBall);
         setBounds(x, y, 10 / PirateGame.PPM, 10 / PirateGame.PPM);
