@@ -14,7 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-package de.tomgrill.gdxtesting.examples;
+package com.mygdx.pirategame.examples;
 
 import static org.junit.Assert.assertEquals;
 
