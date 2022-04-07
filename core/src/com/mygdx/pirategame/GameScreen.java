@@ -811,4 +811,12 @@ public class GameScreen implements Screen {
     public int getChangeDamage(){
         return(extraDamageDelt);
     }
+
+    public ArrayList<EnemyShip> getShips(){
+        return(this.ships);
+    }
+
+    public HashMap<String,College> getCollages(){
+        return(this.colleges);
+    }
 }
