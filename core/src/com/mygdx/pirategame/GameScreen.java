@@ -819,4 +819,12 @@ public class GameScreen implements Screen {
     public HashMap<String,College> getCollages(){
         return(this.colleges);
     }
+
+    public ArrayList<Coin> getCoins(){
+        return(this.Coins);
+    }
+
+    public ArrayList<Powerup> getPowerups(){
+        return(this.Powerups);
+    }
 }
