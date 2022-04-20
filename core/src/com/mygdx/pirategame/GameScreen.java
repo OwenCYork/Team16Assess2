@@ -358,21 +358,7 @@ public class GameScreen implements Screen {
             // Cannon fire on 'E'
             if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
                 System.out.println(timeToReload);
-                if(cannonJammed){
-                    timeToReload -= 0.2f;
-                    if(timeToReload <= 0){
-                        cannonJammed = false;
-                    }
-                }
-                if(timeToReload <= 0){
-                    cannonJammed = false;
-                    player.fire();
-                    timeToReload = reloadDelay;
-                    if(rand.nextInt(10)==0 && LevelChoice.Level == 3){
-                        cannonJammed = true;
-                    }
-
-                }
+                playerFire();
                 
             }
             // Checking if player at max velocity, and keeping them below max
@@ -602,7 +588,23 @@ public class GameScreen implements Screen {
     public World getWorld() {
         return world;
     }
+    public void playerFire(){
+        if(cannonJammed){
+            timeToReload -= 0.2f;
+            if(timeToReload <= 0){
+                cannonJammed = false;
+            }
+        }
+        if(timeToReload <= 0){
+            cannonJammed = false;
+            player.fire();
+            timeToReload = reloadDelay;
+            if(rand.nextInt(10)==0 && LevelChoice.Level == 3){
+                cannonJammed = true;
+            }
 
+        }
+    }
     /**
      * Returns the college from the colleges hashmap
      *
@@ -648,6 +650,10 @@ public class GameScreen implements Screen {
     public static float getTimeToReload(){
         return timeToReload;
     }
+
+    public void setTimeToReload(float time){
+        timeToReload = time;
+    }
     /**
      * Fetches the time it will take to perform a full reload
      * @return float: time needed to reload (Max should be 1.0 or 1 second)
@@ -657,6 +663,10 @@ public class GameScreen implements Screen {
     }
     public static boolean getCannonJammed(){
         return cannonJammed;
+    }
+
+    public void setCannonJammed(Boolean jammed){
+        cannonJammed = jammed;
     }
     /**
      * Decreases the time needed to perform a full reload by the value given with a minimum reload delay of 0.01 seconds

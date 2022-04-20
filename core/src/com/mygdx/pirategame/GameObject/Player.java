@@ -158,7 +158,9 @@ public class Player extends Sprite {
     public int getShotType(){
         return(shotType);
     }
-
+    public Array getCannonBalls(){
+        return cannonBalls;
+    }
     /**
      * Draws the player using batch
      * Draws cannonballs using batch
