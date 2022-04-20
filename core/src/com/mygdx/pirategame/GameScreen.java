@@ -808,6 +808,9 @@ public class GameScreen implements Screen {
         return(maxSpeed);
     }
 
+    public Float getAcceleration(){
+        return(accel);
+    }
     public int getChangeDamage(){
         return(extraDamageDelt);
     }
