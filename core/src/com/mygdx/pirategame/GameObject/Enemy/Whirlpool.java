@@ -168,4 +168,8 @@ public class Whirlpool extends Enemy{
         whirlpoolTexture = new Texture(path);
         setRegion(whirlpoolTexture);
     }
+
+    public int getAnimationIndex(){
+        return this.animationIndex;
+    }
 }

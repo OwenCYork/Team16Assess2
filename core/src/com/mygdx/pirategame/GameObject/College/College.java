@@ -209,5 +209,13 @@ public class College extends Enemy {
     public void fire() {
         cannonBalls.add(new CollegeFire(screen, b2body.getPosition().x, b2body.getPosition().y,this.college));
     }
+
+    public boolean isCannonballsEmpty(){
+        if(this.cannonBalls.isEmpty()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 

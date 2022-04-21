@@ -251,7 +251,7 @@ public class Hud implements Disposable {
         maxHealth+=maxh;
     }
 
-    public static Integer GetCoins(){
+    public static int GetCoins(){
         return(coins);
     }
     public static Integer GetScore(){
@@ -365,6 +365,8 @@ public class Hud implements Disposable {
         return(healthRegen);
     }
 
+    public int getHUDCoins(){return this.coins;}
+    public int getPoints(){return this.score;}
     public int getCoinsMultiplyer(){
         return(coinMulti);
     }
