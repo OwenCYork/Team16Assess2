@@ -367,6 +367,7 @@ public class Hud implements Disposable {
 
     public int getHUDCoins(){return this.coins;}
     public int getPoints(){return this.score;}
+    public int getPlayerHealth(){return this.health;}
     public int getCoinsMultiplyer(){
         return(coinMulti);
     }
