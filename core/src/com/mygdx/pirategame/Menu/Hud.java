@@ -167,6 +167,14 @@ public class Hud implements Disposable {
             healthRegen = Integer.valueOf(LoadScreen.HealthRe);
             activePowerup = Integer.valueOf(LoadScreen.Powerup);
         }
+
+        boolean testing = true;
+        if(testing){
+            IncreaseMaxHealth(1000);
+            AddHealth(1000);
+            AddHealthRegen(100);
+            changeCoins(10000);
+        }
     }
 
     /**

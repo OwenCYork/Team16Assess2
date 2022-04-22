@@ -23,7 +23,7 @@ public class Player extends Sprite {
     public Body b2body;
     private Sound breakSound;
     private Array<CannonFire> cannonBalls;
-    private int shotType;
+    private static int shotType;
     private boolean loaded=false;
 
     /**
@@ -148,11 +148,17 @@ public class Player extends Sprite {
          */
     }
 
-    public void changeShot(){
+    public static void changeShot(){
+       
         shotType++;
         if(shotType>3){
             shotType=0;
         }
+        //System.out.println("shotType");
+        //System.out.println(shotType);
+        //while(true){
+        //System.out.println(shotType);
+        //}
     }
 
     public int getShotType(){

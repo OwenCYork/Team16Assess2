@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.pirategame.GameScreen;
 import com.mygdx.pirategame.PirateGame;
+import com.mygdx.pirategame.GameObject.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class SkillTree implements Screen {
     private final PirateGame parent;
     private final Stage stage;
     private final SkillTree T;
+    private final GameScreen G;
     //private final String last;
 
     //To store whether buttons are enabled or disabled
@@ -56,6 +58,7 @@ public class SkillTree implements Screen {
         parent = pirateGame;
         stage = new Stage(new ScreenViewport());
         T = this;
+        G = parent.gameScreen;
         //0 = enabled, 1 = disabled
         states.add(1);
         states.add(1);
@@ -95,7 +98,7 @@ public class SkillTree implements Screen {
             boxTags[i] = new TextButton(boxvalues[i], skin);
             
         }
-        this.applyEffects("000000000000");
+        this.applyEffects("000000000000",G);
         //states.set(4,0);
 
         backButton = new TextButton("Return", skin);
@@ -210,10 +213,13 @@ public class SkillTree implements Screen {
         //TextButton backButton
         backButton = new TextButton("Return", skin);
         //backButton.setDisabled(false);
-        this.applyEffects(last);
+        
+        //this.applyEffects(last);
+        
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                SkillTree.applyEffects(last,G);
                 T.last = "";
                 for(int i=0;i<12;i++){
                     if(T.states.get(4+i)==-1){
@@ -222,6 +228,8 @@ public class SkillTree implements Screen {
                         T.last = T.last + Integer.toString(T.states.get(4+i));
                     }
                 }
+                //T.applyEffects(last);
+                
                 parent.changeScreen(PirateGame.GAME); //Return to game
             }
         });
@@ -537,21 +545,29 @@ public class SkillTree implements Screen {
             this.show();
     }
 
-    public void applyEffects(String last){
+    public static void applyEffects(String last,GameScreen G){
         for(int i=4;i<16;i++){
             int amount = states.get(i);
+            int l = -1;
             if(last.charAt(i-4)!= '.'){
-                int l = Integer.parseInt(""+last.charAt(i-4));
-                if(l!=-1){
+                l = Integer.parseInt(""+last.charAt(i-4));
+            }
+                if(amount!=-1 && l!=-1){
                     amount = amount-l;
+                }
+                //System.out.println("i:");
+                //System.out.println(i);
+                //System.out.println("amount:");
+                //System.out.println(amount);
                 if(amount==-1){
                     //Do nothing
                 }else if(amount==0){
                     //Also nothing
                 }else if(amount==1){
                     if(i==8){
-                        GameScreen.changeAcceleration(20F);
-                        GameScreen.changeMaxSpeed(20F); 
+                        //GameScreen
+                        GameScreen.changeAcceleration(20F);//20F
+                        GameScreen.changeMaxSpeed(20F); //20F
                     }else if(i==9){
                         Hud.changeCoinsMulti(2);
                     }else if(i==11){
@@ -570,8 +586,11 @@ public class SkillTree implements Screen {
                     }else if(i==14){
                         //Ammo increase
                     }else if(i==15){
+                        System.out.println("HiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHiHi");
                         //Enable/switch to next shot type
-                        GameScreen.changeShotType(parent.gameScreen);
+                        //GameScreen.player.changeShot();
+                        Player.changeShot();
+                        //GameScreen.changeShotType();//G);//parent.gameScreen);
                     }
                     //apply effect
                     
@@ -600,9 +619,18 @@ public class SkillTree implements Screen {
                         //Ammo increase
                     }else if(i==15){
                         //Enable/switch to next next shot type
+                        //GameScreen.changeShotType(G);
+                        //GameScreen.changeShotType(G);
+                        for(int s=0;s<2;s++){
+                            Player.changeShot();
+                            
+                            //GameScreen.player.changeShot();
+                        }
+                        //GameScreen.changeShotType();
+                        //GameScreen.changeShotType();
                         
-                        GameScreen.changeShotType(parent.gameScreen);
-                        GameScreen.changeShotType(parent.gameScreen);
+                        //GameScreen.changeShotType(parent.gameScreen);
+                        //GameScreen.changeShotType(parent.gameScreen);
                     }
                     //apply effect
                     
@@ -629,15 +657,24 @@ public class SkillTree implements Screen {
                         //Ammo increase
                     }else if(i==15){
                         //Enable/switch to last shot type
-                        GameScreen.changeShotType(parent.gameScreen);
-                        GameScreen.changeShotType(parent.gameScreen);
-                        GameScreen.changeShotType(parent.gameScreen);
+                        //GameScreen.changeShotType();
+                        //GameScreen.changeShotType();
+                        //GameScreen.changeShotType();
+                        for(int s=0;s<3;s++){
+                            Player.changeShot();
+                            //GameScreen.player.changeShot();
+                        }
+                        //GameScreen.changeShotType(G);
+                        //GameScreen.changeShotType(G);
+                        //GameScreen.changeShotType(G);
+                        //GameScreen.changeShotType(parent.gameScreen);
+                        //GameScreen.changeShotType(parent.gameScreen);
+                        //GameScreen.changeShotType(parent.gameScreen);
                     }
                     //apply effect
                     
-                }
+                
             }
-        }
         }
     }
 
