@@ -168,7 +168,7 @@ public class Hud implements Disposable {
             activePowerup = Integer.valueOf(LoadScreen.Powerup);
         }
 
-        boolean testing = true;
+        boolean testing = false;//true;
         if(testing){
             IncreaseMaxHealth(1000);
             AddHealth(1000);
