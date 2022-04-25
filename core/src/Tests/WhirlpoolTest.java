@@ -1,4 +1,4 @@
-package com.mygdx.pirategame.Tests;
+package Tests;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -44,4 +44,3 @@ public class WhirlpoolTest {
     }
 
 }
-

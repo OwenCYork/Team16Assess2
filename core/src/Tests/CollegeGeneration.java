@@ -1,4 +1,4 @@
-package com.mygdx.pirategame.Tests;
+package Tests;
 
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;

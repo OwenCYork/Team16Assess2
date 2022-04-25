@@ -1,4 +1,4 @@
-package com.mygdx.pirategame.Tests;
+package Tests;
 import com.mygdx.pirategame.PirateGame;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.pirategame.GameScreen;
@@ -8,7 +8,7 @@ import com.mygdx.pirategame.Menu.Hud;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
-@RunWith(GdxTestRunner.class)
+//@RunWith(GdxTestRunner.class)
 public class ShootingTests {
     @Test
     public void cannonBallSpawns(){

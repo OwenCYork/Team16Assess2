@@ -1,4 +1,4 @@
-package com.mygdx.pirategame.Tests;
+package Tests;
 
 import com.mygdx.pirategame.Menu.Hud;
 import com.mygdx.pirategame.Menu.LevelChoice;

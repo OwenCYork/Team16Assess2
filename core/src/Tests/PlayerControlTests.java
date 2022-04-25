@@ -1,4 +1,4 @@
-package com.mygdx.pirategame.Tests;
+package Tests;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -7,7 +7,7 @@ import com.mygdx.pirategame.GameObject.Player;
 import com.mygdx.pirategame.GameScreen;
 import com.mygdx.pirategame.PirateGame;
 import org.junit.Test;
-import sun.util.locale.provider.FallbackLocaleProviderAdapter;
+//import sun.util.locale.provider.FallbackLocaleProviderAdapter;
 
 import static org.junit.Assert.assertTrue;
 

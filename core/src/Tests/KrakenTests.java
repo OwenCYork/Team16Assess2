@@ -1,4 +1,4 @@
-package com.mygdx.pirategame.Tests;
+package Tests;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.pirategame.GameObject.AvailableSpawn;
