@@ -21,7 +21,7 @@ public class CollegeGeneration{
     @Test
     public void CollegesExist(){
         PirateGame p = new PirateGame();
-        HashMap<String,College> colleges = p.gameScreen.getCollages();
+        HashMap<String,College> colleges = (new GameScreen(p)).getCollages();
         assertTrue("Do Colleges Exist",colleges!=null);
     }
 
@@ -31,7 +31,7 @@ public class CollegeGeneration{
         String[] collegeNames = {"Alcuin","Anne Lister","Constantine","Goodricke","Kraken"};
         Boolean notNull = true;
         for (String name : collegeNames) {
-            notNull = notNull && (p.gameScreen.getCollege(name)!=null);
+            notNull = notNull && ((new GameScreen(p)).getCollege(name)!=null);
         }
         assertTrue("Do All named Colleges Exist",notNull==true);
     }
@@ -49,7 +49,8 @@ public class CollegeGeneration{
         };
         Boolean correctLocation = true;
         for (int i=0;i<collegeNames.length;i++) {
-            College c = p.gameScreen.getCollege(collegeNames[i]);
+            College c = (new GameScreen(p)).getCollege(collegeNames[i]);
+            //p.gameScreen
             float xdiff = locations[i][0]-c.getX();
             float ydiff = locations[i][1]-c.getY();
             correctLocation = correctLocation && (xdiff==0 && ydiff==0);

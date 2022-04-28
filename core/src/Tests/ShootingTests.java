@@ -13,39 +13,39 @@ public class ShootingTests {
     @Test
     public void cannonBallSpawns(){
         PirateGame p = new PirateGame();
-        p.gameScreen.playerFire();
-        assertTrue("A cannonball is spawned when the player fires",!p.gameScreen.GetPlayer().getCannonBalls().isEmpty());
+        (new GameScreen(p)).playerFire();
+        assertTrue("A cannonball is spawned when the player fires",!(new GameScreen(p)).GetPlayer().getCannonBalls().isEmpty());
     }
     @Test
     public void cannonHasToReload(){
         PirateGame p = new PirateGame();
-        p.gameScreen.playerFire();
-        assertTrue("The cannon has to reload before being fired again",p.gameScreen.getTimeToReload()!=0);
+        (new GameScreen(p)).playerFire();
+        assertTrue("The cannon has to reload before being fired again",(new GameScreen(p)).getTimeToReload()!=0);
     }
     @Test
     public void cannonReloadsOverTime(){
         PirateGame p = new PirateGame();
-        p.gameScreen.playerFire();
-        float startingTime = p.gameScreen.getTimeToReload();
-        p.gameScreen.update(0.2f);
-        assertTrue("The cannon is closer to being reloaded after a game tick",p.gameScreen.getTimeToReload()<startingTime);
+        (new GameScreen(p)).playerFire();
+        float startingTime = (new GameScreen(p)).getTimeToReload();
+        (new GameScreen(p)).update(0.2f);
+        assertTrue("The cannon is closer to being reloaded after a game tick",(new GameScreen(p)).getTimeToReload()<startingTime);
     }
     @Test
     public void cannonWontFireIfJammed(){
         PirateGame p = new PirateGame();
-        p.gameScreen.setCannonJammed(true);
-        p.gameScreen.setTimeToReload(1.0f);
-        p.gameScreen.playerFire();
-        assertTrue("A cannonball is not spawned when the player fires if the cannon is jammed",p.gameScreen.GetPlayer().getCannonBalls().isEmpty());
+        (new GameScreen(p)).setCannonJammed(true);
+        (new GameScreen(p)).setTimeToReload(1.0f);
+        (new GameScreen(p)).playerFire();
+        assertTrue("A cannonball is not spawned when the player fires if the cannon is jammed",(new GameScreen(p)).GetPlayer().getCannonBalls().isEmpty());
 
     }
     @Test
     public void playerCanFireAgainAfterReload(){
         PirateGame p = new PirateGame();
-        p.gameScreen.playerFire();
-        float startingTime = p.gameScreen.getTimeToReload();
-        p.gameScreen.update(p.gameScreen.getTimeToReload());
-        p.gameScreen.playerFire();
-        assertTrue("The cannon has been fired a second time and the reload time has been reset",startingTime == p.gameScreen.getTimeToReload());
+        (new GameScreen(p)).playerFire();
+        float startingTime = (new GameScreen(p)).getTimeToReload();
+        (new GameScreen(p)).update((new GameScreen(p)).getTimeToReload());
+        (new GameScreen(p)).playerFire();
+        assertTrue("The cannon has been fired a second time and the reload time has been reset",startingTime == (new GameScreen(p)).getTimeToReload());
     }
 }
