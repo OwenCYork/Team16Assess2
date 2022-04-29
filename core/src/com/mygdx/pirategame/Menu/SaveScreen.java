@@ -15,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.pirategame.GameScreen;
 import com.mygdx.pirategame.PirateGame;
-import jdk.internal.access.JavaIOFileDescriptorAccess;
 
 import java.io.*;
 
@@ -119,8 +118,8 @@ public class SaveScreen implements Screen {
         stage.addActor(table3);
     }
     public void Savefile() throws Exception{
-        new File("saved.txt").createNewFile();
-        FileWriter data =new FileWriter("saved.txt");
+        new File("core\\assets\\saved.txt").createNewFile();
+        FileWriter data =new FileWriter("core\\assets\\saved.txt");
         //0--health,1--Score,2--Coins,3--HealthRegen,4--MaxHealth,5--Powerup?,6--skilltree,7 8--Position of the ship 9 10 11 12:colleges AL CO GO KR
         //0
         data.write(String.valueOf(Hud.getHealth()));

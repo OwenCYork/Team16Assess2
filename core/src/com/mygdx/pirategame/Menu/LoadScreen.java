@@ -132,7 +132,7 @@ public class LoadScreen implements Screen {
     }
     public void loadfile() throws Exception{
 //        new File("saved.txt").createNewFile();
-        File file = new File("saved.txt");
+        File file = new File("core\\assets\\saved.txt");
         InputStreamReader inputReader = new InputStreamReader(new FileInputStream(file),"UTF-8");
         BufferedReader bf = new BufferedReader(inputReader);
         Health = bf.readLine();

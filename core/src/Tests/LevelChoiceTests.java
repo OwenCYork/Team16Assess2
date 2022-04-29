@@ -1,5 +1,6 @@
 package Tests;
 
+import com.badlogic.gdx.Gdx;
 import com.mygdx.pirategame.Menu.Hud;
 import com.mygdx.pirategame.Menu.LevelChoice;
 import com.mygdx.pirategame.Menu.SkillTree;
@@ -14,9 +15,8 @@ public class LevelChoiceTests {
 
     @Test
     public void DifficultyExistance(){
-        PirateGame p = new PirateGame();
-        assertTrue("LevelChoice screen Exist",p.getLevelChoice()!=null);
-
+        //PirateGame p = new PirateGame();
+        assertTrue("LevelChoice screen Exist", Gdx.files.internal("LevelChoice.java").exists());
     }
 
 
