@@ -10,11 +10,13 @@ import com.mygdx.pirategame.PirateGame;
 import com.mygdx.pirategame.Menu.Hud;
 import com.mygdx.pirategame.Menu.SkillTree;
 import com.mygdx.pirategame.GameObject.Enemy.EnemyShip;
+import org.junit.runner.RunWith;
+
 import java.util.ArrayList;
 import static org.junit.Assert.assertFalse;
 
 
-//@RunWith(GdxTestRunner.class)
+@RunWith(GdxTestRunner.class)
 public class ShipGeneration{
     @Test
     public void ShipExists(){

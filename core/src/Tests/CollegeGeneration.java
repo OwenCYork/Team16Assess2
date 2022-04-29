@@ -1,5 +1,7 @@
 package Tests;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
@@ -14,13 +16,21 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertFalse;
 import java.util.HashMap;
 import com.mygdx.pirategame.GameObject.College.College;
+import org.junit.runner.RunWith;
+import static org.mockito.Mockito.mock;
 
-//@RunWith(GdxTestRunner.class)
+@RunWith(GdxTestRunner.class)
 public class CollegeGeneration{
     
     @Test
     public void CollegesExist(){
-        PirateGame p = new PirateGame();
+        PirateGame p = mock(PirateGame.class);
+        SpriteBatch sb = mock(SpriteBatch.class);
+        p.batch = sb;
+        GameScreen g = mock(GameScreen.class);
+
+
+
         HashMap<String,College> colleges = (new GameScreen(p)).getCollages();
         assertTrue("Do Colleges Exist",colleges!=null);
     }

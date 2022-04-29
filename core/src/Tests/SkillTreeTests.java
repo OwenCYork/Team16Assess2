@@ -9,16 +9,18 @@ import com.mygdx.pirategame.GameScreen;
 import com.mygdx.pirategame.PirateGame;
 import com.mygdx.pirategame.Menu.Hud;
 import com.mygdx.pirategame.Menu.SkillTree;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertFalse;
 
 
-//@RunWith(GdxTestRunner.class)
+@RunWith(GdxTestRunner.class)
 public class SkillTreeTests{
 
     @Test
     public void testSkillTreeExistance(){
         PirateGame p = new PirateGame();
+        p.create();
         assertTrue("Does SkillTree Exist",p.getskillTreeScreen()!=null);
 
     }

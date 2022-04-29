@@ -20,8 +20,9 @@ import com.mygdx.pirategame.GameObject.College.College;
 import com.mygdx.pirategame.GameObject.Entity;
 import com.mygdx.pirategame.Collectable.Coin;
 import com.mygdx.pirategame.Collectable.Powerup;
+import org.junit.runner.RunWith;
 
-//@RunWith(GdxTestRunner.class)
+@RunWith(GdxTestRunner.class)
 public class EntityGeneration{
     
     @Test

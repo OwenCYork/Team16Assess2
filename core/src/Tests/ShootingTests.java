@@ -6,9 +6,11 @@ import com.mygdx.pirategame.GameObject.Enemy.EnemyFire;
 import com.mygdx.pirategame.Menu.Hud;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import static org.junit.Assert.assertTrue;
 
-//@RunWith(GdxTestRunner.class)
+@RunWith(GdxTestRunner.class)
 public class ShootingTests {
     @Test
     public void cannonBallSpawns(){
