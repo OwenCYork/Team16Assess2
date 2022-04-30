@@ -65,6 +65,7 @@ public class EntityGeneration{
                 Coin i2Coin =detected.get(i2);
                 different = different && (iCoin.getX()!=i2Coin.getX() && iCoin.getY()!=i2Coin.getY());
             }
+            detected.add(i, coins.get(i));
         }
         assertTrue("Coin Objects (Inherits from abstract Entity) is assigned unique locations",(different==true));
     }
@@ -83,6 +84,7 @@ public class EntityGeneration{
                 Powerup i2Coin =detected.get(i2);
                 different = different && (iCoin.getX()!=i2Coin.getX() && iCoin.getY()!=i2Coin.getY());
             }
+            detected.add(i, powerups.get(i));
         }
         assertTrue("Powerup Objects (Inherits from abstract Entity) is assigned unique locations",(different==true));
     }

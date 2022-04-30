@@ -144,12 +144,13 @@ public class SkillTreeTests{
         PirateGame p = new PirateGame();
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.clicked(4);
-        Hud h = (new GameScreen(p)).getHud();
+        GameScreen g = new GameScreen(p);
+        Hud h = (g.getHud());
         //Hud h = p.gameScreen.getHud();
         h.addCoins(500);
         skillTree.clicked(8);
         Float n = 2.5f + (2.5f/5);
-        assertTrue("Speed Skill Applied Correctly",(new GameScreen(p)).getMaxSpeed()==n);
+        assertTrue("Speed Skill Applied Correctly",g.getMaxSpeed()==n);
     }
 
     @Test
@@ -169,12 +170,13 @@ public class SkillTreeTests{
         PirateGame p = new PirateGame();
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.clicked(4);
-        Hud h = (new GameScreen(p)).getHud();
+        GameScreen g = new GameScreen(p);
+        Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
         skillTree.clicked(10);
         skillTree.clicked(11);
-        assertTrue("Damage Increase Skill Applied Correctly",(new GameScreen(p)).getChangeDamage()==5);
+        assertTrue("Damage Increase Skill Applied Correctly",(g).getChangeDamage()==5);
     }
 
     @Test
@@ -182,12 +184,13 @@ public class SkillTreeTests{
         PirateGame p = new PirateGame();
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.clicked(4);
-        Hud h = (new GameScreen(p)).getHud();
+        GameScreen g = new GameScreen(p);
+        Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
         skillTree.clicked(10);
         skillTree.clicked(13);
-        assertTrue("Reload Speed Skill Applied Correctly",(new GameScreen(p)).getReloadDelay()==0.9f);
+        assertTrue("Reload Speed Skill Applied Correctly",(g).getReloadDelay()==0.9f);
     }
 
     @Test
@@ -195,12 +198,13 @@ public class SkillTreeTests{
         PirateGame p = new PirateGame();
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.clicked(4);
-        Hud h = (new GameScreen(p)).getHud();
+        GameScreen g = new GameScreen(p);
+        Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
         skillTree.clicked(10);
         skillTree.clicked(15);
-        assertTrue("Shot Type Skill Applied Correctly",(new GameScreen(p)).GetPlayer().getShotType()==1);
+        assertTrue("Shot Type Skill Applied Correctly",(g).GetPlayer().getShotType()==1);
     }
     
     @Test
@@ -208,7 +212,8 @@ public class SkillTreeTests{
         PirateGame p = new PirateGame();
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.clicked(4);
-        Hud h = (new GameScreen(p)).getHud();
+        GameScreen g = new GameScreen(p);
+        Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
         skillTree.clicked(5);
