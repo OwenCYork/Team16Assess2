@@ -12,6 +12,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
 public class PlayerControlTests {
+    /*
     @Test
     public void playerUp(){
         PirateGame p = new PirateGame();
@@ -65,5 +66,5 @@ public class PlayerControlTests {
             Gscreen.handleInput(1);
             assertTrue(player.getCannonBalls().isEmpty() == false);
         }
-    }
+    }*/
 }
