@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 
 public class WhirlpoolTest {
-
+/*
     @Test
     public void SpawnLocationTest(){
         PirateGame p = new PirateGame();
@@ -42,5 +42,5 @@ public class WhirlpoolTest {
         whirlpool.onContact();
         assertTrue("Player contact", player.getV2() != 0);
     }
-
+*/
 }
