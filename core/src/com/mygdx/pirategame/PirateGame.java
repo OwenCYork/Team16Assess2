@@ -35,7 +35,7 @@ public class PirateGame extends Game {
 	//Variable for each screen
 	private MainMenu menuScreen;
 	public GameScreen gameScreen;
-	private SkillTree skillTreeScreen;
+	public SkillTree skillTreeScreen;
 	private DeathScreen deathScreen;
 	private Help helpScreen;
 	private VictoryScreen victoryScreen;

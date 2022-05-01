@@ -88,7 +88,7 @@ public class SkillTreeTests{
         skillTree.last = "0...........";
         skillTree.SetStates();
         skillTree.clicked(4);
-        Hud h = (new GameScreen(p)).getHud();
+        Hud h = (new GameScreen()).getHud();
         h.addCoins(5);
         skillTree.clicked(5);
         assertTrue("Can press on skill that is unlocked",skillTree.getStates().get(5)==1);
@@ -106,7 +106,7 @@ public class SkillTreeTests{
         skillTree.last = "0...........";
         skillTree.SetStates();
         skillTree.clicked(4);
-        Hud h = (new GameScreen(p)).getHud();
+        Hud h = (new GameScreen()).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(50);
         skillTree.clicked(5);
@@ -126,7 +126,7 @@ public class SkillTreeTests{
         skillTree.SetStates();
         skillTree.clicked(4);
         //Hud h = (new GameScreen(p)).getHud();
-        Hud h = (new GameScreen(p)).getHud();
+        Hud h = (new GameScreen()).getHud();
         h.addCoins(5);
         skillTree.clicked(5);
         assertTrue("Can Click On Button When Player Has Exact Amount Of Gold",skillTree.getStates().get(5)==1);
@@ -144,7 +144,7 @@ public class SkillTreeTests{
         skillTree.last = "0...........";
         skillTree.SetStates();
         skillTree.clicked(4);
-        Hud h = (new GameScreen(p)).getHud();
+        Hud h = (new GameScreen()).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(-5);
         skillTree.clicked(5);
@@ -163,7 +163,7 @@ public class SkillTreeTests{
         skillTree.last = "0...........";
         skillTree.SetStates();
         skillTree.clicked(4);
-        Hud h = (new GameScreen(p)).getHud();
+        Hud h = (new GameScreen()).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(4);
         skillTree.clicked(5);
@@ -182,7 +182,7 @@ public class SkillTreeTests{
         skillTree.last = "0...........";
         skillTree.SetStates();
         skillTree.clicked(4);
-        GameScreen g = new GameScreen(p);
+        GameScreen g = new GameScreen();
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
@@ -205,7 +205,7 @@ public class SkillTreeTests{
         skillTree.last = "0...........";
         skillTree.SetStates();
         skillTree.clicked(4);
-        GameScreen g = new GameScreen(p);
+        GameScreen g = new GameScreen();
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
@@ -228,7 +228,7 @@ public class SkillTreeTests{
         skillTree.last = "0...........";
         skillTree.SetStates();
         skillTree.clicked(4);
-        GameScreen g = new GameScreen(p);
+        GameScreen g = new GameScreen();
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
@@ -250,7 +250,7 @@ public class SkillTreeTests{
         skillTree.last = "0...........";
         skillTree.SetStates();
         skillTree.clicked(4);
-        GameScreen g = new GameScreen(p);
+        GameScreen g = new GameScreen();
         Hud h = (g.getHud());
         //Hud h = p.gameScreen.getHud();
         h.addCoins(500);
@@ -274,7 +274,7 @@ public class SkillTreeTests{
         skillTree.last = "0...........";
         skillTree.SetStates();
         skillTree.clicked(4);
-        GameScreen g = new GameScreen(p);
+        GameScreen g = new GameScreen();
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
@@ -295,7 +295,7 @@ public class SkillTreeTests{
         skillTree.last = "0...........";
         skillTree.SetStates();
         skillTree.clicked(4);
-        GameScreen g = new GameScreen(p);
+        GameScreen g = new GameScreen();
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
@@ -317,7 +317,7 @@ public class SkillTreeTests{
         skillTree.last = "0...........";
         skillTree.SetStates();
         skillTree.clicked(4);
-        GameScreen g = new GameScreen(p);
+        GameScreen g = new GameScreen();
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
@@ -341,7 +341,7 @@ public class SkillTreeTests{
         skillTree.last = "0...........";
         skillTree.SetStates();
         skillTree.clicked(4);
-        GameScreen g = new GameScreen(p);
+        GameScreen g = new GameScreen();
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
@@ -364,7 +364,7 @@ public class SkillTreeTests{
         skillTree.last = "0...........";
         skillTree.SetStates();
         skillTree.clicked(4);
-        GameScreen g = spy(new GameScreen(p));
+        GameScreen g = spy(new GameScreen());
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
@@ -387,7 +387,7 @@ public class SkillTreeTests{
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
         skillTree.SetStates();
-        GameScreen g = spy(new GameScreen(p));
+        GameScreen g = spy(new GameScreen());
         Hud h = (g).getHud();
         skillTree.clicked(4);
         assertTrue("Skill to One",skillTree.getStates().get(4)==1);
@@ -404,7 +404,7 @@ public class SkillTreeTests{
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
         skillTree.SetStates();
-        GameScreen g = spy(new GameScreen(p));
+        GameScreen g = spy(new GameScreen());
         Hud h = (g).getHud();
         h.addCoins(500);
         skillTree.clicked(4);
@@ -423,7 +423,7 @@ public class SkillTreeTests{
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
         skillTree.SetStates();
-        GameScreen g = spy(new GameScreen(p));
+        GameScreen g = spy(new GameScreen());
         Hud h = (g).getHud();
         h.addCoins(500);
         skillTree.clicked(4);
@@ -443,7 +443,7 @@ public class SkillTreeTests{
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
         skillTree.SetStates();
-        GameScreen g = spy(new GameScreen(p));
+        GameScreen g = spy(new GameScreen());
         Hud h = (g).getHud();
         h.addCoins(500);
         skillTree.clicked(4);
@@ -464,7 +464,7 @@ public class SkillTreeTests{
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
         skillTree.SetStates();
-        GameScreen g = spy(new GameScreen(p));
+        GameScreen g = spy(new GameScreen());
         Hud h = (g).getHud();
         h.addCoins(500);
         skillTree.clicked(4);
