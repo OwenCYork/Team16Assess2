@@ -1,5 +1,6 @@
 package com.mygdx.pirategame.Menu;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -251,8 +252,9 @@ public class Hud implements Disposable {
      * @param h Increase to health
      */
     public static void AddHealth(Integer h){
-        health+=h;
-
+        if(!(h < 0 && GameScreen.getActivePowerup() == 5)){
+            health += h;
+        }
     }
     public static void setHealthText(){
         healthLabel.setText(String.format("%02d", health));

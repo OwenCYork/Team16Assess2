@@ -1,5 +1,6 @@
 package Tests;
 
+import com.badlogic.gdx.Game;
 import com.mygdx.pirategame.PirateGame;
 import com.mygdx.pirategame.GameScreen;
 import com.mygdx.pirategame.GameObject.Enemy.EnemyFire;
@@ -53,12 +54,13 @@ public class PowerupTests{
     @Test
     public void immunityToDamage(){
         PirateGame p = new PirateGame();
-        Hud h = (new GameScreen()).getHud();
-        int startingHealth = h.getHealth();
-        (new GameScreen()).changeActivePowerup(5);
-        EnemyFire cannonBall = new EnemyFire((new GameScreen()), (new GameScreen()).getPOSX(),(new GameScreen()).getPOSY());
-        cannonBall.update(1);
-        assertTrue("The player has taken no damage whilst the Immunity powerup is active",h.getHealth() == startingHealth);
+        GameScreen g = new GameScreen();
+        Hud.health = 100;
+        int startingHealth = Hud.getHealth();
+        g.changeActivePowerup(5);
+        Hud.AddHealth(-15);
+
+        assertTrue("The player has taken no damage whilst the Immunity powerup is active",Hud.getHealth() == startingHealth);
     }
 
 /*
