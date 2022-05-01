@@ -42,7 +42,7 @@ public class SkillTree implements Screen {
     private TextButton movement2;
     private TextButton[] boxTags = new TextButton[12];
     private Node tree;
-    private static String last;
+    public static String last;
     public TextButton backButton;
 
     Texture background = new Texture(Gdx.files.internal("WoodBackground.png"));
@@ -53,9 +53,37 @@ public class SkillTree implements Screen {
      *
      * @param pirateGame the main starting body of the game. Where screen swapping is carried out.
      */
+
+    public void SetStates(){
+        int[] l = {0,-1,-1,-1,
+                -1,-1,-1,
+                -1,-1,-1,
+                -1,-1};
+        if(last!="0..........."){
+            for(int i=0;i<12;i++){
+                System.out.println(last.charAt(i));
+                if(last.charAt(i)=='.'){
+                    l[i]=-1;
+                }else{
+                    l[i] = Integer.parseInt(""+last.charAt(i));
+                }
+            }
+        }
+        //"0..........."
+        //"000000000000"
+
+
+        for(int i=0;i<12;i++){
+            System.out.println(l[i]);
+            states.set(i+4,l[i]);
+            //boxTags[i] = new TextButton(boxvalues[i], skin);
+
+        }
+    }
 //In the constructor, the parent and stage are set. Also the states list is set
     public SkillTree(PirateGame pirateGame){
         parent = pirateGame;
+
         stage = new Stage(new ScreenViewport());
         T = this;
         G = parent.gameScreen;
@@ -138,14 +166,17 @@ public class SkillTree implements Screen {
      * What should be displayed on the skill tree screen
      *
      */
+
     @Override
     public void show() {
         //Set the input processor
+
         Gdx.input.setInputProcessor(stage);
+
         // Create a table that fills the screen
-        /*Table table = new Table();
+        Table table = new Table();
         table.setFillParent(true);
-        stage.addActor(table);*/
+        stage.addActor(table);
 
 
         // Table for the return button
@@ -334,8 +365,9 @@ public class SkillTree implements Screen {
             }
         }*/
 
-        Table table = new Table();
+        //Table table = new Table();
         table.setFillParent(true);
+
         stage.addActor(table);
 
         /*Table table2 = new Table();
@@ -582,7 +614,7 @@ public class SkillTree implements Screen {
                         //Range Increase
                     }else if(i==13){
                         //Reload speed increase
-                        GameScreen.changeReloadDelay(-0.1f);
+                        GameScreen.changeReloadDelay(0.1f);
                     }else if(i==14){
                         //Ammo increase
                     }else if(i==15){
@@ -614,7 +646,7 @@ public class SkillTree implements Screen {
                         //Range Increase
                     }else if(i==13){
                         //Reload speed increase
-                        GameScreen.changeReloadDelay(-0.3f);
+                        GameScreen.changeReloadDelay(0.3f);
                     }else if(i==14){
                         //Ammo increase
                     }else if(i==15){
@@ -652,7 +684,7 @@ public class SkillTree implements Screen {
                         //Range Increase
                     }else if(i==13){
                         //Reload speed increase
-                        GameScreen.changeReloadDelay(-0.5f);
+                        GameScreen.changeReloadDelay(0.5f);
                     }else if(i==14){
                         //Ammo increase
                     }else if(i==15){
