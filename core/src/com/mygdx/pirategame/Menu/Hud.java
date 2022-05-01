@@ -27,7 +27,7 @@ public class Hud implements Disposable {
 
     private float timeCount;
     private static Integer score;
-    private static Integer health;
+    public static Integer health;
     private static Integer healthRegen;
     private static Integer maxHealth;
     private static Integer activePowerup;
@@ -152,6 +152,8 @@ public class Hud implements Disposable {
         if (LevelChoice.Level == 1) {
             IncreaseMaxHealth(100);
             AddHealth(97);
+            Hud.setHealthText();
+            setHealthText();
             changeCoins(100);
             AddHealthRegen(3);
 
@@ -159,6 +161,7 @@ public class Hud implements Disposable {
         if (LevelChoice.Level == 3) {
             IncreaseMaxHealth(-50);
             AddHealth(-50);
+            setHealthText();
         }
         if (LoadScreen.getisload()) {
             health = Integer.valueOf(LoadScreen.Health);
@@ -172,6 +175,7 @@ public class Hud implements Disposable {
         if(testing){
             IncreaseMaxHealth(1000);
             AddHealth(1000);
+            setHealthText();
             AddHealthRegen(100);
             changeCoins(10000);
         }
@@ -244,10 +248,13 @@ public class Hud implements Disposable {
     /**
      * Changes health by value increase
      *
-     * @param value Increase to health
+     * @param h Increase to health
      */
     public static void AddHealth(Integer h){
         health+=h;
+
+    }
+    public static void setHealthText(){
         healthLabel.setText(String.format("%02d", health));
     }
 

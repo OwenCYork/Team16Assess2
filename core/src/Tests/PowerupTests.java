@@ -14,11 +14,12 @@ public class PowerupTests{
     @Test
     public void repairIncreasesHealth(){
         PirateGame p = new PirateGame();
-        p.create();
-        Hud h = (new GameScreen()).getHud();
-        int startingHealth = h.getHealth();
-        (new GameScreen()).changeActivePowerup(1);
-        assertTrue("Health is increased by 100 if a Repair Powerup is activated", h.getHealth() == startingHealth+100);
+        GameScreen g = new GameScreen();
+        GameScreen.testing = true;
+        Hud.health = 100;
+        int startingHealth = Hud.getHealth();
+        g.changeActivePowerup(1);
+        assertTrue("Health is increased by 100 if a Repair Powerup is activated", Hud.getHealth() == startingHealth+100);
     }
 
     @Test 

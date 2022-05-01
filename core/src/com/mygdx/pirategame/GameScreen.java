@@ -57,6 +57,7 @@ public class GameScreen implements Screen {
     private static Boolean cannonJammed = false;
     private Boolean loaded=false;
     private static int extraDamageDelt=0;
+    public static boolean testing = false;
 
 
     public static PirateGame game;
@@ -730,6 +731,9 @@ public class GameScreen implements Screen {
         switch (activePowerup){
             case 1:{
                 Hud.AddHealth(100);
+                if(!testing){
+                    Hud.setHealthText();
+                }
                 break;
             }
             case 2:{

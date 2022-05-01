@@ -33,6 +33,7 @@ public class Islands extends InteractiveTileObject {
         //Deal damage to the boat
         if(GameScreen.getActivePowerup() != 5){
             Hud.AddHealth(-10);
+            Hud.setHealthText();
         }
         
     }

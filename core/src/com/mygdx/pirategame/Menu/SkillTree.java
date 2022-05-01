@@ -606,6 +606,7 @@ public class SkillTree implements Screen {
                         GameScreen.changeDamage(5);
                     }else if(i==5){
                         Hud.AddHealth(50);
+                        Hud.setHealthText();
                     }else if(i==6){
                         Hud.IncreaseMaxHealth(75);
                     }else if(i==7){
@@ -636,6 +637,7 @@ public class SkillTree implements Screen {
                         GameScreen.changeDamage(10);
                     }else if(i==5){
                         Hud.AddHealth(150);
+                        Hud.setHealthText();
                     }else if(i==6){
                         Hud.IncreaseMaxHealth(50);
                     }else if(i==6){
@@ -676,6 +678,7 @@ public class SkillTree implements Screen {
                         GameScreen.changeDamage(15);
                     }else if(i==5){
                         Hud.AddHealth(250);
+                        Hud.setHealthText();
                     }else if(i==6){
                         Hud.IncreaseMaxHealth(275);
                     }else if(i==7){
