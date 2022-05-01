@@ -66,8 +66,8 @@ public class Help implements Screen {
         Label objective1 = new Label("The objective is to take over or destroy all other colleges", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         Label objective2 = new Label("Destroy the college flag with cannons", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         Label objective3 = new Label("Collect coins on the way", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        Label skillInfo1 = new Label("Automatically upgrade as you play", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        Label skillInfo2 = new Label("See your upgrades in the skills tab", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        Label skillInfo1 = new Label("Buy upgrades from the skill tree tab using the coins you gain", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        Label skillInfo2 = new Label("Each upgrade can be upgraded up to 3 times", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
         //Return Button
         TextButton backButton = new TextButton("Return", skin);
