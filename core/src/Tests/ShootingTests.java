@@ -37,6 +37,7 @@ public class ShootingTests {
         PirateGame p = new PirateGame();
         (new GameScreen(p)).setCannonJammed(true);
         (new GameScreen(p)).setTimeToReload(1.0f);
+        (new GameScreen(p)).update(1.0f);
         (new GameScreen(p)).playerFire();
         assertTrue("A cannonball is not spawned when the player fires if the cannon is jammed",(new GameScreen(p)).GetPlayer().getCannonBalls().isEmpty());
 

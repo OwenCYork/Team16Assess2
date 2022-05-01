@@ -32,7 +32,7 @@ public class CollegeGeneration{
 
 
         HashMap<String,College> colleges = g.getCollages();
-        assertTrue("Do Colleges Exist",colleges!=null);
+        assertTrue("Do Colleges Exist",!g.getCollages().isEmpty());
     }
 
     @Test
