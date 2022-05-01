@@ -713,13 +713,15 @@ public class GameScreen implements Screen {
      */
     public static void changeDamage(int value){
         extraDamageDelt+=value;
-        for (int i = 0; i < ships.size(); i++){
-            ships.get(i).changeDamageReceived(value);
+        if(!testing) {
+            for (int i = 0; i < ships.size(); i++) {
+                ships.get(i).changeDamageReceived(value);
+            }
+            colleges.get("Anne Lister").changeDamageReceived(value);
+            colleges.get("Constantine").changeDamageReceived(value);
+            colleges.get("Goodricke").changeDamageReceived(value);
+            colleges.get("Kraken").changeDamageReceived(value);
         }
-        colleges.get("Anne Lister").changeDamageReceived(value);
-        colleges.get("Constantine").changeDamageReceived(value);
-        colleges.get("Goodricke").changeDamageReceived(value);
-        colleges.get("Kraken").changeDamageReceived(value);
     }
 
     public static Integer getActivePowerup(){

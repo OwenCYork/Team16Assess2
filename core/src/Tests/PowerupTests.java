@@ -26,9 +26,11 @@ public class PowerupTests{
     @Test 
     public void damageIncreaseDamageDealt(){
         PirateGame p = new PirateGame();
-        int startingDamage = (new GameScreen()).getChangeDamage();
-        (new GameScreen()).changeActivePowerup(2);
-        assertTrue("Damage is increased by 10 if a Damage Powerup is activated", (new GameScreen()).getChangeDamage() == startingDamage+10);
+        GameScreen g = new GameScreen();
+        GameScreen.testing = true;
+        int startingDamage = g.getChangeDamage();
+        g.changeActivePowerup(2);
+        assertTrue("Damage is increased by 10 if a Damage Powerup is activated", g.getChangeDamage() == startingDamage+10);
     }
     @Test
     public void maxSpeedIncreased(){
