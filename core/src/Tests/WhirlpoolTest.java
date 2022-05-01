@@ -16,7 +16,7 @@ public class WhirlpoolTest {
     @Test
     public void SpawnLocationTest(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         Whirlpool whirlpool = new Whirlpool(Gscreen,10,10,"Whirlpool.png");
         assertTrue("Spawning whirlpool", whirlpool.getX() == 10 && whirlpool.getY() == 10);
     }
@@ -25,7 +25,7 @@ public class WhirlpoolTest {
     public void animation(){
         PirateGame p = new PirateGame();
         SpriteBatch b = new SpriteBatch();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         Whirlpool whirlpool = new Whirlpool(Gscreen,10,10,"Whirlpool.png");
         int currentindex = whirlpool.getAnimationIndex();
         whirlpool.draw(b);
@@ -36,7 +36,7 @@ public class WhirlpoolTest {
     @Test
     public void ContactTest(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         Whirlpool whirlpool = new Whirlpool(Gscreen,10,10,"Whirlpool.png");
         Player player = new Player(Gscreen);
         whirlpool.onContact();

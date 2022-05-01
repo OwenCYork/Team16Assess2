@@ -62,7 +62,7 @@ public class GameScreen implements Screen {
     public static PirateGame game;
     private OrthographicCamera camera;
     private Viewport viewport;
-    private final Stage stage;
+    private Stage stage;
 
     private TmxMapLoader maploader;
     private TiledMap map;
@@ -90,13 +90,17 @@ public class GameScreen implements Screen {
 
     public Random rand = new Random();
 
+
+    public GameScreen(){
+
+
+    }
     /**
      * Initialises the Game Screen,
      * generates the world data and data for entities that exist upon it,
      * @param game passes game data to current class,
      */
-    public GameScreen(PirateGame game){
-
+    public void init(PirateGame game){
         gameStatus = GAME_RUNNING;
         this.game = game;
         // Initialising camera and extendable viewport for viewing game
@@ -132,7 +136,7 @@ public class GameScreen implements Screen {
                 "constantine_flag.png", "constantine_ship.png", 8, invalidSpawn));
         colleges.put("Goodricke", new College(this, "Goodricke", 1760 / PirateGame.PPM, 6767 / PirateGame.PPM,
                 "goodricke_flag.png", "goodricke_ship.png", 8, invalidSpawn));
-        
+
         colleges.put("Kraken", new College(this, "Kraken", 3560 / PirateGame.PPM, 4767 / PirateGame.PPM,
                 "Kraken.png", "GhostShip.png", 8, invalidSpawn));
         if (LoadScreen.getisload()) {
@@ -141,8 +145,8 @@ public class GameScreen implements Screen {
             colleges.get("Goodricke").destroyed = Boolean.getBoolean(LoadScreen.isGO);
             colleges.get("Kraken").destroyed = Boolean.getBoolean(LoadScreen.isKR);
         }
-        
-        
+
+
         ships = new ArrayList<>();
         ships.addAll(colleges.get("Alcuin").fleet);
         ships.addAll(colleges.get("Anne Lister").fleet);
@@ -176,8 +180,17 @@ public class GameScreen implements Screen {
 
 
         //Random coins
+        createCoinsAndPowerups();
+
+        //Setting stage
+        stage = new Stage(new ScreenViewport());
+    }
+    public void createCoinsAndPowerups(){
         Coins = new ArrayList<>();
         Powerups = new ArrayList<>();
+        Boolean validLoc = false;
+        int a = 0;
+        int b = 0;
         for (int i = 0; i < 150; i++) {
             validLoc = false;
             while (!validLoc) {
@@ -193,11 +206,8 @@ public class GameScreen implements Screen {
             else{
                 Coins.add(new Coin(this, a, b));
             }
-            
-        }
 
-        //Setting stage
-        stage = new Stage(new ScreenViewport());
+        }
     }
 
     /**
@@ -695,7 +705,6 @@ public class GameScreen implements Screen {
     public static void changeMaxSpeed(Float percentage){
         maxSpeed = maxSpeed * (1 +(percentage/100));
     }
-
     /**
      * Changes the amount of damage done by each hit. Accessed by skill tree
      *

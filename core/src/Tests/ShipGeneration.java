@@ -21,14 +21,14 @@ public class ShipGeneration{
     @Test
     public void ShipExists(){
         PirateGame p = new PirateGame();
-        ArrayList<EnemyShip> ships = (new GameScreen(p)).getShips();
+        ArrayList<EnemyShip> ships = (new GameScreen()).getShips();
         assertTrue("Do Ships Exist",ships!=null);
     }
 
     @Test
     public void ShipLocationRandom(){
         PirateGame p = new PirateGame();
-        ArrayList<EnemyShip> ships = (new GameScreen(p)).getShips();
+        ArrayList<EnemyShip> ships = (new GameScreen()).getShips();
         float xdiff = ships.get(1).getX()-ships.get(0).getX();
         float ydiff = ships.get(1).getY()-ships.get(0).getY();
         //not created using a 'step'
@@ -38,7 +38,7 @@ public class ShipGeneration{
     @Test
     public void ShipOverlap(){
         PirateGame p = new PirateGame();
-        ArrayList<EnemyShip> ships = (new GameScreen(p)).getShips();
+        ArrayList<EnemyShip> ships = (new GameScreen()).getShips();
         float xdiff = ships.get(1).getX()-ships.get(0).getX();
         float ydiff = ships.get(1).getY()-ships.get(0).getY();
         //not identical

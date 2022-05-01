@@ -29,7 +29,7 @@ public class EntityGeneration{
     public void EntityExists(){
         //Coin & Powerup are entities
         PirateGame p = new PirateGame();
-        GameScreen g = (new GameScreen(p));
+        GameScreen g = (new GameScreen());
         Entity coin = new Coin(g,0.0f,0.0f);
         Entity powerup = new Powerup(g, 0.1f, 0.1f, 1);
         assertTrue("Entity Objects can exist",(coin!=null && powerup!=null));
@@ -38,7 +38,7 @@ public class EntityGeneration{
     @Test
     public void GeneratedAsBatchCoins(){
         PirateGame p = new PirateGame();
-        GameScreen g = (new GameScreen(p));
+        GameScreen g = (new GameScreen());
         ArrayList<Coin> coins = g.getCoins();
         assertTrue("Coin Objects (Inherits from abstract Entity) is generated as a batch",(coins.size()>1));
     }
@@ -46,7 +46,7 @@ public class EntityGeneration{
     @Test
     public void GeneratedAsBatchPowerups(){
         PirateGame p = new PirateGame();
-        GameScreen g = (new GameScreen(p));
+        GameScreen g = (new GameScreen());
         ArrayList<Powerup> powerups = g.getPowerups();
         assertTrue("Poswerup Objects (Inherits from abstract Entity) is generated as a batch",(powerups.size()>1));
     }
@@ -54,7 +54,7 @@ public class EntityGeneration{
     @Test
     public void AssignedUniqueDataCoins(){
         PirateGame p = new PirateGame();
-        GameScreen g = (new GameScreen(p));
+        GameScreen g = (new GameScreen());
         ArrayList<Coin> coins = g.getCoins();
         Boolean different =true;
         ArrayList<Coin> detected = new ArrayList<>(coins.size());
@@ -73,7 +73,7 @@ public class EntityGeneration{
     @Test
     public void AssignedUniqueDataPowerups(){
         PirateGame p = new PirateGame();
-        GameScreen g = (new GameScreen(p));
+        GameScreen g = (new GameScreen());
         ArrayList<Powerup> powerups = g.getPowerups();
         Boolean different =true;
         ArrayList<Powerup> detected = new ArrayList<>(powerups.size());
@@ -92,7 +92,7 @@ public class EntityGeneration{
     @Test
     public void OverriddenDataCoin(){
         PirateGame p = new PirateGame();
-        GameScreen g = (new GameScreen(p));
+        GameScreen g = (new GameScreen());
         ArrayList<Coin> coins = g.getCoins();
         Coin firstCoin = coins.get(0);
         firstCoin.setPosition(firstCoin.getX()+100.0f, firstCoin.getY()+100.0f);
@@ -102,7 +102,7 @@ public class EntityGeneration{
     @Test
     public void OverriddenDataPowerup(){
         PirateGame p = new PirateGame();
-        GameScreen g = (new GameScreen(p));
+        GameScreen g = (new GameScreen());
         ArrayList<Powerup> powerups = g.getPowerups();
         Powerup firstPowerup = powerups.get(0);
         firstPowerup.setPosition(firstPowerup.getX()+100.0f, firstPowerup.getY()+100.0f);

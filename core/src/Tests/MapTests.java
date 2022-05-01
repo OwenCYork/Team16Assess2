@@ -21,7 +21,7 @@ public class MapTests {
     @Test
     public void mapGeneration(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         WorldCreator worldcreator = new WorldCreator(Gscreen);
         TmxMapLoader maploader = new TmxMapLoader();
         assertTrue("Map creation", Gscreen.getMap() == maploader.load("map.tmx"));
@@ -31,21 +31,21 @@ public class MapTests {
     @Test
     public void collegeLocations(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         //assertTrue("College locations ");
     }
 
     @Test
     public void playerSpawnLocation(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         Player player = new Player(Gscreen);
         assertTrue("player spawn location", player.getX() == 1200  / PirateGame.PPM && player.getY() == 2500 / PirateGame.PPM);
     }
     @Test
     public void CoinPlayerCollision(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         World world = new World(new Vector2(0, 0), true);
         WorldContactListener wcl = new WorldContactListener();
         world.setContactListener(wcl);
@@ -59,7 +59,7 @@ public class MapTests {
     @Test
     public void LandPlayerCollision(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         World world = new World(new Vector2(0, 0), true);
         WorldContactListener wcl = new WorldContactListener();
         world.setContactListener(wcl);
@@ -72,7 +72,7 @@ public class MapTests {
     @Test
     public void LandEnemyCollision(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         WorldContactListener wcl = new WorldContactListener();
         World world = new World(new Vector2(0, 0), true);
         world.setContactListener(wcl);
@@ -84,7 +84,7 @@ public class MapTests {
     @Test
     public void EnemyPlayerCollision(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         WorldContactListener wcl = new WorldContactListener();
         World world = new World(new Vector2(0, 0), true);
         world.setContactListener(wcl);
@@ -96,7 +96,7 @@ public class MapTests {
     @Test
     public void CollegeCannonCollision(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         WorldContactListener wcl = new WorldContactListener();
         World world = new World(new Vector2(0, 0), true);
         world.setContactListener(wcl);
@@ -108,7 +108,7 @@ public class MapTests {
     @Test
     public void EnemyCannonCollision(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         WorldContactListener wcl = new WorldContactListener();
         World world = new World(new Vector2(0, 0), true);
         world.setContactListener(wcl);
@@ -120,7 +120,7 @@ public class MapTests {
     @Test
     public void CollegeFirePlayerCollision(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         WorldContactListener wcl = new WorldContactListener();
         World world = new World(new Vector2(0, 0), true);
         world.setContactListener(wcl);
@@ -132,7 +132,7 @@ public class MapTests {
     @Test
     public void EnemyfirePlayerCollision(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         WorldContactListener wcl = new WorldContactListener();
         World world = new World(new Vector2(0, 0), true);
         world.setContactListener(wcl);
