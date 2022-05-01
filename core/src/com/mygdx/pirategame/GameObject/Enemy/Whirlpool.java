@@ -60,6 +60,7 @@ public class Whirlpool extends Enemy{
             //Change player coins and points
             Hud.changePoints(20);
             Hud.changeCoins(5);
+            Hud.setCoinText();
         }
         else if(!destroyed) {
             //Update position and angle of ship

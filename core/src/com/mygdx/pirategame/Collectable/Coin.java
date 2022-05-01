@@ -92,6 +92,7 @@ public class Coin extends Entity {
     public void entityContact() {
         //Add a coin
         Hud.changeCoins(1);
+        Hud.setCoinText();
         //Set to destroy
         setToDestroyed = true;
         Gdx.app.log("coin", "collision");

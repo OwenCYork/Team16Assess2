@@ -127,6 +127,7 @@ public class College extends Enemy {
             if (!currentCollege.equals("alcuin_flag.png")){
                 Hud.changePoints(100);
                 Hud.changeCoins(20);
+                Hud.setCoinText();
             }
         }
         //If not destroyed, update the college position
