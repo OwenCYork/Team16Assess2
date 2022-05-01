@@ -22,9 +22,10 @@ import com.mygdx.pirategame.Collectable.Coin;
 import com.mygdx.pirategame.Collectable.Powerup;
 import org.junit.runner.RunWith;
 
-@RunWith(GdxTestRunner.class)
+//@RunWith(GdxTestRunner.class)
+
 public class EntityGeneration{
-    
+/*
     @Test
     public void EntityExists(){
         //Coin & Powerup are entities
@@ -108,6 +109,6 @@ public class EntityGeneration{
         firstPowerup.setPosition(firstPowerup.getX()+100.0f, firstPowerup.getY()+100.0f);
         assertTrue("Powerup Objects (Inherits from abstract Entity) can have it's data overriden",(powerups.get(0).getX()!=firstPowerup.getX() && powerups.get(0).getY()!=firstPowerup.getY()));
     }
-    
 
+*/
 }

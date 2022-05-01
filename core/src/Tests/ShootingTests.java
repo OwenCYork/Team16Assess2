@@ -35,7 +35,7 @@ public class ShootingTests {
         GameScreen.testing = true;
         g.playerFire();
         float startingTime = g.getTimeToReload();
-        g.reduceReload(0.2f);
+        g.reduceReload(0.3f);
         assertTrue("The cannon is closer to being reloaded after a game tick",g.getTimeToReload()<startingTime);
     }
     /*@Test

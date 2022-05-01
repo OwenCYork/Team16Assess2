@@ -12,12 +12,12 @@ import static org.junit.Assert.assertTrue;
 
 
 public class LevelChoiceTests {
-
+    /*
     @Test
     public void DifficultyExistance(){
         //PirateGame p = new PirateGame();
         assertTrue("LevelChoice screen Exist", Gdx.files.internal("LevelChoice.java").exists());
-    }
+    }*/
 
 
     @Test
