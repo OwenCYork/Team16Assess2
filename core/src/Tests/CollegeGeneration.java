@@ -40,7 +40,7 @@ public class CollegeGeneration{
         PirateGame p = new PirateGame();
         String[] collegeNames = {"Alcuin","Anne Lister","Constantine","Goodricke","Kraken"};
         Boolean notNull = true;
-        GameScreen g = new GameScreen(p);
+        GameScreen g = new GameScreen();
         for (String name : collegeNames) {
             notNull = notNull && ((g).getCollege(name)!=null);
         }
@@ -58,7 +58,7 @@ public class CollegeGeneration{
             {1760 / PirateGame.PPM, 6767 / PirateGame.PPM},
             {3560 / PirateGame.PPM, 4767 / PirateGame.PPM}
         };
-        GameScreen g = new GameScreen(p);
+        GameScreen g = new GameScreen();
         Boolean correctLocation = true;
         for (int i=0;i<collegeNames.length;i++) {
             College c = (g).getCollege(collegeNames[i]);

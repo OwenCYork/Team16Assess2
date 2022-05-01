@@ -15,7 +15,7 @@ public class PlayerControlTests {
     @Test
     public void playerUp(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         Player player = new Player(Gscreen);
         if (Gdx.input.isKeyPressed(Input.Keys.W)){
             Gscreen.handleInput(1);
@@ -26,7 +26,7 @@ public class PlayerControlTests {
     @Test
     public void playerDown(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         Player player = new Player(Gscreen);
         if (Gdx.input.isKeyPressed(Input.Keys.S)){
             Gscreen.handleInput(1);
@@ -37,7 +37,7 @@ public class PlayerControlTests {
     @Test
     public void playerLeft(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         Player player = new Player(Gscreen);
         if (Gdx.input.isKeyPressed(Input.Keys.A)){
             Gscreen.handleInput(1);
@@ -48,7 +48,7 @@ public class PlayerControlTests {
     @Test
     public void playerRight(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         Player player = new Player(Gscreen);
         if (Gdx.input.isKeyPressed(Input.Keys.D)){
             Gscreen.handleInput(1);
@@ -59,7 +59,7 @@ public class PlayerControlTests {
     @Test
     public void playerShoot(){
         PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen(p);
+        GameScreen Gscreen = new GameScreen();
         Player player = new Player(Gscreen);
         if (Gdx.input.isKeyPressed(Input.Keys.E)){
             Gscreen.handleInput(1);
