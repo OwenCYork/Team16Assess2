@@ -1,5 +1,6 @@
 package com.mygdx.pirategame.Menu;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -754,7 +755,9 @@ public class SkillTree implements Screen {
                         GameScreen.changeDamage(15);
                     }else if(i==5){
                         Hud.AddHealth(250);
-                        Hud.setHealthText();
+                        if(!GameScreen.testing) {
+                            Hud.setHealthText();
+                        }
                     }else if(i==6){
                         Hud.IncreaseMaxHealth(275);
                     }else if(i==7){

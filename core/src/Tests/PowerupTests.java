@@ -50,10 +50,9 @@ public class PowerupTests{
     public void attackSpeedIncreased(){
         PirateGame p = new PirateGame();
         GameScreen g = new GameScreen();
-
         float startingAtkSpeed = (g).getReloadDelay();
         (g).changeActivePowerup(4);
-        assertTrue("The delay between attacks is reduced by 0.5 seconds (to a minimum of 0.01 seconds)", (new GameScreen()).getReloadDelay()==startingAtkSpeed-0.5 || (new GameScreen()).getReloadDelay() == 0.01);
+        assertTrue("The delay between attacks is reduced by 0.5 seconds (to a minimum of 0.01 seconds)", (new GameScreen()).getReloadDelay()<=startingAtkSpeed-0.5 || (new GameScreen()).getReloadDelay() == 0.01);
     }
     @Test
     public void immunityToDamage(){
