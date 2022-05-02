@@ -34,25 +34,27 @@ public class PowerupTests{
     }
     @Test
     public void maxSpeedIncreased(){
-        PirateGame p = new PirateGame();        
-        float startingSpeed = (new GameScreen()).getMaxSpeed();
-        (new GameScreen()).changeActivePowerup(3);
-        assertTrue("Maximum speed is increased by 30% if a Movement Speed Powerup is activated", (new GameScreen()).getMaxSpeed() == startingSpeed*1.3f);
+        PirateGame p = new PirateGame();
+        GameScreen g = new GameScreen();
+        float startingSpeed = g.getMaxSpeed();
+        g.changeActivePowerup(3);
+        assertTrue("Maximum speed is increased by 30% if a Movement Speed Powerup is activated", g.getMaxSpeed() == startingSpeed*1.3f);
     }
     @Test
     public void accelerationIncreased(){
-        PirateGame p = new PirateGame();        
-        float startingAcceleration = (new GameScreen()).getAcceleration();
-        (new GameScreen()).changeActivePowerup(3);
-        assertTrue("Acceleration is increased by 30% if a Movement Speed Powerup is activated", (new GameScreen()).getAcceleration() == startingAcceleration*1.3f);
+        PirateGame p = new PirateGame();
+        GameScreen g = new GameScreen();
+        float startingAcceleration = g.getAcceleration();
+        g.changeActivePowerup(3);
+        assertTrue("Acceleration is increased by 30% if a Movement Speed Powerup is activated", g.getAcceleration() == startingAcceleration*1.3f);
     }
     @Test
     public void attackSpeedIncreased(){
         PirateGame p = new PirateGame();
         GameScreen g = new GameScreen();
-        float startingAtkSpeed = (g).getReloadDelay();
-        (g).changeActivePowerup(4);
-        assertTrue("The delay between attacks is reduced by 0.5 seconds (to a minimum of 0.01 seconds)", (new GameScreen()).getReloadDelay()<=startingAtkSpeed-0.5 || (new GameScreen()).getReloadDelay() == 0.01);
+        float startingAtkSpeed = g.getReloadDelay();
+        g.changeActivePowerup(4);
+        assertTrue("The delay between attacks is reduced by 0.5 seconds (to a minimum of 0.01 seconds)", g.getReloadDelay()<=startingAtkSpeed-0.5 || g.getReloadDelay() == 0.01);
     }
     @Test
     public void immunityToDamage(){
