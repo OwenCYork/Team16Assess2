@@ -29,8 +29,8 @@ public class Hud implements Disposable {
     private float timeCount;
     private static Integer score;
     public static Integer health;
-    private static Integer healthRegen;
-    private static Integer maxHealth;
+    public static Integer healthRegen;
+    public static Integer maxHealth;
     private static Integer activePowerup;
     private Texture hp;
     private Texture boxBackground;
@@ -48,8 +48,8 @@ public class Hud implements Disposable {
     private static Label pointsText;
     private static Label powerText;
     private static Label cannonText;
-    private static Integer coins;
-    private static Integer coinMulti;
+    public static Integer coins;
+    public static Integer coinMulti;
     private Image hpImg;
     private Image box;
     private Image coin;
@@ -150,24 +150,16 @@ public class Hud implements Disposable {
         stage.addActor(table2);
         stage.addActor(table1);
         stage.addActor(reloadtable);
-        if (LevelChoice.Level == 1) {
-            IncreaseMaxHealth(100);
-            AddHealth(97);
-            Hud.setHealthText();
-            setHealthText();
-            changeCoins(100);
-            AddHealthRegen(3);
 
-        }
-        if (LevelChoice.Level == 3) {
-            IncreaseMaxHealth(-50);
-            AddHealth(-50);
-            setHealthText();
-        }
+        setLevel();
+        setHealthText();
+        setCoinText();
+
         if (LoadScreen.getisload()) {
             health = Integer.valueOf(LoadScreen.Health);
             score = Integer.valueOf(LoadScreen.Score);
             changeCoins(Integer.valueOf(LoadScreen.Coins));
+            setCoinText();
             healthRegen = Integer.valueOf(LoadScreen.HealthRe);
             activePowerup = Integer.valueOf(LoadScreen.Powerup);
         }
@@ -179,9 +171,24 @@ public class Hud implements Disposable {
             setHealthText();
             AddHealthRegen(100);
             changeCoins(10000);
+            setCoinText();
         }
     }
+    public static void setLevel(){
+        if (LevelChoice.Level == 1) {
+            IncreaseMaxHealth(100);
+            AddHealth(97);
 
+            changeCoins(100);
+            AddHealthRegen(3);
+
+        }
+        if (LevelChoice.Level == 3) {
+            IncreaseMaxHealth(-50);
+            AddHealth(-50);
+
+        }
+    }
     /**
      * Updates the state of the hud
      *
@@ -240,7 +247,7 @@ public class Hud implements Disposable {
             timeCount = 0;
 
             //Check if a points boundary is met
-            SkillTree.pointsCheck(score);
+            //SkillTree.pointsCheck(score);
             
 
         }
@@ -288,10 +295,10 @@ public class Hud implements Disposable {
         coins-=c;
         if(coins<0){
             coins+=c;
-            coinLabel.setText(String.format("%03d", coins));
+
             return(false);
         }else{
-            coinLabel.setText(String.format("%03d", coins));
+
             return(true);
         }
     }
@@ -310,10 +317,12 @@ public class Hud implements Disposable {
     public static void changeCoins(int value) {
         if (value > 0) {
             coins += value * coinMulti;
-            coinLabel.setText(String.format("%03d", coins));
+
         }
     }
-
+    public static void setCoinText(){
+        coinLabel.setText(String.format("%03d", coins));
+    }
     /**
      * Changes points by value increase
      *
@@ -323,7 +332,7 @@ public class Hud implements Disposable {
         score += value;
         scoreLabel.setText(String.format("%03d", score));
         //Check if a points boundary is met
-        SkillTree.pointsCheck(score);
+        //SkillTree.pointsCheck(score);
     }
 
     /**

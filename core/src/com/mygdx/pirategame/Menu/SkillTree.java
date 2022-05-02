@@ -27,10 +27,10 @@ import java.util.List;
  */
 public class SkillTree implements Screen {
 
-    private final PirateGame parent;
-    private final Stage stage;
-    private final SkillTree T;
-    private final GameScreen G;
+    private PirateGame parent;
+    private Stage stage;
+    private SkillTree T;
+    public  GameScreen G;
     //private final String last;
 
     //To store whether buttons are enabled or disabled
@@ -54,7 +54,7 @@ public class SkillTree implements Screen {
      * @param pirateGame the main starting body of the game. Where screen swapping is carried out.
      */
 
-    public void SetStates(){
+    /*public void SetStates(){
         int[] l = {0,-1,-1,-1,
                 -1,-1,-1,
                 -1,-1,-1,
@@ -79,19 +79,19 @@ public class SkillTree implements Screen {
             //boxTags[i] = new TextButton(boxvalues[i], skin);
 
         }
-    }
+    }*/
 //In the constructor, the parent and stage are set. Also the states list is set
     public SkillTree(PirateGame pirateGame){
+
+    }
+    public void init(PirateGame pirateGame){
         parent = pirateGame;
 
         stage = new Stage(new ScreenViewport());
         T = this;
         G = parent.gameScreen;
         //0 = enabled, 1 = disabled
-        states.add(1);
-        states.add(1);
-        states.add(1);
-        states.add(1);
+
 
         Skin skin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
         String[] boxvalues = {"Skills","Health","Max Health","Regen Speed","Movement Speed","Plunder Multiplier","Cannon","Damage Per Shot","Range","Reload Speed","Ammo","Shot Types"};
@@ -100,38 +100,58 @@ public class SkillTree implements Screen {
             last = LoadScreen.Last;
             System.out.println(last);
         }
-        
+
+        setUpStates();
+
+
+        for(int i=0;i<12;i++){
+            boxTags[i] = new TextButton(boxvalues[i], skin);
+        }
+
+        //states.set(4,0);
+
+        backButton = new TextButton("Return", skin);
+
+
+        setUpTree();
+
+    }
+    /**
+     * What should be displayed on the skill tree screen
+     *
+     */
+    public void setUpStates(){
+        states.add(1);
+        states.add(1);
+        states.add(1);
+        states.add(1);
         //-1 = unavalible, 0 = avalible, >1 = got to level
         int[] l = {0,-1,-1,-1,
-                    -1,-1,-1,
-                    -1,-1,-1,
-                    -1,-1};
+                -1,-1,-1,
+                -1,-1,-1,
+                -1,-1};
         if(last!="0..........."){
             for(int i=0;i<12;i++){
-                System.out.println(last.charAt(i));
+                //System.out.println(last.charAt(i));
                 if(last.charAt(i)=='.'){
                     l[i]=-1;
                 }else{
                     l[i] = Integer.parseInt(""+last.charAt(i));
                 }
             }
+
         }
         //"0..........."
         //"000000000000"
-        
-        
+
+
         for(int i=0;i<12;i++){
-            System.out.println(l[i]);
+            //System.out.println(l[i]);
             states.add(l[i]);
-            boxTags[i] = new TextButton(boxvalues[i], skin);
-            
         }
         this.applyEffects("000000000000",G);
-        //states.set(4,0);
-
-        backButton = new TextButton("Return", skin);
-        
-
+    }
+    public void setUpTree(){
         //0 = nothing
         //1 = Health
         //11= Max Health
@@ -159,14 +179,7 @@ public class SkillTree implements Screen {
         cBranch.AddBranch(13);
         cBranch.AddBranch(14);
         cBranch.AddBranch(15);
-        
     }
-
-    /**
-     * What should be displayed on the skill tree screen
-     *
-     */
-
     @Override
     public void show() {
         //Set the input processor
@@ -513,17 +526,24 @@ public class SkillTree implements Screen {
             Integer coins = Hud.GetCoins();
             if(states.get(4)==0 && code==4){
                 states.set(4,1);
+
                 //
                 for(int i=0;i<4;i++){
                     addedNodes[index] = this.tree.GetBranch(i).nodeCode;
                     index++;
                 }
             }else if(states.get(4)>0 && states.get(4)<3 && code==4 && Hud.DeductCoins(1)){
+                if(!GameScreen.testing) {
+                    Hud.setCoinText();
+                }
                 states.set(4,states.get(4)+1);
             }
             //System.out.println("Value:"+states.get(4));
             //System.out.println("Index:"+index);
             if(states.get(5)==0 && code==5 && Hud.DeductCoins(5)){
+                if(!GameScreen.testing) {
+                    Hud.setCoinText();
+                }
                 states.set(5,1);
                 //
                 Node root = this.tree.GetBranch(0);
@@ -532,12 +552,21 @@ public class SkillTree implements Screen {
                     index++;
                 }
             }else if(states.get(5)==1 && code==5 && Hud.DeductCoins(10)){
+                if(!GameScreen.testing) {
+                    Hud.setCoinText();
+                }
                 states.set(5,states.get(5)+1);
             }else if(states.get(5)==2 && code==5 && Hud.DeductCoins(15)){
+                if(!GameScreen.testing) {
+                    Hud.setCoinText();
+                }
                 states.set(5,states.get(5)+1);
             }
 
             if(states.get(10)==0 && code==10 && Hud.DeductCoins(20)){
+                if(!GameScreen.testing) {
+                    Hud.setCoinText();
+                }
                 states.set(10,1);
                 Node root = this.tree.GetBranch(3);
                 for(int i=0;i<5;i++){
@@ -545,6 +574,9 @@ public class SkillTree implements Screen {
                     index++;
                 }
             }else if(states.get(10)>0 && states.get(10)<3 && code==10 && Hud.DeductCoins(1)){
+                if(!GameScreen.testing) {
+                    Hud.setCoinText();
+                }
                 states.set(10,states.get(10)+1);
             }
 
@@ -556,10 +588,19 @@ public class SkillTree implements Screen {
             for(int i=6;i<16;i++){
                 if(i!=10){
                     if(states.get(i)==0 && code==i && Hud.DeductCoins(prices[i-6][0])){
+                        if(!GameScreen.testing) {
+                            Hud.setCoinText();
+                        }
                         states.set(i,1);
                     }else if(states.get(i)==1 && code==i && Hud.DeductCoins(prices[i-6][1])){
+                        if(!GameScreen.testing) {
+                            Hud.setCoinText();
+                        }
                         states.set(i,states.get(i)+1);
                     }else if(states.get(i)==2 && code==i && Hud.DeductCoins(prices[i-6][2])){
+                        if(!GameScreen.testing) {
+                            Hud.setCoinText();
+                        }
                         states.set(i,states.get(i)+1);
                     }
                 }
@@ -573,8 +614,9 @@ public class SkillTree implements Screen {
                 }
             }
             //this.applyEffects();
-            
-            this.show();
+            if(!GameScreen.testing) {
+                this.show();
+            }
     }
 
     public static void applyEffects(String last,GameScreen G){
@@ -606,7 +648,9 @@ public class SkillTree implements Screen {
                         GameScreen.changeDamage(5);
                     }else if(i==5){
                         Hud.AddHealth(50);
-                        Hud.setHealthText();
+                        if(!GameScreen.testing) {
+                            Hud.setHealthText();
+                        }
                     }else if(i==6){
                         Hud.IncreaseMaxHealth(75);
                     }else if(i==7){
@@ -637,7 +681,9 @@ public class SkillTree implements Screen {
                         GameScreen.changeDamage(10);
                     }else if(i==5){
                         Hud.AddHealth(150);
-                        Hud.setHealthText();
+                        if(!GameScreen.testing) {
+                            Hud.setHealthText();
+                        }
                     }else if(i==6){
                         Hud.IncreaseMaxHealth(50);
                     }else if(i==6){

@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 
 public class WhirlpoolTest {
-
+/*
     @Test
     public void SpawnLocationTest(){
         PirateGame p = new PirateGame();
@@ -43,5 +43,5 @@ public class WhirlpoolTest {
         whirlpool.onContact();
         assertTrue("Player contact", player.b2body.getLinearVelocity() != new Vector2(0,0));
     }
-
+*/
 }

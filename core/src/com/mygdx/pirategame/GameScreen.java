@@ -408,10 +408,7 @@ public class GameScreen implements Screen {
     public void update(float dt) {
         stateTime += dt;
         handleInput(dt);
-        //Reduces the time to the next reload
-        if(timeToReload > 0 && !cannonJammed){
-            timeToReload -= dt;
-        }
+        reduceReload(dt);
         // Stepping the physics engine by time of 1 frame
         world.step(1 / 60f, 6, 2);
 
@@ -502,7 +499,12 @@ public class GameScreen implements Screen {
         POSX = player.b2body.getPosition().x;
         POSY = player.b2body.getPosition().y;
     }
-
+    public void reduceReload(float dt){
+        //Reduces the time to the next reload
+        if(timeToReload > 0 && !cannonJammed){
+            timeToReload -= dt;
+        }
+    }
     /**
      * Renders the visual data for all objects
      * Changes and renders new visual data for ships
@@ -608,7 +610,9 @@ public class GameScreen implements Screen {
         }
         if(timeToReload <= 0){
             cannonJammed = false;
-            player.fire();
+            if(!testing) {
+                player.fire();
+            }
             timeToReload = reloadDelay;
             if(rand.nextInt(10)==0 && LevelChoice.Level == 3){
                 cannonJammed = true;

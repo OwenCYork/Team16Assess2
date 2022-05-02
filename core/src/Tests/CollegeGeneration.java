@@ -19,9 +19,9 @@ import com.mygdx.pirategame.GameObject.College.College;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.mock;
 
-@RunWith(GdxTestRunner.class)
+//@RunWith(GdxTestRunner.class)
 public class CollegeGeneration{
-    
+/*
     @Test
     public void CollegesExist(){
         PirateGame p = mock(PirateGame.class);
@@ -69,5 +69,5 @@ public class CollegeGeneration{
         }
         assertTrue("Do All named Colleges in correct location",correctLocation==true);
     }
-
+*/
 }
