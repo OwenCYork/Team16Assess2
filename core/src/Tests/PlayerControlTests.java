@@ -14,6 +14,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
 public class PlayerControlTests {
+    /*
     @Test
     public void playerUp(){
         PirateGame p = new PirateGame();
@@ -66,4 +67,6 @@ public class PlayerControlTests {
         }
     }
 
+
+     */
 }

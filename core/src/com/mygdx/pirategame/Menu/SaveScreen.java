@@ -28,7 +28,7 @@ import java.io.*;
 public class SaveScreen implements Screen {
 
     private final PirateGame parent;
-    private final Stage stage;
+    private Stage stage;
 
     /**
      * Creates a new screen
@@ -38,6 +38,10 @@ public class SaveScreen implements Screen {
     public SaveScreen(PirateGame pirateGame){
         parent = pirateGame;
         stage = new Stage(new ScreenViewport());
+    }
+
+    public SaveScreen(PirateGame pirateGame,boolean test){
+        parent = pirateGame;
     }
 
     /**
@@ -117,6 +121,14 @@ public class SaveScreen implements Screen {
 
         stage.addActor(table3);
     }
+
+    public void createFile() throws Exception{
+        new File("core\\assets\\saved.txt").createNewFile();
+        FileWriter data =new FileWriter("core\\assets\\saved.txt");
+        data.flush();
+        data.close();
+    }
+
     public void Savefile() throws Exception{
         new File("core\\assets\\saved.txt").createNewFile();
         FileWriter data =new FileWriter("core\\assets\\saved.txt");
