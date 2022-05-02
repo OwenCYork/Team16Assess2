@@ -116,6 +116,7 @@ public class SkillTreeTests{
     }
 
     @Test
+
     public void cannotClickOnButtonWhenPlayerHasInvalidAmountOfGold(){
         //PirateGame p = new PirateGame();
         PirateGame p = spy(new PirateGame());
@@ -128,6 +129,7 @@ public class SkillTreeTests{
         //skillTree.setUpStates();
         skillTree.setupTest(p);
         skillTree.setUpStates();
+        skillTree.setUpTree();
         skillTree.clicked(4);
         System.out.println(skillTree.getStates().get(5));
         GameScreen g = new GameScreen();
@@ -408,13 +410,9 @@ public class SkillTreeTests{
 
     @Test
     public void skillToOne(){
-        //PirateGame p = new PirateGame();
-        PirateGame p = spy(new PirateGame());
-        SpriteBatch sb = mock(SpriteBatch.class);
-        p.batch = sb;
-        //p.create();
-        p.skillTreeScreen = spy(new SkillTree(p));
-        SkillTree skillTree = p.getskillTreeScreen();
+        PirateGame p = new PirateGame();
+        GameScreen.testing = true;
+        SkillTree skillTree = new SkillTree(p);
         skillTree.last = "0...........";
         skillTree.setupTest(p);
         GameScreen g = spy(new GameScreen());
@@ -428,14 +426,11 @@ public class SkillTreeTests{
 
     @Test
     public void skillToTwo(){
-        //PirateGame p = new PirateGame();
-        PirateGame p = spy(new PirateGame());
-        SpriteBatch sb = mock(SpriteBatch.class);
-        p.batch = sb;
-        //p.create();
-        p.skillTreeScreen = spy(new SkillTree(p));
-        SkillTree skillTree = p.getskillTreeScreen();
+        PirateGame p = new PirateGame();
+        GameScreen.testing = true;
+        SkillTree skillTree = new SkillTree(p);
         skillTree.last = "0...........";
+
         //skillTree.setUpStates();
         skillTree.setupTest(p);
         GameScreen g = spy(new GameScreen());
@@ -451,13 +446,9 @@ public class SkillTreeTests{
 
     @Test
     public void skillToThree(){
-        //PirateGame p = new PirateGame();
-        PirateGame p = spy(new PirateGame());
-        SpriteBatch sb = mock(SpriteBatch.class);
-        p.batch = sb;
-        //p.create();
-        p.skillTreeScreen = spy(new SkillTree(p));
-        SkillTree skillTree = p.getskillTreeScreen();
+        PirateGame p = new PirateGame();
+        GameScreen.testing = true;
+        SkillTree skillTree = new SkillTree(p);
         skillTree.last = "0...........";
         //skillTree.setUpStates();
         skillTree.setupTest(p);
@@ -473,14 +464,12 @@ public class SkillTreeTests{
 
     @Test
     public void skillNotAboveThree(){
-        //PirateGame p = new PirateGame();
-        PirateGame p = spy(new PirateGame());
-        SpriteBatch sb = mock(SpriteBatch.class);
-        p.batch = sb;
-        //p.create();
-        p.skillTreeScreen = spy(new SkillTree(p));
-        SkillTree skillTree = p.getskillTreeScreen();
+        PirateGame p = new PirateGame();
+        GameScreen.testing = true;
+        SkillTree skillTree = new SkillTree(p);
         skillTree.last = "0...........";
+        Hud.health = 100;
+        Hud.coins = 100;
         skillTree.setUpStates();
         GameScreen g = spy(new GameScreen());
         g.createHud(p);
@@ -495,14 +484,12 @@ public class SkillTreeTests{
 
     @Test
     public void skillNotAboveThreeTenAbove(){
-        //PirateGame p = new PirateGame();
-        PirateGame p = spy(new PirateGame());
-        SpriteBatch sb = mock(SpriteBatch.class);
-        p.batch = sb;
-        //p.create();
-        p.skillTreeScreen = spy(new SkillTree(p));
-        SkillTree skillTree = p.getskillTreeScreen();
+        PirateGame p = new PirateGame();
+        GameScreen.testing = true;
+        SkillTree skillTree = new SkillTree(p);
         skillTree.last = "0...........";
+        Hud.health = 100;
+        Hud.coins = 100;
         skillTree.setUpStates();
         skillTree.setupTest(p);
         GameScreen g = spy(new GameScreen());
