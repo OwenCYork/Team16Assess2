@@ -247,7 +247,7 @@ public class Hud implements Disposable {
             timeCount = 0;
 
             //Check if a points boundary is met
-            SkillTree.pointsCheck(score);
+            //SkillTree.pointsCheck(score);
             
 
         }
@@ -332,7 +332,7 @@ public class Hud implements Disposable {
         score += value;
         scoreLabel.setText(String.format("%03d", score));
         //Check if a points boundary is met
-        SkillTree.pointsCheck(score);
+        //SkillTree.pointsCheck(score);
     }
 
     /**
