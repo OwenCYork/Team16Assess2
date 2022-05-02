@@ -56,14 +56,4 @@ public class PlayerControlTests {
         }
     }
 
-    @Test
-    public void playerShoot(){
-        PirateGame p = new PirateGame();
-        GameScreen Gscreen = new GameScreen();
-        Player player = new Player(Gscreen);
-        if (Gdx.input.isKeyPressed(Input.Keys.E)){
-            Gscreen.handleInput(1);
-            assertTrue(player.getCannonBalls().isEmpty() == false);
-        }
-    }
 }

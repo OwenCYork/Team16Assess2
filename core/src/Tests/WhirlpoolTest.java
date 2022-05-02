@@ -2,6 +2,7 @@ package Tests;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.pirategame.GameObject.Player;
 import com.mygdx.pirategame.GameScreen;
 import com.mygdx.pirategame.PirateGame;
@@ -40,7 +41,7 @@ public class WhirlpoolTest {
         Whirlpool whirlpool = new Whirlpool(Gscreen,10,10,"Whirlpool.png");
         Player player = new Player(Gscreen);
         whirlpool.onContact();
-        assertTrue("Player contact", player.getV2() != 0);
+        assertTrue("Player contact", player.b2body.getLinearVelocity() != new Vector2(0,0));
     }
 
 }
