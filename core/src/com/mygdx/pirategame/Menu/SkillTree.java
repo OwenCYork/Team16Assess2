@@ -34,7 +34,7 @@ public class SkillTree implements Screen {
     //private final String last;
 
     //To store whether buttons are enabled or disabled
-    private static final List<Integer> states = new ArrayList<Integer>();
+    public static List<Integer> states = new ArrayList<Integer>();
 
     private static TextButton movement1;
     private TextButton damage1;
@@ -116,11 +116,41 @@ public class SkillTree implements Screen {
         setUpTree();
 
     }
+
+    public void setupTest(PirateGame pirateGame){
+        parent = pirateGame;
+        T = this;
+        G = parent.gameScreen;
+        //0 = enabled, 1 = disabled
+
+
+        //Skin skin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
+        String[] boxvalues = {"Skills","Health","Max Health","Regen Speed","Movement Speed","Plunder Multiplier","Cannon","Damage Per Shot","Range","Reload Speed","Ammo","Shot Types"};
+        last = "0...........";
+
+
+        setUpStates();
+
+
+        //for(int i=0;i<12;i++){
+        //    boxTags[i] = new TextButton(boxvalues[i], skin);
+        //}
+
+        states.set(4,0);
+
+        //backButton = new TextButton("Return", skin);
+
+
+        setUpTree();
+        noShow = true;
+    }
+    public boolean noShow = false;
     /**
      * What should be displayed on the skill tree screen
      *
      */
     public void setUpStates(){
+        //states = new ArrayList<Integer>();
         states.add(1);
         states.add(1);
         states.add(1);
@@ -182,25 +212,26 @@ public class SkillTree implements Screen {
     }
     @Override
     public void show() {
-        //Set the input processor
+        if(noShow==false) {
+            //Set the input processor
 
-        Gdx.input.setInputProcessor(stage);
+            Gdx.input.setInputProcessor(stage);
 
-        // Create a table that fills the screen
-        Table table = new Table();
-        table.setFillParent(true);
-        stage.addActor(table);
+            // Create a table that fills the screen
+            Table table = new Table();
+            table.setFillParent(true);
+            stage.addActor(table);
 
 
-        // Table for the return button
+            // Table for the return button
         /*final Table Other = new Table();
         Other.setFillParent(true);
         stage.addActor(Other);*/
 
 
-        //The skin for the actors
-        Skin skin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
-        //create skill tree buttons
+            //The skin for the actors
+            Skin skin = new Skin(Gdx.files.internal("skin\\uiskin.json"));
+            //create skill tree buttons
 
         /*
         movement1 = new TextButton("Movement Speed + 20%", skin);
@@ -225,134 +256,134 @@ public class SkillTree implements Screen {
 
         }
         */
-        Skin bronzeSkin = new Skin(Gdx.files.internal("Bronze\\uiskin.json"));
-        Skin silverSkin = new Skin(Gdx.files.internal("Silver\\uiskin.json"));
-        Skin goldSkin = new Skin(Gdx.files.internal("Gold\\uiskin.json"));
-        String[] boxvalues = {"Skills","Health","Max Health","Regen Speed","Movement Speed","Plunder Multiplier","Cannon","Damage Per Shot","Range","Reload Speed","Ammo","Shot Types"};
-        int[][] prices = {{0,0,0,0},{5,10,15,0},
-                            {10,20,30,0}, {15,30,45,0},
-                            {5,10,15,0}, {20,80,200,0},
-                            {20,1,1,0}, {30,100,250,0}, 
-                            {10,20,30,0}, {15,45,60,0},
-                            {15,40,50,0}, {120,120,120,0}};
-        for(int i=0;i<12;i++){
-            if(states.get(4+i)==-1){
-                boxTags[i].setDisabled(true);
-            }else{
-                Skin[] vals = {skin,bronzeSkin,silverSkin,goldSkin};
-                if(states.get(4+i)>=0){
-                    boxTags[i] = new TextButton(boxvalues[i]+"\n"+(Integer.toString(prices[i][states.get(4+i)]))+" Coins", vals[states.get(4+i)]);
+            Skin bronzeSkin = new Skin(Gdx.files.internal("Bronze\\uiskin.json"));
+            Skin silverSkin = new Skin(Gdx.files.internal("Silver\\uiskin.json"));
+            Skin goldSkin = new Skin(Gdx.files.internal("Gold\\uiskin.json"));
+            String[] boxvalues = {"Skills", "Health", "Max Health", "Regen Speed", "Movement Speed", "Plunder Multiplier", "Cannon", "Damage Per Shot", "Range", "Reload Speed", "Ammo", "Shot Types"};
+            int[][] prices = {{0, 0, 0, 0}, {5, 10, 15, 0},
+                    {10, 20, 30, 0}, {15, 30, 45, 0},
+                    {5, 10, 15, 0}, {20, 80, 200, 0},
+                    {20, 1, 1, 0}, {30, 100, 250, 0},
+                    {10, 20, 30, 0}, {15, 45, 60, 0},
+                    {15, 40, 50, 0}, {120, 120, 120, 0}};
+            for (int i = 0; i < 12; i++) {
+                if (states.get(4 + i) == -1) {
+                    boxTags[i].setDisabled(true);
+                } else {
+                    Skin[] vals = {skin, bronzeSkin, silverSkin, goldSkin};
+                    if (states.get(4 + i) >= 0) {
+                        boxTags[i] = new TextButton(boxvalues[i] + "\n" + (Integer.toString(prices[i][states.get(4 + i)])) + " Coins", vals[states.get(4 + i)]);
+                    }
                 }
             }
-        }
 
-        //Point unlock labels
+            //Point unlock labels
         /*
         final Label unlock100 = new Label("100 points",skin);
         final Label unlock200 = new Label("200 points",skin);
         final Label unlock300 = new Label("300 points",skin);
         final Label unlock400 = new Label("400 points",skin);
         */
-        //Return Button
-        //TextButton backButton
-        backButton = new TextButton("Return", skin);
-        //backButton.setDisabled(false);
-        
-        //this.applyEffects(last);
-        
-        backButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                SkillTree.applyEffects(last,G);
-                T.last = "";
-                for(int i=0;i<12;i++){
-                    if(T.states.get(4+i)==-1){
-                        T.last= T.last + ".";
-                    }else{
-                        T.last = T.last + Integer.toString(T.states.get(4+i));
+            //Return Button
+            //TextButton backButton
+            backButton = new TextButton("Return", skin);
+            //backButton.setDisabled(false);
+
+            //this.applyEffects(last);
+
+            backButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    SkillTree.applyEffects(last, G);
+                    T.last = "";
+                    for (int i = 0; i < 12; i++) {
+                        if (T.states.get(4 + i) == -1) {
+                            T.last = T.last + ".";
+                        } else {
+                            T.last = T.last + Integer.toString(T.states.get(4 + i));
+                        }
                     }
+                    //T.applyEffects(last);
+
+                    parent.changeScreen(PirateGame.GAME); //Return to game
                 }
-                //T.applyEffects(last);
-                
-                parent.changeScreen(PirateGame.GAME); //Return to game
-            }
-        });
+            });
 
-        boxTags[0].addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                T.clicked(4);
-            }
-        });
-        boxTags[1].addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                T.clicked(5);
-            }
-        });
-        boxTags[2].addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                T.clicked(6);
-            }
-        });
-        boxTags[3].addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                T.clicked(7);
-            }
-        });
-        boxTags[4].addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                T.clicked(8);
-            }
-        });
-        boxTags[5].addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                T.clicked(9);
-            }
-        });
-        boxTags[6].addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                T.clicked(10);
-            }
-        });
-        boxTags[7].addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                T.clicked(11);
-            }
-        });
-        boxTags[8].addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                T.clicked(12);
-            }
-        });
-        boxTags[9].addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                T.clicked(13);
-            }
-        });
-        boxTags[10].addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                T.clicked(14);
-            }
-        });
-        boxTags[11].addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                T.clicked(15);
-            }
-        });
-        
+            boxTags[0].addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    T.clicked(4);
+                }
+            });
+            boxTags[1].addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    T.clicked(5);
+                }
+            });
+            boxTags[2].addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    T.clicked(6);
+                }
+            });
+            boxTags[3].addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    T.clicked(7);
+                }
+            });
+            boxTags[4].addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    T.clicked(8);
+                }
+            });
+            boxTags[5].addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    T.clicked(9);
+                }
+            });
+            boxTags[6].addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    T.clicked(10);
+                }
+            });
+            boxTags[7].addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    T.clicked(11);
+                }
+            });
+            boxTags[8].addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    T.clicked(12);
+                }
+            });
+            boxTags[9].addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    T.clicked(13);
+                }
+            });
+            boxTags[10].addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    T.clicked(14);
+                }
+            });
+            boxTags[11].addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    T.clicked(15);
+                }
+            });
 
-        //add buttons and labels to main table
+
+            //add buttons and labels to main table
         /*table.add(movement1);
         table.add(unlock100);
         table.row().pad(10, 0, 10, 0);
@@ -364,7 +395,7 @@ public class SkillTree implements Screen {
         table.row().pad(10, 0, 10, 0);
         table.add(damage1);
         table.add(unlock400);*/
-        //Label[] coinLabels = new Label[12];
+            //Label[] coinLabels = new Label[12];
         /*int[][] prices = {{0,0,0},{5,10,15},
                             {10,20,30}, {15,30,45},
                             {5,10,15}, {20,80,200},
@@ -378,103 +409,102 @@ public class SkillTree implements Screen {
             }
         }*/
 
-        //Table table = new Table();
-        table.setFillParent(true);
+            //Table table = new Table();
+            table.setFillParent(true);
 
-        stage.addActor(table);
+            stage.addActor(table);
 
         /*Table table2 = new Table();
         table2.setFillParent(true);
         stage.addActor(table2);*/
 
 
-        table.row().pad(10,0,10,0);
-        table.add(backButton);
-        table.row().pad(10, 0, 10, 0);
-        table.add(boxTags[0]);
-        //table2.row().pad(20, 0, 200, 0);
-        //table2.add(coinLabels[0]);
-        
+            table.row().pad(10, 0, 10, 0);
+            table.add(backButton);
+            table.row().pad(10, 0, 10, 0);
+            table.add(boxTags[0]);
+            //table2.row().pad(20, 0, 200, 0);
+            //table2.add(coinLabels[0]);
 
-        if(states.get(5)>-1){
-        table.row().pad(10, -900, 10, 0);
-        table.add(boxTags[1]);
-        //table2.row().pad(10, -900, 10, 0);
-        //table2.add(coinLabels[1]);
+
+            if (states.get(5) > -1) {
+                table.row().pad(10, -900, 10, 0);
+                table.add(boxTags[1]);
+                //table2.row().pad(10, -900, 10, 0);
+                //table2.add(coinLabels[1]);
+            }
+            if (states.get(8) > -1) {
+                table.row().pad(-100, -300, 10, 0);
+                table.add(boxTags[4]);
+                //table2.row().pad(-100, -300, 10, 0);
+                //table2.add(coinLabels[4]);
+            }
+
+            if (states.get(9) > -1) {
+                table.row().pad(-100, 300, 10, 0);
+                table.add(boxTags[5]);
+                //table2.row().pad(-100, 300, 10, 0);
+                //table2.add(coinLabels[5]);
+            }
+
+            if (states.get(10) > -1) {
+                table.row().pad(-100, 800, 10, 0);
+                table.add(boxTags[6]);
+                //table2.row().pad(-100, 800, 10, 0);
+                //table2.add(coinLabels[6]);
+            }
+
+            if (states.get(6) > -1) {
+                table.row().pad(10, -1200, 10, 0);
+                table.add(boxTags[2]);
+                //table2.row().pad(10, -1200, 10, 0);
+                //table2.add(coinLabels[2]);
+                table.row().pad(-100, -700, 10, 0);
+                table.add(boxTags[3]);
+                //table2.row().pad(-100, -700, 10, 0);
+                //table2.add(coinLabels[3]);
+            }
+
+
+            if (states.get(11) > -1) {
+                table.row().pad(10, -200, 10, 0);
+                table.add(boxTags[7]);
+                //table2.row().pad(10, -200, 10, 0);
+                //table2.add(coinLabels[7]);
+                table.row().pad(30, 0, 10, 0);
+                table.add(boxTags[8]);
+                //table2.row().pad(30, 0, 10, 0);
+                //table2.add(coinLabels[8]);
+                table.row().pad(-330, 300, 10, 0);
+                table.add(boxTags[9]);
+                //table2.row().pad(-330, 300, 10, 0);
+                //table2.add(coinLabels[9]);
+                table.row().pad(-330, 800, 10, 0);
+                table.add(boxTags[10]);
+                //table2.row().pad(-330, 800, 10, 0);
+                //table2.add(coinLabels[10]);
+                table.row().pad(100, 1200, 10, 0);
+                table.add(boxTags[11]);
+                //table2.row().pad(100, 1200, 10, 0);
+                //table2.add(coinLabels[11]);
+            }
+
+            //table.row().pad(10,0,10,0);
+            //table.add(backButton);
+
+            for (int i = 0; i < 12; i++) {
+                //table.row().pad(10, 0, 10, 0);
+                //table.add(boxTags[i]);
+                System.out.println("tableIndex:" + states.get(4 + i));
+            }
+
+            table.top();
+            //table2.top();
+
+            //add return button
+            //Other.add(backButton);
+            //Other.bottom().left();
         }
-        if(states.get(8)>-1){
-            table.row().pad(-100, -300, 10, 0);
-            table.add(boxTags[4]);
-            //table2.row().pad(-100, -300, 10, 0);
-            //table2.add(coinLabels[4]);
-        }
-
-        if(states.get(9)>-1){
-            table.row().pad(-100, 300, 10, 0);
-            table.add(boxTags[5]);
-            //table2.row().pad(-100, 300, 10, 0);
-            //table2.add(coinLabels[5]);
-        }
-    
-        if(states.get(10)>-1){
-            table.row().pad(-100, 800, 10, 0);
-            table.add(boxTags[6]);
-            //table2.row().pad(-100, 800, 10, 0);
-            //table2.add(coinLabels[6]);
-        }
-
-        if(states.get(6)>-1){
-        table.row().pad(10, -1200, 10, 0);
-        table.add(boxTags[2]);
-        //table2.row().pad(10, -1200, 10, 0);
-        //table2.add(coinLabels[2]);
-        table.row().pad(-100, -700, 10, 0);
-        table.add(boxTags[3]);
-        //table2.row().pad(-100, -700, 10, 0);
-        //table2.add(coinLabels[3]);
-        }
-        
-
-
-        if(states.get(11)>-1){
-        table.row().pad(10, -200, 10, 0);
-        table.add(boxTags[7]);
-        //table2.row().pad(10, -200, 10, 0);
-        //table2.add(coinLabels[7]);
-        table.row().pad(30, 0, 10, 0);
-        table.add(boxTags[8]);
-        //table2.row().pad(30, 0, 10, 0);
-        //table2.add(coinLabels[8]);
-        table.row().pad(-330, 300, 10, 0);
-        table.add(boxTags[9]);
-        //table2.row().pad(-330, 300, 10, 0);
-        //table2.add(coinLabels[9]);
-        table.row().pad(-330, 800, 10, 0);
-        table.add(boxTags[10]);
-        //table2.row().pad(-330, 800, 10, 0);
-        //table2.add(coinLabels[10]);
-        table.row().pad(100, 1200, 10, 0);
-        table.add(boxTags[11]);
-        //table2.row().pad(100, 1200, 10, 0);
-        //table2.add(coinLabels[11]);
-        }
-
-        //table.row().pad(10,0,10,0);
-        //table.add(backButton);
-
-        for(int i=0;i<12;i++){
-            //table.row().pad(10, 0, 10, 0);
-            //table.add(boxTags[i]);
-            System.out.println("tableIndex:"+states.get(4+i));
-        }
-
-        table.top();
-        //table2.top();
-
-        //add return button
-        //Other.add(backButton);
-        //Other.bottom().left();
-
     }
     public static String Getlast(){
         return(last);

@@ -186,6 +186,12 @@ public class GameScreen implements Screen {
         //Setting stage
         stage = new Stage(new ScreenViewport());
     }
+
+    public void createHud(PirateGame game){
+        hud = new Hud(game.batch);
+    }
+
+
     public void createCoinsAndPowerups(){
         Coins = new ArrayList<>();
         Powerups = new ArrayList<>();
@@ -316,6 +322,18 @@ public class GameScreen implements Screen {
     }
 
     public Player GetPlayer(){
+        if(player==null) {
+            player = new Player(this);
+
+        }
+        return(player);
+    }
+
+    public Player GetPlayer(boolean test){
+        if(test) {
+            player = new Player(this,true);
+
+        }
         return(player);
     }
 

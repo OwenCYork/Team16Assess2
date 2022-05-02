@@ -116,7 +116,7 @@ public class SkillTreeTests{
     }
 
     @Test
-    public void canClickOnButtonWhenPlayerHasInvalidAmountOfGold(){
+    public void cannotClickOnButtonWhenPlayerHasInvalidAmountOfGold(){
         //PirateGame p = new PirateGame();
         PirateGame p = spy(new PirateGame());
         SpriteBatch sb = mock(SpriteBatch.class);
@@ -125,17 +125,23 @@ public class SkillTreeTests{
         p.skillTreeScreen = spy(new SkillTree(p));
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
+        //skillTree.setUpStates();
+        skillTree.setupTest(p);
         skillTree.setUpStates();
         skillTree.clicked(4);
-        Hud h = (new GameScreen()).getHud();
+        System.out.println(skillTree.getStates().get(5));
+        GameScreen g = new GameScreen();
+        g.createHud(p);
+        Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(-5);
         skillTree.clicked(5);
-        assertTrue("Can Click On Button When Player Has Invalid Amount Of Gold",skillTree.getStates().get(5)==0);
+        System.out.println(skillTree.getStates().get(5));
+        assertTrue("Cannot Click On Button When Player Has Invalid Amount Of Gold",skillTree.getStates().get(5)==0);
     }
 
     @Test
-    public void canClickOnButtonWhenPlayerHasNotEnoughGold(){
+    public void cannotClickOnButtonWhenPlayerHasNotEnoughGold(){
         //PirateGame p = new PirateGame();
         PirateGame p = spy(new PirateGame());
         SpriteBatch sb = mock(SpriteBatch.class);
@@ -144,13 +150,17 @@ public class SkillTreeTests{
         p.skillTreeScreen = spy(new SkillTree(p));
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
-        skillTree.setUpStates();
+        skillTree.setupTest(p);
+        skillTree.states.set(5,0);
         skillTree.clicked(4);
-        Hud h = (new GameScreen()).getHud();
+        GameScreen g = new GameScreen();
+        g.createHud(p);
+        Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(4);
         skillTree.clicked(5);
-        assertTrue("Can Click On Button When Player Has Not Enough Gold",skillTree.getStates().get(5)==0);
+        System.out.println(skillTree.getStates().get(5));
+        assertTrue("Cannot Click On Button When Player Has Not Enough Gold",skillTree.getStates().get(5)==0);
     }
 
     @Test
@@ -163,17 +173,22 @@ public class SkillTreeTests{
         p.skillTreeScreen = spy(new SkillTree(p));
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
-        skillTree.setUpStates();
+        //skillTree.setUpStates();
+        skillTree.setupTest(p);
         skillTree.clicked(4);
+        skillTree.states.set(5,0);
         GameScreen g = new GameScreen();
+        g.createHud(p);
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
+        //Hud.coins=500;
+        int currentHealth = h.getHealth();
         System.out.println(h.getHealth());
         skillTree.clicked(5);
         skillTree.applyEffects(skillTree.last,g);
         System.out.println(h.getHealth());
-        assertTrue("Health Skill Applied Correctly",h.getHealth()==100);
+        assertTrue("Health Skill Applied Correctly",h.getHealth()==currentHealth+50);
     }
 
     @Test
@@ -187,16 +202,23 @@ public class SkillTreeTests{
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
         skillTree.setUpStates();
+        skillTree.setupTest(p);
         skillTree.clicked(4);
         GameScreen g = new GameScreen();
+        GameScreen.testing = true;
+        g.createHud(p);
         Hud h = (g).getHud();
+        int maxHealth = Hud.GetMaxHealth();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
+        //Hud.coins=500;
+
         skillTree.clicked(5);
         skillTree.clicked(6);
         skillTree.applyEffects(skillTree.last,g);
+        System.out.println(maxHealth);
         System.out.println(Hud.GetMaxHealth());
-        assertTrue("Max Health Skill Applied Correctly",Hud.GetMaxHealth()==125);
+        assertTrue("Max Health Skill Applied Correctly",Hud.GetMaxHealth()==maxHealth+75);
     }
 
     @Test
@@ -210,11 +232,14 @@ public class SkillTreeTests{
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
         skillTree.setUpStates();
+        skillTree.setupTest(p);
         skillTree.clicked(4);
         GameScreen g = new GameScreen();
+        g.createHud(p);
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
+        //Hud.coins=500;
         skillTree.clicked(5);
         skillTree.clicked(7);
         skillTree.applyEffects(skillTree.last,g);
@@ -234,11 +259,14 @@ public class SkillTreeTests{
         skillTree.setUpStates();
         skillTree.clicked(4);
         GameScreen g = new GameScreen();
+        g.createHud(p);
         Hud h = (g.getHud());
         //Hud h = p.gameScreen.getHud();
         h.addCoins(500);
+        //Hud.coins=500;
+        float originMaxSpeed = g.getMaxSpeed();
         skillTree.clicked(8);
-        float n = 2.5F * (1 + (1/5));
+        float n = originMaxSpeed * (1 + (1/5));//2.5F * (1 + (1/5));
         System.out.println(g.getMaxSpeed());
         System.out.println(n);
         //skillTree.applyEffects(skillTree.last,g);
@@ -258,6 +286,7 @@ public class SkillTreeTests{
         skillTree.setUpStates();
         skillTree.clicked(4);
         GameScreen g = new GameScreen();
+        g.createHud(p);
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
@@ -279,13 +308,17 @@ public class SkillTreeTests{
         skillTree.setUpStates();
         skillTree.clicked(4);
         GameScreen g = new GameScreen();
+        g.createHud(p);
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
+        int currentChangeDamage = (g).getChangeDamage();
+        System.out.println((g).getChangeDamage());
         skillTree.clicked(10);
         skillTree.clicked(11);
         skillTree.applyEffects(skillTree.last,g);
-        assertTrue("Damage Increase Skill Applied Correctly",(g).getChangeDamage()==5);
+        System.out.println((g).getChangeDamage());
+        assertTrue("Damage Increase Skill Applied Correctly",(g).getChangeDamage()==(currentChangeDamage+5));
     }
 
     @Test
@@ -301,15 +334,19 @@ public class SkillTreeTests{
         skillTree.setUpStates();
         skillTree.clicked(4);
         GameScreen g = new GameScreen();
+        g.createHud(p);
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
+        float reloadDelay = (g).getReloadDelay();
         System.out.println((g).getReloadDelay());
+        skillTree.setupTest(p);
         skillTree.clicked(10);
         skillTree.clicked(13);
         skillTree.applyEffects(skillTree.last,g);
         System.out.println((g).getReloadDelay());
-        assertTrue("Reload Speed Skill Applied Correctly",(g).getReloadDelay()==0.9f);
+        System.out.println(Math.round((reloadDelay- (g).getReloadDelay())*10.00)/10.00);
+        assertTrue("Reload Speed Skill Applied Correctly",(Math.round((reloadDelay -(g).getReloadDelay()) * 10.00)/10.00)==0.1);
     }
 
     @Test
@@ -325,12 +362,14 @@ public class SkillTreeTests{
         skillTree.setUpStates();
         skillTree.clicked(4);
         GameScreen g = new GameScreen();
+        g.createHud(p);
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
+        skillTree.setupTest(p);
         skillTree.clicked(10);
         skillTree.clicked(15);
-        System.out.println((g).GetPlayer().getShotType());
+        System.out.println((g).GetPlayer(true).getShotType());
         skillTree.applyEffects(skillTree.last,g);
         assertTrue("Shot Type Skill Applied Correctly",(g).GetPlayer().getShotType()==1);
     }
@@ -345,17 +384,25 @@ public class SkillTreeTests{
         p.skillTreeScreen = spy(new SkillTree(p));
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
-        skillTree.setUpStates();
-        skillTree.clicked(4);
+        //skillTree.setUpStates();
+        skillTree.setupTest(p);
+
         GameScreen g = spy(new GameScreen());
+        g.createHud(p);
         Hud h = (g).getHud();
         //Hud h = (new GameScreen(p)).getHud();
         h.addCoins(500);
+        skillTree.clicked(4);
+        System.out.println(skillTree.getStates().get(5));
         skillTree.clicked(5);
+        System.out.println(skillTree.getStates().get(5));
         skillTree.clicked(5);
+        System.out.println(skillTree.getStates().get(5));
         skillTree.clicked(5);
+        System.out.println(skillTree.getStates().get(5));
         skillTree.clicked(5);
         //skillTree.applyEffects(skillTree.last,g);
+        System.out.println(skillTree.getStates().get(5));
         assertTrue("Health Skill Maxed Out",skillTree.getStates().get(5)==3);
     }
 
@@ -369,10 +416,13 @@ public class SkillTreeTests{
         p.skillTreeScreen = spy(new SkillTree(p));
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
-        skillTree.setUpStates();
+        skillTree.setupTest(p);
         GameScreen g = spy(new GameScreen());
+        GameScreen.testing = true;
+        g.createHud(p);
         Hud h = (g).getHud();
         skillTree.clicked(4);
+        System.out.println(skillTree.getStates().get(4));
         assertTrue("Skill to One",skillTree.getStates().get(4)==1);
     }
 
@@ -386,12 +436,16 @@ public class SkillTreeTests{
         p.skillTreeScreen = spy(new SkillTree(p));
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
-        skillTree.setUpStates();
+        //skillTree.setUpStates();
+        skillTree.setupTest(p);
         GameScreen g = spy(new GameScreen());
+        g.createHud(p);
         Hud h = (g).getHud();
         h.addCoins(500);
         skillTree.clicked(4);
+        System.out.println(skillTree.getStates().get(4));
         skillTree.clicked(4);
+        System.out.println(skillTree.getStates().get(4));
         assertTrue("Skill to Two",skillTree.getStates().get(4)==2);
     }   
 
@@ -405,8 +459,10 @@ public class SkillTreeTests{
         p.skillTreeScreen = spy(new SkillTree(p));
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
-        skillTree.setUpStates();
+        //skillTree.setUpStates();
+        skillTree.setupTest(p);
         GameScreen g = spy(new GameScreen());
+        g.createHud(p);
         Hud h = (g).getHud();
         h.addCoins(500);
         skillTree.clicked(4);
@@ -427,6 +483,7 @@ public class SkillTreeTests{
         skillTree.last = "0...........";
         skillTree.setUpStates();
         GameScreen g = spy(new GameScreen());
+        g.createHud(p);
         Hud h = (g).getHud();
         h.addCoins(500);
         skillTree.clicked(4);
@@ -447,8 +504,11 @@ public class SkillTreeTests{
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
         skillTree.setUpStates();
+        skillTree.setupTest(p);
         GameScreen g = spy(new GameScreen());
+        g.createHud(p);
         Hud h = (g).getHud();
+        //skillTree.setupTest();
         h.addCoins(500);
         skillTree.clicked(4);
         skillTree.clicked(4);

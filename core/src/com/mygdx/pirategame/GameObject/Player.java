@@ -50,6 +50,41 @@ public class Player extends Sprite {
         cannonBalls = new Array<CannonFire>();
 
     }
+    public Player(GameScreen screen,boolean test) {
+        if(test){
+            this.screen = screen;
+            //ship = new Texture("player_ship.png");
+            //this.world = screen.getWorld();
+            this.shotType = 0;
+            // Defines a player, and the players position on screen and world
+            //definePlayer();
+            //setBounds(0,0,64 / PirateGame.PPM, 110 / PirateGame.PPM);
+            //setRegion(ship);
+            //setOrigin(32 / PirateGame.PPM,55 / PirateGame.PPM);
+
+            // Sound effect for damage
+            //breakSound = Gdx.audio.newSound(Gdx.files.internal("wood-bump.mp3"));
+
+            // Sets cannonball array
+            cannonBalls = new Array<CannonFire>();
+        }else{
+            this.screen = screen;
+            ship = new Texture("player_ship.png");
+            this.world = screen.getWorld();
+            this.shotType = 0;
+            // Defines a player, and the players position on screen and world
+            definePlayer();
+            setBounds(0,0,64 / PirateGame.PPM, 110 / PirateGame.PPM);
+            setRegion(ship);
+            setOrigin(32 / PirateGame.PPM,55 / PirateGame.PPM);
+
+            // Sound effect for damage
+            breakSound = Gdx.audio.newSound(Gdx.files.internal("wood-bump.mp3"));
+
+            // Sets cannonball array
+            cannonBalls = new Array<CannonFire>();
+        }
+    }
 
     /**
      * Update the position of the player. Also updates any cannon balls the player generates

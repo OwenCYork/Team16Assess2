@@ -384,7 +384,7 @@ public class Hud implements Disposable {
     }
 
     public void addCoins(int value){
-        coins+=value;
+        if (coins==null) {coins = value;} else{coins+=value;}
     }
 
     public int getRegen(){
