@@ -285,7 +285,8 @@ public class SkillTreeTests{
         p.skillTreeScreen = spy(new SkillTree(p));
         SkillTree skillTree = p.getskillTreeScreen();
         skillTree.last = "0...........";
-        skillTree.setUpStates();
+        //skillTree.setUpStates();
+        skillTree.setupTest(p);
         skillTree.clicked(4);
         GameScreen g = new GameScreen();
         g.createHud(p);
@@ -411,6 +412,8 @@ public class SkillTreeTests{
     @Test
     public void skillToOne(){
         PirateGame p = new PirateGame();
+        SpriteBatch sb = mock(SpriteBatch.class);
+        p.batch = sb;
         GameScreen.testing = true;
         SkillTree skillTree = new SkillTree(p);
         skillTree.last = "0...........";
@@ -427,6 +430,8 @@ public class SkillTreeTests{
     @Test
     public void skillToTwo(){
         PirateGame p = new PirateGame();
+        SpriteBatch sb = mock(SpriteBatch.class);
+        p.batch = sb;
         GameScreen.testing = true;
         SkillTree skillTree = new SkillTree(p);
         skillTree.last = "0...........";
@@ -447,6 +452,8 @@ public class SkillTreeTests{
     @Test
     public void skillToThree(){
         PirateGame p = new PirateGame();
+        SpriteBatch sb = mock(SpriteBatch.class);
+        p.batch = sb;
         GameScreen.testing = true;
         SkillTree skillTree = new SkillTree(p);
         skillTree.last = "0...........";
@@ -465,6 +472,8 @@ public class SkillTreeTests{
     @Test
     public void skillNotAboveThree(){
         PirateGame p = new PirateGame();
+        SpriteBatch sb = mock(SpriteBatch.class);
+        p.batch = sb;
         GameScreen.testing = true;
         SkillTree skillTree = new SkillTree(p);
         skillTree.last = "0...........";
@@ -485,6 +494,8 @@ public class SkillTreeTests{
     @Test
     public void skillNotAboveThreeTenAbove(){
         PirateGame p = new PirateGame();
+        SpriteBatch sb = mock(SpriteBatch.class);
+        p.batch = sb;
         GameScreen.testing = true;
         SkillTree skillTree = new SkillTree(p);
         skillTree.last = "0...........";
