@@ -15,7 +15,7 @@ import static org.mockito.Mockito.spy;
 
 
 public class SaveTests {
-
+/*
     private String Health;
     private Integer health;
     private Boolean HealthCheck;
@@ -96,7 +96,7 @@ public class SaveTests {
         assertTrue("HealthRe exist in savefile.", HealthReCheck);
 
     }
-
+*/
 
 
 
