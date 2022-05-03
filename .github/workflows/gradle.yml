@@ -36,7 +36,7 @@ jobs:
       uses: gradle/gradle-build-action@v2
       with:
         arguments: build
-    - name: Build with Gradle
+    - name: Jar with Gradle
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: jar
+        arguments: desktop:dist
